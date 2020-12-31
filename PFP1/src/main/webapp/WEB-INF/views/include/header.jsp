@@ -49,7 +49,7 @@
 			<div class="col-sm-4 col-lg-3">
 				<div class="log-link">
 					<p>Well come visitor you can</p>
-					<h5><a href="login.html">Login</a> or <a href="login.html">Create an account</a></h5>
+					<h5><a href="<%=request.getContextPath() %>/member/login">Login</a> or <a href="<%=request.getContextPath() %>/member/login">Create an account</a></h5>
 				</div>
 			</div>
 			<div class="col-sm-4 col-lg-6">
