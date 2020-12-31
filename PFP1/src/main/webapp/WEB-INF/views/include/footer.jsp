@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <div class="support-area section fix"><!--Start Support Area-->
 	<div class="container">
 		<div class="row">
@@ -32,7 +30,7 @@
 			<div class="col-sm-6 col-md-3">
 				<div class="footer-about">
 					<div class="image">
-						<img src="img/header/logo.png" alt="" />
+						<img src="<%=request.getContextPath() %>/img/header/logo.png" alt="" />
 						<h3>online jewelry store</h3>
 					</div>
 					<p>perspiciatis unde omnis iste natus error sit voluptatem accm doloremque antium, totam rem aperiam, eaque ipsa perspiciatis unde omnis iste</p>
@@ -61,7 +59,7 @@
 							<i class="fa fa-dribbble"></i>
 						</div>
 						<div class="details">
-							<a href="#"><span class="__cf_email__" data-cfemail="dab3b4bcb59ab5b6b5b4bdb1bfa8f4b9b5b7">[email&#160;protected]</span></a>
+							<a href="#">info@olongker.com</a>
 							<a href="#">www.olongker.com</a>
 						</div>
 					</div>
@@ -125,17 +123,17 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="copy-right">
-					<p>&copy; 2015 <a href="www.bootexperts.com">BootExperts</a>, All Right Reserved</p>
+					<p>Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a></p>
 				</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="payment">
 					<ul>
-						<li><a href="#"><img src="img/footer/paypal.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="img/footer/visa.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="img/footer/master.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="img/footer/cards.jpg" alt="" /></a></li>
-						<li><a href="#"><img src="img/footer/discover.jpg" alt="" /></a></li>
+						<li><a href="#"><img src="<%=request.getContextPath() %>/resources/img/footer/paypal.jpg" alt="" /></a></li>
+						<li><a href="#"><img src="<%=request.getContextPath() %>/resources/img/footer/visa.jpg" alt="" /></a></li>
+						<li><a href="#"><img src="<%=request.getContextPath() %>/resources/img/footer/master.jpg" alt="" /></a></li>
+						<li><a href="#"><img src="<%=request.getContextPath() %>/resources/img/footer/cards.jpg" alt="" /></a></li>
+						<li><a href="#"><img src="<%=request.getContextPath() %>/resources/img/footer/discover.jpg" alt="" /></a></li>
 					</ul>
 				</div>
 			</div>

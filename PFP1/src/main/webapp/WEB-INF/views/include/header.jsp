@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <div class="header-top"><!--Start Header Top Area-->
 	<div class="container">
 		<div class="row">
@@ -11,7 +9,7 @@
 					</div>
 					<div class="mail-id float-left">
 						<i class="fa fa-envelope-o float-left"></i>
-						<p><a href="#"><span class="__cf_email__" data-cfemail="0e676068614e6162616069656b7c206d6163">[email&#160;protected]</span></a></p>
+						<p><a href="#">info@olongker.com</a></p>
 					</div>
 				</div>
 			</div>
@@ -57,7 +55,7 @@
 			<div class="col-sm-4 col-lg-6">
 				<div class="logo text-center">
 					<a href="index.html">
-						<img src="img/header/logo.png" alt="" />
+						<img src="<%=request.getContextPath() %>/img/header/logo.png" alt="" />
 						<h4>online jewelry store</h4>
 					</a>
 				</div>
@@ -71,12 +69,12 @@
 					<div class="cart-hover">
 						<ul class="header-cart-pro">
 							<li>
-								<div class="image"><a href="#"><img alt="cart item" src="img/cart-1.jpg"></a></div>
+								<div class="image"><a href="#"><img alt="cart item" src="<%=request.getContextPath() %>/img/cart-1.jpg"></a></div>
 								<div class="content fix"><a href="#">Product Name</a><span class="price">Price: $130</span><span class="quantity">Quantity: 1</span></div>
 								<i class="fa fa-trash delete"></i>
 							</li>
 							<li>
-								<div class="image"><a href="#"><img alt="cart item" src="img/cart-2.jpg"></a></div>
+								<div class="image"><a href="#"><img alt="cart item" src="<%=request.getContextPath() %>/img/cart-2.jpg"></a></div>
 								<div class="content fix"><a href="#">Product Name</a><span class="price">Price: $130</span><span class="quantity">Quantity: 2</span></div>
 								<i class="fa fa-trash delete"></i>
 							</li>
@@ -179,7 +177,7 @@
 										</ul>
 									</div>
 									<div class="column-4 column">
-										<a href="#"><img src="img/product/10.jpg" alt="" /></a>
+										<a href="#"><img src="<%=request.getContextPath() %>/img/product/10.jpg" alt="" /></a>
 									</div>
 								</div>
 							</li>
