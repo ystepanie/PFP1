@@ -48,24 +48,39 @@
 		<div class="row">
 			<div class="col-sm-6 col-md-5">
 				<div class="login">
-					<form id="login-form" action="#">
-						<h2>Login</h2>
-						<p>Welcome to your account</p>
-						<div class="social-login">
-							<a id="facebook" href="#"><i class="fa fa-facebook"></i>Sign In with Facebook</a>
-							<a id="twitter" href="#"><i class="fa fa-twitter"></i>Sign In with Twitter</a>
-						</div>
-						<label>E-mail Address<span>*</span></label>
-						<input type="text" />
-						<label>Password<span>*</span></label>
-						<input type="password" />
-						<div class="remember">
-							<input type="checkbox" />
-							<p>Remember me!</p>
-							<a href="#">Forgot Your Password ?</a>
-						</div>
-						<input type="submit" value="login" />
-					</form>
+					<form role="form" method="post" autocomplete="off">
+ 					<form id="signup-form" action="#">
+ 						<h2>Create A new Account</h2>
+ 						<p>Create your own account</p>
+ 						<label>USER ID<span>*</span></label>
+ 						<input type="text" id="userId" name="userId" />
+ 						<label>E-mail Address<span>*</span></label>
+ 						<input type="text" />
+ 						<label>Password<span>*</span></label>
+ 						<input type="password" id="userPw" name="userPw" />
+ 						<input type="password" />
+ 						<label>Confirm Password<span>*</span></label>
+ 						<input type="password" />
+ 						<label>Nickname<span>*</span></label>
+ 						<input type="text" id="nickname" name="nickname" />
+ 						<label>User PhoneNo.(except -)<span>*</span></label>
+ 						<input type="text" id="userTel" name="userTel" />
+ 						<label>E-mail<span>*</span></label>
+ 						<input type="text" id="email" name="email" />
+ 						<label>Address<span>*</span></label>
+ 						<input type="text" id="address" name="address" />
+ 						<label>Post Number<span>*</span></label>
+ 						<input type="text" id="postNum" name="postNum" />
+ 						<label>BirthDay<span>*</span></label>
+ 						<input type="text" id="birthday" name="birthday" />
+ 						<label>Email Receive Agree<span>*</span></label>
+ 						<input type="radio" id="emailReceive" name="emailReceive" value="0"/> Y
+ 						<input type="radio" id="emailReceive" name="emailReceive" value="1"/> N
+ 						<label>Message Receive Agree<span>*</span></label>
+ 						<input type="radio" id="messageReceive" name="messageReceive" value="0"/> Y
+ 						<input type="radio" id="messageReceive" name="messageReceive" value="1"/> N
+ 						<input type="submit" value="Sign up" />
+ 					</form>
 				</div>
 			</div>
 			<div class="col-md-2"></div>
