@@ -15,8 +15,9 @@ public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	@Inject
-	BCryptPasswordEncoder pwdEncoder;
+	/*
+	 * @Inject BCryptPasswordEncoder pwdEncoder;
+	 */
 	
 	@GetMapping("login_register")
 	public String getLogin_register() {

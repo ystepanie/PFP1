@@ -7,7 +7,7 @@
 	<title>Olongkar | Home Page 1</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Fav Icon -->
-	<link id="favicon" rel="icon" type="image/png" href="img/favicon.ico" />
+	<link id="favicon" rel="icon" type="image/png" href="<%=request.getContextPath() %>/resources/img/puzzle.ico" />
 	<!-- Google Font Raleway -->
 	<link href='https://fonts.googleapis.com/css?family=Raleway:200,300,500,400,600,700,800' rel='stylesheet' type='text/css'>
 	<!-- Google Font Dancing Script -->
@@ -92,7 +92,7 @@
 					<div class="product-item fix">
 						<div class="product-img-hover">
 							<!-- Product image -->
-							<a href="product-details.html" class="pro-image fix"><img src="<%=request.getContextPath() %>/resources/img/featured/1.jpg" alt="featured" /></a>
+							<a href="product-details.html" class="pro-imagfe fix"><img src="<%=request.getContextPath() %>/resources/img/featured/1.jpg" alt="featured" /></a>
 							<!-- Product action Btn -->
 							<div class="product-action-btn">
 								<a class="quick-view" href="#"><i class="fa fa-search"></i></a>

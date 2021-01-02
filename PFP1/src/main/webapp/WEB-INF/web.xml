@@ -9,7 +9,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/root-context.xml
-			/WEB-INF/spring/spring-security.xml
+			<!-- /WEB-INF/spring/spring-security.xml -->
 		</param-value>
 	</context-param>
 
@@ -28,7 +28,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				/WEB-INF/spring/appServlet/servlet-context.xml
-				/WEB-INF/spring/spring-security.xml
+				<!-- /WEB-INF/spring/spring-security.xml -->
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -61,12 +61,12 @@
 	<!-- 문자 인코딩 끝 -->
 	
 	<!-- Spring Security Filter -->
-	<filter>
+	<!-- <filter>
 	    <filter-name>springSecurityFilterChain</filter-name>
 	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 	<filter-mapping>
 	    <filter-name>springSecurityFilterChain</filter-name>
 	    <url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 </web-app>

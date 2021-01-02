@@ -49,13 +49,13 @@
 			<div class="col-sm-4 col-lg-3">
 				<div class="log-link">
 					<p>Well come visitor you can</p>
-					<h5><a href="<%=request.getContextPath() %>/member/login">Login</a> or <a href="<%=request.getContextPath() %>/member/login">Create an account</a></h5>
+					<h5><a href="<%=request.getContextPath() %>/resources/member/login">Login</a> or <a href="<%=request.getContextPath() %>/resources/member/login">Create an account</a></h5>
 				</div>
 			</div>
 			<div class="col-sm-4 col-lg-6">
 				<div class="logo text-center">
 					<a href="index.html">
-						<img src="<%=request.getContextPath() %>/img/header/logo.png" alt="" />
+						<img src="<%=request.getContextPath() %>/resources/img/puzzle.png" alt="" />
 						<h4>online jewelry store</h4>
 					</a>
 				</div>
@@ -69,12 +69,12 @@
 					<div class="cart-hover">
 						<ul class="header-cart-pro">
 							<li>
-								<div class="image"><a href="#"><img alt="cart item" src="<%=request.getContextPath() %>/img/cart-1.jpg"></a></div>
+								<div class="image"><a href="#"><img alt="cart item" src="<%=request.getContextPath() %>/resources/img/cart-1.jpg"></a></div>
 								<div class="content fix"><a href="#">Product Name</a><span class="price">Price: $130</span><span class="quantity">Quantity: 1</span></div>
 								<i class="fa fa-trash delete"></i>
 							</li>
 							<li>
-								<div class="image"><a href="#"><img alt="cart item" src="<%=request.getContextPath() %>/img/cart-2.jpg"></a></div>
+								<div class="image"><a href="#"><img alt="cart item" src="<%=request.getContextPath() %>/resources/img/cart-2.jpg"></a></div>
 								<div class="content fix"><a href="#">Product Name</a><span class="price">Price: $130</span><span class="quantity">Quantity: 2</span></div>
 								<i class="fa fa-trash delete"></i>
 							</li>
@@ -147,7 +147,7 @@
 									</div>
 								</div>
 							</li>
-							<li><a href="shop.html">Shop</a>
+							<li><a href="<%=request.getContextPath() %>/shop">Shop</a>
 								<div class="mega-menu mega-menu-1">
 									<div class="column-1 column">
 										<ul>
@@ -177,7 +177,7 @@
 										</ul>
 									</div>
 									<div class="column-4 column">
-										<a href="#"><img src="<%=request.getContextPath() %>/img/product/10.jpg" alt="" /></a>
+										<a href="#"><img src="<%=request.getContextPath() %>/resources/img/product/10.jpg" alt="" /></a>
 									</div>
 								</div>
 							</li>
