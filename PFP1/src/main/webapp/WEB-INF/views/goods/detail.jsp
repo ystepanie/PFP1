@@ -52,46 +52,46 @@
                <div class="tab-content details-pro-tab-content">
                   <div class="tab-pane fade in active" id="image-1">
                      <div class="simpleLens-big-image-container">
-                        <a class="simpleLens-lens-image" data-lens-image="img/single-product/1.jpg">
-                           <img src="img/single-product/1.jpg" alt="" class="simpleLens-big-image">
+                        <a class="simpleLens-lens-image" data-lens-image="<%=request.getContextPath() %>/resources/img/single-product/1.jpg">
+                           <img src="<%=request.getContextPath() %>/resources/img/single-product/1.jpg" alt="" class="simpleLens-big-image">
                         </a>
                      </div>
                   </div>
                   <div class="tab-pane fade" id="image-2">
                      <div class="simpleLens-big-image-container">
-                        <a class="simpleLens-lens-image" data-lens-image="img/single-product/2.jpg">
-                           <img src="img/single-product/2.jpg" alt="" class="simpleLens-big-image">
+                        <a class="simpleLens-lens-image" data-lens-image="<%=request.getContextPath() %>/resources/img/single-product/2.jpg">
+                           <img src="<%=request.getContextPath() %>/resources/img/single-product/2.jpg" alt="" class="simpleLens-big-image">
                         </a>
                      </div>
                   </div>
                   <div class="tab-pane fade" id="image-3">
                      <div class="simpleLens-big-image-container">
-                        <a class="simpleLens-lens-image" data-lens-image="img/single-product/3.jpg">
-                           <img src="img/single-product/3.jpg" alt="" class="simpleLens-big-image">
+                        <a class="simpleLens-lens-image" data-lens-image="<%=request.getContextPath() %>/resources/img/single-product/3.jpg">
+                           <img src="<%=request.getContextPath() %>/resources/img/single-product/3.jpg" alt="" class="simpleLens-big-image">
                         </a>
                      </div>
                   </div>
                   <div class="tab-pane fade" id="image-4">
                      <div class="simpleLens-big-image-container">
-                        <a class="simpleLens-lens-image" data-lens-image="img/single-product/4.jpg">
-                           <img src="img/single-product/4.jpg" alt="" class="simpleLens-big-image">
+                        <a class="simpleLens-lens-image" data-lens-image="<%=request.getContextPath() %>/resources/img/single-product/4.jpg">
+                           <img src="<%=request.getContextPath() %>/resources/img/single-product/4.jpg" alt="" class="simpleLens-big-image">
                         </a>
                      </div>
                   </div>
                </div>
                <!-- Nav tabs -->
                <ul class="tabs-list details-pro-tab-list" role="tablist">
-                  <li class="active"><a href="#image-1" data-toggle="tab"><img src="img/single-product/thumb-1.jpg" alt="" /></a></li>
-                  <li><a href="#image-2" data-toggle="tab"><img src="img/single-product/thumb-2.jpg" alt="" /></a></li>
-                  <li><a href="#image-3" data-toggle="tab"><img src="img/single-product/thumb-3.jpg" alt="" /></a></li>
-                  <li><a href="#image-4" data-toggle="tab"><img src="img/single-product/thumb-4.jpg" alt="" /></a></li>
+                  <li class="active"><a href="#image-1" data-toggle="tab"><img src="<%=request.getContextPath() %>/resources/img/single-product/thumb-1.jpg" alt="" /></a></li>
+                  <li><a href="#image-2" data-toggle="tab"><img src="<%=request.getContextPath() %>/resources/img/single-product/thumb-2.jpg" alt="" /></a></li>
+                  <li><a href="#image-3" data-toggle="tab"><img src="<%=request.getContextPath() %>/resources/img/single-product/thumb-3.jpg" alt="" /></a></li>
+                  <li><a href="#image-4" data-toggle="tab"><img src="<%=request.getContextPath() %>/resources/img/single-product/thumb-4.jpg" alt="" /></a></li>
                </ul>
             </div>
          </div>
          <div class="col-sm-6">
             <div class="shop-details">
                <!-- Product Name -->
-               <h2>PRODUCT NAME DEMO</h2>
+               <h2>브랜드 & 이름</h2>
                <!-- Product Ratting -->
                <div class="pro-ratting">
                   <i class="on fa fa-star"></i>
@@ -104,7 +104,8 @@
                <h4>10 Reviews</h4>
                <h5>Availability - <span>In Stock</span></h5>
                <h6>QUICK OVERVIEW</h6>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
+               <div class="bg-warning" style="height:200px;">상세정보</div><br>
+               <div class="bg-danger" style="height:80px;">최근 거래가</div><br>
                <div class="select-menu fix">
                   <div class="sort fix">
                      <h4>SIZE</h4>
@@ -115,52 +116,160 @@
                         <option value="6">6</option>
                      </select>
                   </div>
-                  <div class="sort fix">
-                     <h4>Color</h4>
-                     <select>
-                        <option value="pink">pink</option>
-                        <option value="red">red</option>
-                        <option value="blue">blue</option>
-                     </select>
-                  </div>
-                  <div class="sort fix">
-                     <h4>Qty</h4>
-                     <select>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                     </select>
-                  </div>
-               </div>
-               <div class="review">
-                  <textarea rows="4" placeholder="Write Your Review..."></textarea>
-               </div>
+               </div><br>
+               <div class="container" style="width:100%;">
+               	<div class="row" style="width:100%;">
+               		<div class="col" style="width:100%;">
+               			<button type="button" class="btn btn-primary" style="width:49%;font-size:100%;"><b style="float:left;">구매 |</b><font style="float:right;">즉시 구매가 - 원</font></button>
+               			<button type="button" class="btn btn-danger" style="width:49%;font-size:100%;"><b style="float:left;">판매 |</b><font style="float:right;">즉시 판매가 - 원</font></button>
+               		</div>
+               	</div>
+               </div><br>
                <div class="action-btn">
                   <a href="#"><i class="fa fa-shopping-cart"></i></a>
                   <a href="#"><i class="fa fa-heart-o"></i></a>
                   <a href="#"><i class="fa fa-refresh"></i></a>
                </div>
             </div>
-         </div>
+         </div><br>
          <div class="col-sm-12 fix">
+         	<div class="section-title">
+	         	<div class="row">
+	         		<h4 style="float:left;margin-left:50px;">최근 거래 시세</h4>
+		         	<div class="btn-group btn-group-toggle" data-toggle="buttons" style="float:right;margin-right:50px;">
+			         	<label class="btn btn-default"><input type="radio" name="period">1주</label>
+			         	<label class="btn btn-default"><input type="radio" name="period">1개월</label>
+			         	<label class="btn btn-default"><input type="radio" name="period">3개월</label>
+			         	<label class="btn btn-default"><input type="radio" name="period">6개월</label>
+			         	<label class="btn btn-default"><input type="radio" name="period">1년</label>
+			         	<label class="btn btn-primary"><input type="radio" name="period">전체</label>
+		         	</div>
+	         	</div>
+	         	<div class="row">
+	         		<canvas id="canvas" class="chartjs-render-monitor"></canvas>
+	         	</div>
+         	</div>
+         	
             <div class="description">
                <!-- Nav tabs -->
                <ul class="nav product-nav">
-                  <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-                  <li class=""><a data-toggle="tab" href="#review">REVIEWS</a></li>
-                  <li class=""><a data-toggle="tab" href="#tags">PRODUCTS TAGS</a></li>
+                  <li class="active"><a data-toggle="tab" href="#description">최근 거래 목록</a></li>
+                  <li class=""><a data-toggle="tab" href="#review">입찰 현황</a></li>
+                  <li class=""><a data-toggle="tab" href="#tags">tags</a></li>
                   <li class=""><a data-toggle="tab" href="#custom-tags">CUSTOM TABS</a></li>
                </ul>
                <!-- Tab panes -->
                <div class="tab-content">
                   <div id="description" class="tab-pane fade active in" role="tabpanel">
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc.</p>
+                  	<table class="table table-hover">
+                  		<thead>
+                  			<tr>
+	                  			<th>옵션</th>
+	                  			<th>거래가</th>
+	                  			<th>거래일</th>
+	                  		</tr>
+                  		</thead>
+                  		<tbody style="overflow-y:scroll;height:100px;">
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  				<td>2021.01.01</td>
+                  			</tr>
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  				<td>2021.01.01</td>
+                  			</tr>
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  				<td>2021.01.01</td>
+                  			</tr>
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  				<td>2021.01.01</td>
+                  			</tr>
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  				<td>2021.01.01</td>
+                  			</tr>
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  				<td>2021.01.01</td>
+                  			</tr>
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  				<td>2021.01.01</td>
+                  			</tr>
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  				<td>2021.01.01</td>
+                  			</tr>
+                  		</tbody>
+                  	</table>
                   </div>
-                  <div id="review" class="tab-pane fade" role="tabpanel">
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc.</p>
+                  <div id="review" class="tab-pane fade" role="tabpanel" style="height:150px;">
+                  	<div class="col-sm-6">
+                  	<table class="table table-hover">
+                  		<thead>
+                  			<tr>
+	                  			<th>옵션</th>
+	                  			<th>구매입찰</th>
+	                  		</tr>
+                  		</thead>
+                  		<tbody style="overflow-y:scroll;height:100px;background-color:#EBF7FF;" >
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  			</tr>
+                  			<tr>
+                  				<td>250mm</td>
+                  				<td>230,000원</td>
+                  			</tr>
+                  			<tr>
+                  				<td>235mm</td>
+                  				<td>325,000원</td>
+                  			</tr>
+                  			<tr>
+                  				<td>255mm</td>
+                  				<td>355,000원</td>
+                  			</tr>
+                  		</tbody>
+                  	</table>
+                  	</div>
+                  	<div class="col-sm-6"> 
+                  	<table class="table table-hover">
+                  		<thead>
+                  			<tr>
+	                  			<th>옵션</th>
+	                  			<th>판매입찰</th>
+	                  		</tr>
+                  		</thead>
+                  		<tbody style="overflow-y:scroll;height:100px;background-color:#FFEAEA;">
+                  			<tr>
+                  				<td>240mm</td>
+                  				<td>400,000원</td>
+                  			</tr>
+                  			<tr>
+                  				<td>250mm</td>
+                  				<td>230,000원</td>
+                  			</tr>
+                  			<tr>
+                  				<td>240mm</td>
+                  				<td>400,000원</td>
+                  			</tr>
+                  			<tr>
+                  				<td>255mm</td>
+                  				<td>355,000원</td>
+                  			</tr>
+                  		</tbody>
+                  	</table>
+                  	</div>  
                   </div>
                   <div id="tags" class="tab-pane fade" role="tabpanel">
                      <a href="#">JEWELRY</a><a href="#">Necklaces</a><a href="#">Jewelry Sets</a><a href="#">Churi</a>
@@ -173,7 +282,7 @@
          </div>
          <div class="col-md-12 fix">
             <div class="section-title">
-               <h2>RELATEDE PRODUCT</h2>
+               <h2>관련 상품</h2>
                <div class="underline"></div>
             </div>
             <div class="related-pro-slider owl-carousel">
@@ -341,7 +450,7 @@
    <div class="container">
       <div class="row">
          <div class="section-title">
-            <h2>Our Brands</h2>
+            <h2>관련 블로그</h2>
             <div class="underline"></div>
          </div>
          <div class="brand-slider owl-carousel">
@@ -392,7 +501,72 @@
 </script>   
 <!-- Main JS -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/main.js"></script>
+<!-- ChartJS -->
+<script src="<%=request.getContextPath()%>/resources/plugins/chart.js/Chart.min.js"></script>
+<!--  javascript 끼리 충돌이 일어나는지 왜 차트가 안 뜨는지 모르겠다. js 파일들을 다시 잘 확인해봐야겠다. -->
+<script>
 
+var chartLabels = [];
+var chartData1=[], chartData2=[], chartData3=[];
+var txtTitle = '전체 매출 차트';
+
+window.onload = function() {
+	$.getJSON("<%=request.getContextPath()%>/api/stat/manageChart",
+			function(data) {
+	  $.each(data, function(idx, obj) {
+		 chartLabels.push(obj.period);
+	     chartData1.push(obj.totalPrice);
+	     chartData2.push(obj.orderCnt);
+	     chartData3.push(obj.cancleCnt);
+	  });
+	  createChart();
+	});
+};
+
+function createChart() {
+	var ctx = document.getElementById('canvas').getContext('2d');
+	var chartData = {
+			labels: chartLabels,
+			datasets: [{
+				type: 'line',
+				label: '총 주문금액(단위:10만원)',
+				borderColor: '#FF5E00',
+				borderWidth: 2,
+				fill: false,
+				data: chartData1
+			}, {
+				type: 'bar',
+				label: '주문 수',
+				backgroundColor: '#1DDB16',
+				data: chartData2,
+				borderColor: 'white',
+				borderWidth: 2
+			}, {
+				type: 'bar',
+				label: '취소/교환/반품 수',
+				backgroundColor: '#FF00DD',
+				data: chartData3
+			}]
+
+		};
+	window.myMixedChart = new Chart(ctx, {
+		type: 'bar',
+		data: chartData,
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: txtTitle
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: true
+			}
+		}
+	});
+}
+
+</script>
 </body>
 
 </html>

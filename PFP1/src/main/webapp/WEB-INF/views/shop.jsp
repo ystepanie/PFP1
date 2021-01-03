@@ -71,8 +71,18 @@
 				</div>
 				<div class="pro-Showing">
 					<span>Showing 1 - 12 of 16 items</span>
+				</div><br><br>
+				<div class="product-price-range">
+					<div class="slider-range-container">
+						<h2>Price</h2>
+						<div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 6.25%; width: 62.5%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 6.25%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 68.75%;"></span></div>
+						<p>
+							<input type="text" id="price-amount" readonly="">
+						</p>
 				</div>
 			</div>
+			</div>
+			
 			<div class="shop-products">
 				<!-- Single Product Start -->
 				<div class="col-sm-4 col-md-3 fix">
