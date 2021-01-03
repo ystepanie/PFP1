@@ -1,3 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="">
+</head>
 <div class="header-top"><!--Start Header Top Area-->
 	<div class="container">
 		<div class="row">
@@ -49,7 +60,12 @@
 			<div class="col-sm-4 col-lg-3">
 				<div class="log-link">
 					<p>Well come visitor you can</p>
-					<h5><a href="<%=request.getContextPath() %>/resources/member/login">Login</a> or <a href="<%=request.getContextPath() %>/resources/member/login">Create an account</a></h5>
+					<c:if test="${member == null }">
+					<h5><a href="<%=request.getContextPath() %>/member/login">Login</a> or <a href="<%=request.getContextPath() %>/member/register">Create an account</a></h5>
+					</c:if>
+					<c:if test="${member != null }">
+					<h5><a href="<%=request.getContextPath() %>/board/blog">${member.nickname}의 블로그로 이동</a>
+					</c:if>
 				</div>
 			</div>
 			<div class="col-sm-4 col-lg-6">
