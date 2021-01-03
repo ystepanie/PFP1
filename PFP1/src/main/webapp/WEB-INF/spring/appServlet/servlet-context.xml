@@ -24,7 +24,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.pfp.controller" />
-	
+	<context:component-scan base-package="org.pfp.dao" />
+	<context:component-scan base-package="org.pfp.service" />	
 
 
 

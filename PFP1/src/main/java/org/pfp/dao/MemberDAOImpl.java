@@ -4,9 +4,9 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.pfp.dto.MemberVO;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service
+@Repository
 public class MemberDAOImpl implements MemberDAO {
 
 	@Inject
@@ -14,7 +14,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	private static String namespace = "org.pfp.mapper.memberMapper";
 	
-	//회원 가입
+	//�쉶�썝 媛��엯
 	@Override
 	public void register(MemberVO vo) throws Exception {
 		sql.insert(namespace + ".register", vo);
