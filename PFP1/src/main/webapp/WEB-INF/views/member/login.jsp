@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -46,57 +47,25 @@
 <div class="login-page page fix"><!--start login Area-->
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6 col-md-5">
-				<div class="login">
-					<form role="form" method="post" autocomplete="off">
- 					<form id="signup-form" action="#">
- 						<h2>Create A new Account</h2>
- 						<p>Create your own account</p>
- 						<label>USER ID<span>*</span></label>
- 						<input type="text" id="userId" name="userId" />
- 						<label>E-mail Address<span>*</span></label>
- 						<input type="text" />
- 						<label>Password<span>*</span></label>
- 						<input type="password" id="userPw" name="userPw" />
- 						<input type="password" />
- 						<label>Confirm Password<span>*</span></label>
- 						<input type="password" />
- 						<label>Nickname<span>*</span></label>
- 						<input type="text" id="nickname" name="nickname" />
- 						<label>User PhoneNo.(except -)<span>*</span></label>
- 						<input type="text" id="userTel" name="userTel" />
- 						<label>E-mail<span>*</span></label>
- 						<input type="text" id="email" name="email" />
- 						<label>Address<span>*</span></label>
- 						<input type="text" id="address" name="address" />
- 						<label>Post Number<span>*</span></label>
- 						<input type="text" id="postNum" name="postNum" />
- 						<label>BirthDay<span>*</span></label>
- 						<input type="text" id="birthday" name="birthday" />
- 						<label>Email Receive Agree<span>*</span></label>
- 						<input type="radio" id="emailReceive" name="emailReceive" value="0"/> Y
- 						<input type="radio" id="emailReceive" name="emailReceive" value="1"/> N
- 						<label>Message Receive Agree<span>*</span></label>
- 						<input type="radio" id="messageReceive" name="messageReceive" value="0"/> Y
- 						<input type="radio" id="messageReceive" name="messageReceive" value="1"/> N
- 						<input type="submit" value="Sign up" />
- 					</form>
-				</div>
-			</div>
 			<div class="col-md-2"></div>
 			<div class="col-sm-6 col-md-5">
 				<div class="login">
-					<form id="signup-form" action="#">
-						<h2>Create A new Account</h2>
-						<p>Create your own account</p>
-						<label>E-mail Address<span>*</span></label>
-						<input type="text" />
+				<c:if test="${member == null}">
+					<form role="form" method="post" autocomplete="off" action="/pfp/member/login">
+						<h2>LOGIN</h2>
+						<p>LOGIN</p>
+						<label>ID<span>*</span></label>
+						<input type="text" id="userId" name="userId"/>
 						<label>Password<span>*</span></label>
-						<input type="password" />
+						<input type="password" id="userPw" name="userPw"/>
 						<label>Confirm Password<span>*</span></label>
 						<input type="password" />
 						<input type="submit" value="Sign up" />
 					</form>
+				</c:if>
+				<c:if test="${msg == false}">
+					<p style="color:#f00;">로그인에 실패하셨습니다.</p>
+				</c:if>
 				</div>
 			</div>
 		</div>
