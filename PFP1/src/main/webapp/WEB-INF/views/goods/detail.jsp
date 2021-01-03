@@ -4,7 +4,7 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>Olongkar | Product Details</title>
+   <title>Puzzle | Product Details</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- Fav Icon -->
    <link id="favicon" rel="icon" type="image/png" href="<%=request.getContextPath() %>/resources/img/puzzle.ico" />
@@ -35,6 +35,45 @@
    <!-- Responsive Stylesheet -->
    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+   <style>
+   	.header-fixed {
+    width: 100% 
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.header-fixed > tbody {
+    overflow-y: auto;
+    height: 180px;
+    scrollbar-width: none;
+}
+
+.col3 > tbody > tr > td,
+.col3 > thead > tr > th {
+	width:33.3%;
+	float:left;
+}
+.col2 > tbody > tr > td,
+.col2 > thead > tr > th {
+	width:50%;
+	float:left;
+}
+   </style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -161,7 +200,7 @@
                <!-- Tab panes -->
                <div class="tab-content">
                   <div id="description" class="tab-pane fade active in" role="tabpanel">
-                  	<table class="table table-hover">
+                  	<table class="table table-hover header-fixed col3">
                   		<thead>
                   			<tr>
 	                  			<th>옵션</th>
@@ -213,9 +252,9 @@
                   		</tbody>
                   	</table>
                   </div>
-                  <div id="review" class="tab-pane fade" role="tabpanel" style="height:150px;">
+                  <div id="review" class="tab-pane fade" role="tabpanel" style="height:160px;">
                   	<div class="col-sm-6">
-                  	<table class="table table-hover">
+                  	<table class="table table-hover header-fixed col2">
                   		<thead>
                   			<tr>
 	                  			<th>옵션</th>
@@ -243,7 +282,7 @@
                   	</table>
                   	</div>
                   	<div class="col-sm-6"> 
-                  	<table class="table table-hover">
+                  	<table class="table table-hover header-fixed col2">
                   		<thead>
                   			<tr>
 	                  			<th>옵션</th>

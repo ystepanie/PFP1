@@ -41,4 +41,9 @@ public class HomeController {
 	public String getShop() {
 		return "shop";
 	}
+	
+	@GetMapping("/blog")
+	public String getBlog() {
+		return "blog";
+	}
 }

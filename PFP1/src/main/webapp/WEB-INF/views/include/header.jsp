@@ -16,7 +16,11 @@
 				<div class="info">
 					<div class="phn-num float-left">
 						<i class="fa fa-phone float-left"></i>
-						<p>(000)  123  288  456 </p>
+						<p><a href="tel:01076430423">010-7643-0423</a></p>
+					</div>
+					<div class="phn-num float-left">
+						<i class="fa fa-phone float-left"></i>
+						<p><a href="tel:01048729128">010-4872-9128</a></p>
 					</div>
 					<div class="mail-id float-left">
 						<i class="fa fa-envelope-o float-left"></i>
@@ -116,19 +120,19 @@
 				<div class="main-menu hidden-sm hidden-xs">
 					<nav>
 						<ul>
-							<li><a href="index.html" class="active">Home</a>
+							<li><a href="<%=request.getContextPath() %>/" class="active">Home</a>
 								<ul class="sub-menu">
 									<li><a href="index.html">Home 1</a></li>
 									<li><a href="index-2.html">Home 2</a></li>
 									<li><a href="index-3.html">Home 3</a></li>
 								</ul>
 							</li>
-							<li><a href="#">Pages</a>
+							<li><a href="<%=request.getContextPath() %>/blog">blog</a>
 								<div class="mega-menu mega-menu-page">
 									<div class="column-1 column">
 										<ul>
 											<li><a href="about-us.html">About US</a></li>
-											<li><a href="blog.html">Blog</a></li>
+											<li><a href="<%=request.getContextPath() %>/blog">Blog</a></li>
 											<li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
 											<li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
 											<li><a href="blog-details.html">Blog details</a></li>

@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Olongkar | Shop</title>
+	<title>Puzzle | Shop</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Fav Icon -->
 	<link id="favicon" rel="icon" type="image/png" href="<%=request.getContextPath() %>/resources/img/puzzle.ico" />
