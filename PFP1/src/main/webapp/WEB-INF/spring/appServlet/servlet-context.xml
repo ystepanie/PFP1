@@ -25,7 +25,16 @@
 	
 	<context:component-scan base-package="org.pfp.controller" />
 	<context:component-scan base-package="org.pfp.dao" />
-	<context:component-scan base-package="org.pfp.service" />	
+	<context:component-scan base-package="org.pfp.service" />
+	
+	<beans:bean id="LoginInterceptor" class="org.pfp.interceptor.LoginInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/goods/*"/>
+			<beans:ref bean="LoginInterceptor" />
+		</interceptor>
+	</interceptors>	
 
 
 

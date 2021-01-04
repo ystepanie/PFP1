@@ -24,6 +24,9 @@ public class MemberController {
 	@Inject
 	MemberService m_service;
 	
+	@Inject
+	BCryptPasswordEncoder pwdEncoder;
+	
 	//회원가입 get
 	@GetMapping("/register")
 	public void getregister() throws Exception {
@@ -34,7 +37,9 @@ public class MemberController {
 	@PostMapping("/register")
 	public String postregister(MemberVO vo) throws Exception {
 		logger.info("post Register");
-		
+		String inputPass = vo.getUserPw();
+		String pwd = pwdEncoder.encode(inputPass);
+		vo.setUserPw(pwd);
 		m_service.register(vo);
 		
 		return "redirect:/";
@@ -48,21 +53,21 @@ public class MemberController {
 
 	//로그인 post
 	@PostMapping("/login")
-	public String postLogin(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+	public String postLogin(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
 		logger.info("post login");
-		
-		HttpSession session = req.getSession();
-		 
+	
+		session.getAttribute("member");
 		MemberVO login = m_service.login(vo);
+		boolean pwdMatch = pwdEncoder.matches(vo.getUserPw(), login.getUserPw());
 		
-		if(login == null) {
+		if(login != null && pwdMatch == true) {
+			session.setAttribute("member", login);
+			return "redirect:/";
+		} else {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
 			return "redirect:login";
-		} else {
-			session.setAttribute("member", login);
-			return "redirect:/";
-		}
+		} 
 		
 		
 	}

@@ -10,9 +10,9 @@
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="org.pfp.dto.MemberVO">
-		select nickname
+		select userId, userPw, nickname
 		from member
 		where userId = #{userId}
-		and userPw = #{userPw}
+		<!--  and userPw = #{userPw} -->
 	</select>
 </mapper>
