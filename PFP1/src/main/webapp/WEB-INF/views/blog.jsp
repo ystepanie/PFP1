@@ -91,7 +91,7 @@
 					</ul>
 				</div>
 				<div class="single-sidebar">
-					<h2>Tags</h2>
+					<h2>Latest Tags</h2>
 					<div class="tagcloud fix">
 						<a href="#">Rings</a>
 						<a href="#">Necklaces</a>

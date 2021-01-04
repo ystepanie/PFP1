@@ -24,7 +24,7 @@
 					</div>
 					<div class="mail-id float-left">
 						<i class="fa fa-envelope-o float-left"></i>
-						<p><a href="#">info@olongker.com</a></p>
+						<p><a href="mailto:ydy2128@gmail.com">ydy2128@gmail.com</a></p>
 					</div>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 			</div>
 			<div class="col-sm-4 col-lg-6">
 				<div class="logo text-center">
-					<a href="index.html">
+					<a href="<%=request.getContextPath() %>/">
 						<img src="<%=request.getContextPath() %>/resources/img/puzzle.png" alt="" />
 						<h4>online jewelry store</h4>
 					</a>
