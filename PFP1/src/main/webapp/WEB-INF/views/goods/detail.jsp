@@ -33,7 +33,7 @@
    <!-- Stylesheet CSS -->
    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/style.css" />
    <!-- Responsive Stylesheet -->
-   <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
    <style>
    	.header-fixed {

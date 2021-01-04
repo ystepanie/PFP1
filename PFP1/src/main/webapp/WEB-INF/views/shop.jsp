@@ -34,7 +34,7 @@
 	<!-- Stylesheet CSS -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/style.css" />
 	<!-- Responsive Stylesheet -->
-	<link rel="stylesheet" type="text/css" href="css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
@@ -55,10 +55,11 @@
 				<div class="sort-by">
 					<span>Sort By</span>
 					<select name="sort-by">
-						<option selected="selected" value="mercede">price: Lower</option>
-						<option value="saab">price(low&gt;high)</option>
-						<option value="mercedes">price(high &gt; low)</option>
-						<option value="audi">rating(highest)</option>
+						<option selected="selected" value="popularity">인기순</option>
+						<option value="recommendation">추천순</option>
+						<option value="latest">최신 발매순</option>
+						<option value="cheap">낮은 판매가순</option>
+						<option value="expensive">높은 판매가순</option>
 					</select>
 				</div>
 				<div class="show-product">
@@ -73,15 +74,15 @@
 				<div class="pro-Showing">
 					<span>Showing 1 - 12 of 16 items</span>
 				</div><br><br>
-				<div class="product-price-range">
-					<div class="slider-range-container">
+				<div class="sin-shop-sidebar product-price-range">
 						<h2>Price</h2>
-						<div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 6.25%; width: 62.5%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 6.25%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 68.75%;"></span></div>
-						<p>
-							<input type="text" id="price-amount" readonly="">
-						</p>
-				</div>
-			</div>
+						<div class="slider-range-container">
+							<div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 77.125%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 77.125%;"></span></div>
+							<p>
+								<input type="text" id="price-amount" readonly="">
+							</p>
+						</div>
+					</div>
 			</div>
 			
 			<div class="shop-products">

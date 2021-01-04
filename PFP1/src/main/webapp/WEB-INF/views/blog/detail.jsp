@@ -5,10 +5,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Olongkar | Login & Reg</title>
+	<title>Puzzle | Blog Details</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Fav Icon -->
-	<link id="favicon" rel="icon" type="image/png" href="img/favicon.ico" />
+	<link id="favicon" rel="icon" type="image/png" href="<%=request.getContextPath() %>/resources/img/puzzle.ico" />
 	<!-- Google Font Raleway -->
 	<link href='https://fonts.googleapis.com/css?family=Raleway:200,300,500,400,600,700,800' rel='stylesheet' type='text/css'>
 	<!-- Google Font Dancing Script -->
@@ -41,36 +41,107 @@
 <%@ include file="../include/header.jsp" %>
 <div class="page-title fix"><!--Start Title-->
 	<div class="overlay section">
-		<h2>login / Register</h2>
+		<h2>Blog Details</h2>
 	</div>
 </div><!--End Title-->
-<div class="login-page page fix"><!--start login Area-->
+<section class="blog-page page fix"><!-- Start Blog Details-->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-sm-6 col-md-5">
-				<div class="login">
-				<c:if test="${member == null}">
-					<form role="form" method="post" autocomplete="off" action="/pfp/member/login">
-						<h2>LOGIN</h2>
-						<p>LOGIN</p>
-						<label>ID<span>*</span></label>
-						<input type="text" id="userId" name="userId"/>
-						<label>Password<span>*</span></label>
-						<input type="password" id="userPw" name="userPw"/>
-						<label>Confirm Password<span>*</span></label>
-						<input type="password" />
-						<input type="submit" value="Sign up" />
-					</form>
-				</c:if>
-				<c:if test="${msg == false}">
-					<p style="color:#f00;">로그인에 실패하셨습니다.</p>
-				</c:if>
+				<div class="single-blog blog-details">
+					<div class="content fix">
+						<img src="<%=request.getContextPath() %>/resources/img/blog/blog-details.jpg" alt="" />
+							<div class="date">
+								<h4>25</h4>
+								<h5>Aug</h5>
+							</div>
+						<h2>Lorem ipsum dolor sit amet</h2>
+						<div class="meta">
+							<a href="#"><i class="fa fa-pencil-square-o"></i>John Lee</a>
+							<a href="#"><i class="fa fa-calendar"></i>2 Days ago</a>
+							<a href="#"><i class="fa fa-comments"></i>12 Comments</a>
+						</div>
+						<p>에디터를 사용할까 고민 중</p>
+					</div>
 				</div>
-			</div>
+				<div class="tagcloud fix">
+						<div class="tab-pane fade active in" role="tabpanel">
+							<a href="#">JEWELRY</a><a href="#">Necklaces</a><a href="#">Jewelry Sets</a><a href="#">Churi</a>
+						</div>
+					</div>
+				<div id="comments">
+					<div class="commentform">
+						<form class="comment-form" id="commentform" method="post" action="#">
+							<div class="row">
+								<div class="col-md-10">
+									<div class="form-input">
+										<label for="comment" class="field-label">Your Comment<span>*</span></label>
+										<textarea aria-required="true" name="comment" id="comment" rows="4"></textarea>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<p class="form-submit" style="margin-top:20px;">
+										<input type="submit" value="submit" id="submit" name="submit">
+									</p>
+								</div>
+							</div>
+						</form>
+					</div><!-- end commentform -->
+					<div class="comments-list">
+						<h4 class="heading">댓글</h4>
+						<ol class="commentlists">
+							<li class="sin-comment">
+								<div class="the-comment">
+									<div class="avatar">
+										<img alt="" src="img/blog/comment-1.jpg">	
+									</div>
+									<div class="comment-box">
+										<div class="comment-author">
+											<p class="com-name"><strong>Tom Cruze</strong></p>3 day ago  <a href="#" class="repost-link"> Repost </a> <a href="#" class="comment-reply-link"> Reply </a><a href="#"><i class="fa fa-bullhorn"></i>신고</a>
+										</div>
+										<div class="comment-text">
+											<p>Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, </p>
+										</div>
+									</div>
+								</div>
+								<ul class="children-comment">
+									<li class="comment">
+										<div class="the-comment">
+											<div class="avatar">
+												 <img alt="" src="img/blog/comment-2.jpg">
+											</div>
+											<div class="comment-box">
+												<div class="comment-author">
+													<p class="com-name"><strong>Nill Pori</strong></p>3 mins ago <a href="#" class="repost-link"> Repost </a> <a href="#" class="comment-reply-link"> Reply </a><a href="#"><i class="fa fa-pencil"></i>수정</a><a href="#"><i class="fa fa-trash"></i>삭제</a>
+												</div>
+												<div class="comment-text">
+													<p>Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua.<br>
+												</p></div>
+											</div>
+										</div>
+									</li><!-- #comment-## -->
+								</ul><!-- .children -->
+							</li><!-- #comment-## -->
+							<li class="sin-comment">
+								<div class="the-comment">
+									<div class="avatar">
+										<img alt="" src="img/blog/comment-3.jpg">
+									</div>
+									<div class="comment-box">
+										<div class="comment-author">
+											<p class="com-name"><strong>TOMAS LEE</strong></p>3 day ago  <a href="#" class="repost-link"> Repost </a> <a href="#" class="comment-reply-link"> Reply </a>
+										</div>
+										<div class="comment-text">
+											<p>Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, </p>
+										</div>
+									</div>
+								</div>
+							</li><!-- #comment-## -->
+						</ol>
+					</div>
+				</div>
 		</div>
 	</div>
-</div><!--End login Area-->
+</section><!-- Start Blog Details-->
 <div class="brand-area section fix"><!--Start Brand Area-->
 	<div class="container">
 		<div class="row">
@@ -93,7 +164,7 @@
 		</div>
 	</div>
 </div><!--End Brand Area-->
-<%@ include file="../include/footer.jsp" %>	
+<%@ include file="../include/footer.jsp" %>   
 
 <!-- jQuery 2.1.4 -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.1.4.min.js"></script>
@@ -122,8 +193,8 @@
 <!-- WOW JS -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/wow.min.js"></script>
 <script>
-	new WOW().init();
-</script>	
+   new WOW().init();
+</script>   
 <!-- Main JS -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 

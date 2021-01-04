@@ -169,14 +169,14 @@ $(document).ready(function($){
 	$( "#slider-range" ).slider({
 	   range: true,
 	   min: 0,
-	   max: 800,
-	   values: [ 50, 550 ],
+	   max: 10000,
+	   values: [ 0, 10000 ],
 	   slide: function( event, ui ) {
-		$( "#price-amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		$( "#price-amount" ).val( ui.values[ 0 ] + "만원 - " + ui.values[ 1 ] + "만원" );
 	   }
 	  });
-	$( "#price-amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-	   " - $" + $( "#slider-range" ).slider( "values", 1 ) );  
+	$( "#price-amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + "만원 - " 
+	   + $( "#slider-range" ).slider( "values", 1 ) + "만원"  );  
 	   
 	$('.newslater-container .close').on("click", function(){
 		$('#popup-newslater').addClass('hidden');

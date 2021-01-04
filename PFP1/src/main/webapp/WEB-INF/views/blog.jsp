@@ -1,5 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
-<html lang="en-US">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>Puzzle | Blog</title>
@@ -31,7 +34,7 @@
 	<!-- Stylesheet CSS -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/style.css" />
 	<!-- Responsive Stylesheet -->
-	<link rel="stylesheet" type="text/css" href="css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
@@ -45,19 +48,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 col-md-3">
-				<div class="single-sidebar">
-					<h2>Category</h2>
-					<ul>
-						<li><a href="#">Rings</a></li>
-						<li><a href="#">Necklaces</a></li>
-						<li><a href="#">Bracelets</a></li>
-						<li><a href="#">Earrings</a></li>
-						<li><a href="#">Churies</a></li>
-						<li><a href="#">Jewelry Sets</a></li>
-						<li><a href="#">Kids Jewelry</a></li>
-						<li><a href="#">Watches</a></li>
-					</ul>
-				</div>
 				<div class="single-sidebar">
 					<h2>Recent Post</h2>
 					<ul class="resent-post">
