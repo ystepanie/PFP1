@@ -15,7 +15,7 @@
 	<!-- MariaDB JDBC DataSource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
-		<property name="url" value="mariadb-database.c8zgw7zvucgo.ap-northeast-2.rds.amazonaws.com" />
+		<property name="url" value="jdbc:mariadb://mariadb-database.c8zgw7zvucgo.ap-northeast-2.rds.amazonaws.com:3306/puzzle_db" />
 		<property name="username" value="root" />
 		<property name="password" value="pretty1234" />
 	</bean>
