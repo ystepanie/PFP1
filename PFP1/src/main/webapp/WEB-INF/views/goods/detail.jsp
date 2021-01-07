@@ -185,7 +185,7 @@
 		         	</div>
 	         	</div>
 	         	<div class="row">
-	         		<canvas id="canvas" class="chartjs-render-monitor"></canvas>
+	         		<canvas id="canvasChart" class="chartjs-render-monitor"></canvas>
 	         	</div>
          	</div>
          	
@@ -550,7 +550,7 @@ var chartData1=[], chartData2=[], chartData3=[];
 var txtTitle = '전체 매출 차트';
 
 window.onload = function() {
-	$.getJSON("<%=request.getContextPath()%>/api/stat/manageChart",
+	<%-- $.getJSON("<%=request.getContextPath()%>/api/stat/manageChart",
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		 chartLabels.push(obj.period);
@@ -559,11 +559,16 @@ window.onload = function() {
 	     chartData3.push(obj.cancleCnt);
 	  });
 	  createChart();
-	});
+	}); --%>
+	chartLabels = [1, 2, 3, 4, 5];
+	chartData1 = [10, 10, 10, 10, 10];
+	chartData2=[11, 4, 12, 45,12];
+	chartData3=[50, 120 ,12 ,50, 17];
+	createChart();
 };
 
 function createChart() {
-	var ctx = document.getElementById('canvas').getContext('2d');
+	var ctx = document.getElementById('canvasChart').getContext('2d');
 	var chartData = {
 			labels: chartLabels,
 			datasets: [{

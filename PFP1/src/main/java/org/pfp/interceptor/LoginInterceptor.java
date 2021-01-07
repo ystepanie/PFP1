@@ -14,10 +14,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 		throws Exception {
 		HttpSession session = request.getSession();
-		MemberVO vo = (MemberVO)session.getAttribute("vo");
+		MemberVO vo = (MemberVO)session.getAttribute("member");
 		
 		if(vo == null) {
-			response.sendRedirect("/member/login");
+			response.sendRedirect("/pfp/member/login");
 			return false;
 		}
 		

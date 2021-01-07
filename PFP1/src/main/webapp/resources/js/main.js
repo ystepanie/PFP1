@@ -172,11 +172,11 @@ $(document).ready(function($){
 	   max: 10000,
 	   values: [ 0, 10000 ],
 	   slide: function( event, ui ) {
-		$( "#price-amount" ).val( ui.values[ 0 ] + "만원 - " + ui.values[ 1 ] + "만원" );
+		$( "#price-amount" ).val( ui.values[ 0 ] + "원 - " + ui.values[ 1 ] + "원" );
 	   }
 	  });
-	$( "#price-amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + "만원 - " 
-	   + $( "#slider-range" ).slider( "values", 1 ) + "만원"  );  
+	$( "#price-amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + "원 - " 
+	   + $( "#slider-range" ).slider( "values", 1 ) + "원"  );  
 	   
 	$('.newslater-container .close').on("click", function(){
 		$('#popup-newslater').addClass('hidden');

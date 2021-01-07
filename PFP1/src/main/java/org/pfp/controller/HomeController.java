@@ -2,8 +2,13 @@ package org.pfp.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
+import org.pfp.dto.GoodsVO;
+import org.pfp.service.GoodsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,9 +25,9 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@Inject
+	GoodsService g_service;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -38,7 +43,9 @@ public class HomeController {
 	}
 	
 	@GetMapping("/shop")
-	public String getShop() {
+	public String getShop(Model model) throws Exception {
+		List<GoodsVO> list = g_service.listRecommand();
+		model.addAttribute("list", list);
 		return "shop";
 	}
 	

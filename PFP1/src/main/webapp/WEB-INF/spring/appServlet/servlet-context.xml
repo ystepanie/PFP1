@@ -32,6 +32,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/goods/*"/>
+			<mapping path="/blog/*"/>
 			<beans:ref bean="LoginInterceptor" />
 		</interceptor>
 	</interceptors>	
