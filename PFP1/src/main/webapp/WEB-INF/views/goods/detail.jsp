@@ -91,8 +91,8 @@
                <div class="tab-content details-pro-tab-content">
                   <div class="tab-pane fade in active" id="image-1">
                      <div class="simpleLens-big-image-container">
-                        <a class="simpleLens-lens-image" data-lens-image="<%=request.getContextPath() %>/resources/img/single-product/1.jpg">
-                           <img src="<%=request.getContextPath() %>/resources/img/single-product/1.jpg" alt="" class="simpleLens-big-image">
+                        <a class="simpleLens-lens-image" data-lens-image="${detail.thumbnail}">
+                           <img src="${detail.thumbnail}" alt="" class="simpleLens-big-image">
                         </a>
                      </div>
                   </div>
@@ -120,7 +120,7 @@
                </div>
                <!-- Nav tabs -->
                <ul class="tabs-list details-pro-tab-list" role="tablist">
-                  <li class="active"><a href="#image-1" data-toggle="tab"><img src="<%=request.getContextPath() %>/resources/img/single-product/thumb-1.jpg" alt="" /></a></li>
+                  <li class="active"><a href="#image-1" data-toggle="tab"><img src="${detail.thumbnail}" alt="" /></a></li>
                   <li><a href="#image-2" data-toggle="tab"><img src="<%=request.getContextPath() %>/resources/img/single-product/thumb-2.jpg" alt="" /></a></li>
                   <li><a href="#image-3" data-toggle="tab"><img src="<%=request.getContextPath() %>/resources/img/single-product/thumb-3.jpg" alt="" /></a></li>
                   <li><a href="#image-4" data-toggle="tab"><img src="<%=request.getContextPath() %>/resources/img/single-product/thumb-4.jpg" alt="" /></a></li>
@@ -130,7 +130,7 @@
          <div class="col-sm-6">
             <div class="shop-details">
                <!-- Product Name -->
-               <h2>브랜드 & 이름</h2>
+               <h2>${detail.itemName}</h2>
                <!-- Product Ratting -->
                <div class="pro-ratting">
                   <i class="on fa fa-star"></i>
@@ -143,12 +143,13 @@
                <h4>10 Reviews</h4>
                <h5>Availability - <span>In Stock</span></h5>
                <h6>QUICK OVERVIEW</h6>
-               <div class="bg-warning" style="height:200px;">상세정보</div><br>
+               <div class="bg-warning" style="height:200px;">${detail.itemContent}</div><br>
                <div class="bg-danger" style="height:80px;">최근 거래가</div><br>
                <div class="select-menu fix">
                   <div class="sort fix">
                      <h4>SIZE</h4>
                      <select>
+                        <option value="all">all</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -159,8 +160,8 @@
                <div class="container" style="width:100%;">
                	<div class="row" style="width:100%;">
                		<div class="col" style="width:100%;">
-               			<button type="button" class="btn btn-primary" style="width:49%;font-size:100%;"><b style="float:left;">구매 |</b><font style="float:right;">즉시 구매가 - 원</font></button>
-               			<button type="button" class="btn btn-danger" style="width:49%;font-size:100%;"><b style="float:left;">판매 |</b><font style="float:right;">즉시 판매가 - 원</font></button>
+               			<button type="button" class="btn btn-primary" style="width:49%;font-size:100%;"><b style="float:left;">구매 |</b><font style="float:right;">즉시 구매가 - ${detail.saleBid}원</font></button>
+               			<button type="button" class="btn btn-danger" style="width:49%;font-size:100%;"><b style="float:left;">판매 |</b><font style="float:right;">즉시 판매가 - ${detail.buyBid}원</font></button>
                		</div>
                	</div>
                </div><br>

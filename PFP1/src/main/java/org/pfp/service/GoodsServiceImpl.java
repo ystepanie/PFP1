@@ -19,4 +19,29 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.listRecommand();
 	}
 
+	@Override
+	public List<GoodsVO> listPopular() throws Exception {
+		return dao.listPopular();
+	}
+
+	@Override
+	public List<GoodsVO> listLatest() throws Exception {
+		return dao.listLatest();
+	}
+
+	@Override
+	public List<GoodsVO> listCheap() throws Exception {
+		return dao.listCheap();
+	}
+
+	@Override
+	public List<GoodsVO> listExpensive() throws Exception {
+		return dao.listExpensive();
+	}
+
+	@Override
+	public GoodsVO detail(int modelNum) throws Exception {
+		return dao.detail(modelNum);
+	}
+
 }

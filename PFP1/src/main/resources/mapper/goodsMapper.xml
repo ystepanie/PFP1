@@ -5,7 +5,7 @@
 	<!-- 추천순 -->
 	<select id="listRecommand" resultType="org.pfp.dto.GoodsVO">
 		select i.modelNum, i.itemGroup, i.itemName, i.thumbnail, i.itemContent, i.releasePrice, i.recommand, date_format(i.releaseDate, '%Y-%m-%d')
-		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) bidPrice
+		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) saleBid
 		from item i
 		order by recommand desc
 	</select>
@@ -13,7 +13,7 @@
 	<!-- 인기순 -->
 	<select id="listPopular" resultType="org.pfp.dto.GoodsVO">
 		select i.modelNum, i.itemGroup, i.itemName, i.thumbnail, i.itemContent, i.releasePrice, i.recommand, date_format(i.releaseDate, '%Y-%m-%d')
-		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) bidPrice
+		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) saleBid
 		,((select count(*) from interest t where t.modelNum = i.modelNum)+(select count(*) from buy b where b.modelNum = i.modelNum)) rnk
     	from item i
 		order by rnk desc
@@ -22,7 +22,7 @@
 	<!-- 최신 발매순 -->
 	<select id="listLatest" resultType="org.pfp.dto.GoodsVO">
 		select i.modelNum, i.itemGroup, i.itemName, i.thumbnail, i.itemContent, i.releasePrice, i.recommand, date_format(i.releaseDate, '%Y-%m-%d')
-		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) bidPrice
+		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) saleBid
 		from item i
 		order by releaseDate desc
 	</select>
@@ -30,16 +30,25 @@
 	<!-- 낮은 판매가순 -->
 	<select id="listCheap" resultType="org.pfp.dto.GoodsVO">
 		select i.modelNum, i.itemGroup, i.itemName, i.thumbnail, i.itemContent, i.releasePrice, i.recommand, date_format(i.releaseDate, '%Y-%m-%d')
-		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) bidPrice
+		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) saleBid
     	from item i
-		order by bidPrice
+		order by saleBid
 	</select>
 	
 	<!-- 높은 판매가순 -->
 	<select id="listExpensive" resultType="org.pfp.dto.GoodsVO">
 		select i.modelNum, i.itemGroup, i.itemName, i.thumbnail, i.itemContent, i.releasePrice, i.recommand, date_format(i.releaseDate, '%Y-%m-%d')
-		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) bidPrice
+		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) saleBid
     	from item i
-		order by bidPrice desc
+		order by saleBid desc
+	</select>
+	
+	<!-- 해당 상품의 detail -->
+	<select id="detail" resultType="org.pfp.dto.GoodsVO">
+		select i.modelNum, i.itemGroup, i.itemName, i.thumbnail, i.itemContent, i.releasePrice, i.recommand, date_format(i.releaseDate, '%Y-%m-%d')
+		,(select min(salesPrice) from sales s where s.modelNum = i.modelNum) saleBid
+		,(select max(buyPrice) from buy b where b.modelNum = i.modelNum) buyBid
+    	from item i
+    	where i.modelNum = #{modelNum}
 	</select>
 </mapper>

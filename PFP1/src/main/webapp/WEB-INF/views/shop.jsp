@@ -93,7 +93,7 @@
 					<div class="product-item fix">
 						<div class="product-img-hover">
 							<!-- Product image -->
-							<a href="product-details.html" class="pro-image fix"><img src="${list.thumbnail}" alt="product" /></a>
+							<a href="goods/detail?m=${list.modelNum}" class="pro-image fix"><img src="${list.thumbnail}" alt="product" /></a>
 							<!-- Product action Btn -->
 							<div class="product-action-btn">
 								<a class="quick-view" href="#"><i class="fa fa-search"></i></a>

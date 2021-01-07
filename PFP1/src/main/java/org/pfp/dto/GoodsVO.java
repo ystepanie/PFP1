@@ -10,12 +10,19 @@ public class GoodsVO {
 	int releasePrice;
 	int recommand;
 	String releaseDate;
-	int bidPrice;
-	public int getBidPrice() {
-		return bidPrice;
+	int saleBid;
+	int buyBid;
+	public int getBuyBid() {
+		return buyBid;
 	}
-	public void setBidPrice(int bidPrice) {
-		this.bidPrice = bidPrice;
+	public void setBuyBid(int buyBid) {
+		this.buyBid = buyBid;
+	}
+	public int getSaleBid() {
+		return saleBid;
+	}
+	public void setSaleBid(int saleBid) {
+		this.saleBid = saleBid;
 	}
 	public int getModelNum() {
 		return modelNum;

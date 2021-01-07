@@ -20,6 +20,31 @@ public class GoodsDAOImpl implements GoodsDAO {
 	public List<GoodsVO> listRecommand() throws Exception {
 		return sql.selectList(namespace + ".listRecommand");
 	}
+
+	@Override
+	public List<GoodsVO> listPopular() throws Exception {
+		return sql.selectList(namespace + ".listPopular");
+	}
+
+	@Override
+	public List<GoodsVO> listLatest() throws Exception {
+		return sql.selectList(namespace + ".listLatest");
+	}
+
+	@Override
+	public List<GoodsVO> listCheap() throws Exception {
+		return sql.selectList(namespace + ".listCheap");
+	}
+
+	@Override
+	public List<GoodsVO> listExpensive() throws Exception {
+		return sql.selectList(namespace + ".listExpensive");
+	}
+
+	@Override
+	public GoodsVO detail(int modelNum) throws Exception {
+		return sql.selectOne(namespace + ".detail", modelNum);
+	}
 	
 	
 }
