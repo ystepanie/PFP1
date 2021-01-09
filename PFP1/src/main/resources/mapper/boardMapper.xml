@@ -9,13 +9,13 @@
 	
 	<!-- 게시물 목록 -->
 	<select id="list" resultType="org.pfp.dto.BoardVO">
-		select *
+		select boardCode, userId, content, picture, tag, good, title, regiDate
 		from board
 	</select>
 	
 	<!-- 게시물 목록 + 페이 -->
 	<select id="listPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
-		select *
+		select boardCode, userId, content, picture, tag, good, title, regiDate
 		from board
 		order by boardCode desc
 		limit #{displayPost}, #{postNum}

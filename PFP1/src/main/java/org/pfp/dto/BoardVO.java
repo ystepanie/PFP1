@@ -7,6 +7,21 @@ public class BoardVO {
 	private String picture;
 	private String tag;
 	private int good;
+	private String title;
+	private String regiDate;
+	
+	public String getRegiDate() {
+		return regiDate;
+	}
+	public void setRegiDate(String regiDate) {
+		this.regiDate = regiDate;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getBoardCode() {
 		return boardCode;
 	}
