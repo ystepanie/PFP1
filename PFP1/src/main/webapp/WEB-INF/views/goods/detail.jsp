@@ -149,7 +149,7 @@
                <div class="select-menu fix">
                   <div class="sort fix">
                      <h4>SIZE</h4>
-                     <select style="font-size:large;">
+                     <select id="itemSize" style="font-size:large;"  onchange="chageSizeSelect()">
                         <option value="all">all</option>
                         <%for(int i=220; i<=310;i+=5){%>
                         <option value="<%=i%>"><%=i%>&emsp;(<%if(request.getAttribute(Integer.toString(i))==null){%>-<%}else{%><%=request.getAttribute(Integer.toString(i))%><%}%>)</option>
@@ -569,6 +569,10 @@ function createChart() {
 	});
 }
 
+//사이즈 선택값에 따라 달라지는 이벤트
+function chageSizeSelect() {
+	alert($('#itemSize').val());
+}
 </script>
 </body>
 
