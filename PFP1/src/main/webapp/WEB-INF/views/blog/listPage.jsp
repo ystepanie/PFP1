@@ -98,34 +98,64 @@
 				</div>
 			</div>
 		</div>
-		</div>
-		<table>
-		<thead>
-		<tr><th>제목</th></tr>
-		</thead>
-		<tbody>
+			<!-- <div class="col-sm-6 col-md-4">
+				<div class="single-blog">
+					<div class="content fix">
+						<a class="image fix" href="blog-details.html"><img src="img/blog/blog-1.jpg" alt="" />
+							<div class="date">
+								<h4>25</h4>
+								<h5>Aug</h5>
+							</div>
+						</a>
+						<h2><a class="title" href="blog-details.html">Lorem ipsum dolor sit amet</a></h2>
+						<div class="meta">
+							<a href="#"><i class="fa fa-pencil-square-o"></i>John Lee</a>
+							<a href="#"><i class="fa fa-calendar"></i>2 Days ago</a>
+							<a href="#"><i class="fa fa-comments"></i>12 Comments</a>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim niam.</p>
+					</div>
+				</div>
+			</div> -->
+		<!-- Start Blog Area-->
+		<div class="container">
+		<div class="row">
 		<c:forEach items="${list}" var="list">
-		<tr>
-		<td>${list.title}</td>
-		</tr>
-		</c:forEach>
-		</tbody>
+			 <div class="col-sm-6 col-md-4">
+				<div class="single-blog">
+					<div class="content fix">
+						<a class="image fix" href="blog-details.html"><img src="${list.picture}" alt="" />
+						<div class="date">
+								<h4>25</h4>
+								<h5>Aug</h5>
+						</div>
+						</a>
+						<h2><a class="title" href="blog-details.html">${list.title}</a></h2>
+						<div class="meta">
+							<i class="fa fa-pencil-square-o"></i>${list.userId}</a>
+							<i class="fa fa-calendar"></i>${list.regiDate}</a>
+							<i class="fa fa-comments"></i>12 Comments(아직안함)</a>
+						</div>
+					</div>
+				</div>
+			</div>		
+			</c:forEach>
+			</div>
+			</div>
 			<!-- Pagination -->
 			<div class="pagination">
-				<ul>
-					<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-					<li class="active"><span>1</span></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+				<ul>	
+				<c:forEach begin="1" end="${pageNum}" var="num">
+					<c:if test="${select != num }">
+					<li ><a href="/pfp/blog/listPage?num=${num}"><span>${num}</span></a></li>
+					</c:if>
+					<c:if test="${select == num }">
+					<li class="active"><a href="/pfp/blog/listPage?num=${num}"><span>${num}</span></a></li>
+					</c:if>	
+				</c:forEach>
 				</ul>
 			</div>
+			
 		</div>
 	</div>
 </section><!-- Start Blog Area-->
