@@ -195,8 +195,8 @@
                <ul class="nav product-nav">
                   <li class="active"><a data-toggle="tab" href="#description">최근 거래 목록</a></li>
                   <li class=""><a data-toggle="tab" href="#bidStatus">입찰 현황</a></li>
-                  <li class=""><a data-toggle="tab" href="#tags">tags</a></li>
-                  <li class=""><a data-toggle="tab" href="#custom-tags">CUSTOM TABS</a></li>
+                  <!-- <li class=""><a data-toggle="tab" href="#tags">tags</a></li>
+                  <li class=""><a data-toggle="tab" href="#custom-tags">CUSTOM TABS</a></li> -->
                </ul>
                <!-- Tab panes -->
                <div class="tab-content">
@@ -229,7 +229,7 @@
                   	<div class="col-sm-6"> 
                   	<table class="table table-hover header-fixed col2">
                   		<thead>
-                  			<tr>
+                  			<tr>can
 	                  			<th>옵션</th>
 	                  			<th>판매입찰</th>
 	                  		</tr>
@@ -239,12 +239,12 @@
                   	</table>
                   	</div>  
                   </div>
-                  <div id="tags" class="tab-pane fade" role="tabpanel">
+<!--                   <div id="tags" class="tab-pane fade" role="tabpanel">
                      <a href="#">JEWELRY</a><a href="#">Necklaces</a><a href="#">Jewelry Sets</a><a href="#">Churi</a>
                   </div>
                   <div id="custom-tags" class="tab-pane fade" role="tabpanel">
                      <a href="#">JEWELRY</a><a href="#">Necklaces</a><a href="#">Jewelry Sets</a><a href="#">Churi</a>
-                  </div>
+                  </div> -->
                </div>
             </div>
          </div>
@@ -474,7 +474,7 @@
 <!--  javascript 끼리 충돌이 일어나는지 왜 차트가 안 뜨는지 모르겠다. js 파일들을 다시 잘 확인해봐야겠다. -->
 <script>
 var dateLabels = [];
-var priceData=[], sizeData=[], avgData=[], cntData=[];
+var priceData= [], avgData=[], cntData=[];
 var txtTitle = '전체 매출 차트';
 
 $('#description').empty();
@@ -484,20 +484,19 @@ var table1 = '<div class="col-sm-6"><table class="table table-hover header-fixed
 var table2 = '<div class="col-sm-6"><table class="table table-hover header-fixed col2"><thead><tr><th>옵션</th><th>판매입찰</th></tr></thead><tbody style="overflow-y:scroll;height:100px;background-color:#FFEAEA;">';
 window.onload = function() {
 	$.getJSON("<%=request.getContextPath()%>/api/listDeal",
-			{modelNum: <%=modelNum%>},
+			{modelNum: <%=Integer.parseInt(modelNum)%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		 table += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td><td>'+obj.dealDate+'</td></tr>';
 		 dateLabels.push(obj.dealDate);
-	     priceData.push([obj.dealDate, obj.buyPrice]);
-	     sizeData.push(obj.size);
+		 priceData.push({x:obj.dealDate, y:obj.buyPrice});
 	  });
 		table += '</tbody></table>';
 		$('#description').append(table);
 		createChart();
 	});
 	$.getJSON("<%=request.getContextPath()%>/api/dealCountPrice",
-			{modelNum: <%=modelNum%>},
+			{modelNum: <%=Integer.parseInt(modelNum)%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 	     avgData.push(obj.avgDeal);
@@ -506,7 +505,7 @@ window.onload = function() {
 		createChart();
 	});
 	$.getJSON("<%=request.getContextPath()%>/api/buyBid",
-			{modelNum: <%=modelNum%>},
+			{modelNum: <%=Integer.parseInt(modelNum)%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		  table1 += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td></tr>';
@@ -525,30 +524,55 @@ window.onload = function() {
 	});
 };
 
+//차트에 마우스 오버시 세로선 생성
+Chart.plugins.register({
+	   afterDatasetsDraw: function(chart) {
+	      if (chart.tooltip._active && chart.tooltip._active.length) {
+	         var activePoint = chart.tooltip._active[0],
+	             ctx = chart.ctx,
+	             y_axis = chart.scales['y-axis-0'],
+	             x = activePoint.tooltipPosition().x,
+	             topY = y_axis.top,
+	             bottomY = y_axis.bottom;
+	         // draw line
+	         ctx.save();
+	         ctx.beginPath();
+	         ctx.moveTo(x, topY);
+	         ctx.lineTo(x, bottomY);
+	         ctx.lineWidth = 2;
+	         ctx.strokeStyle = '#07C';
+	         ctx.stroke();
+	         ctx.restore();
+	      }
+	   }
+	});
+
 function createChart() {
 	var ctx = document.getElementById('canvasChart').getContext('2d');
 	var chartData = {
-			labels: chartLabels,
+			labels: dateLabels,
 			datasets: [{
 				type: 'scatter',
 				label: '거래가',
-				borderColor: '#FF5E00',
+				backgroundColor: '#BDBDBD',
 				borderWidth: 2,
-				data: priceData
+				data: priceData,
+				order: 1
 			}, {
 				type: 'line',
 				label: '평균',
-				backgroundColor: '#1DDB16',
+				backgroundColor: '#B5B2FF',
 				data: avgData,
 				borderColor: 'white',
 				fill: false,
-				pointRadius: 0
+				pointRadius: 1
 			}, {
 				type: 'bar',
 				label: '거래수',
-				backgroundColor: '#FF00DD',
+				backgroundColor: '#D5D5D5',
 				borderWidth: 2,
-				data: cntData
+				data: cntData,
+				order: 1
 			}]
 
 		};
