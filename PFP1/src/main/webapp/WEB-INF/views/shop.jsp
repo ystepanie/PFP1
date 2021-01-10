@@ -55,7 +55,7 @@
 				</div>
 				<div class="sort-by">
 					<span>Sort By</span>
-					<select name="sort-by">
+					<select id="sort-by">
 						<option selected="selected" value="recommendation">추천순</option>
 						<option value="popularity">인기순</option>
 						<option value="latest">최신 발매순</option>
@@ -117,7 +117,7 @@
 							<!-- Product Price -->
 							<div class="pro-price fix">
 								<!-- <p><span class="old">$165</span> -->
-								<span class="new">${list.bidPrice}원</span></p>
+								<span class="new">${list.saleBid}원</span></p>
 							</div>
 						</div>
 					</div>
@@ -185,6 +185,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	var charLabels = [];
 	
 	<%-- $.getJSON("<%=request.getContextPath()%>/api/shop",
 			{ s : 'recommendation' },
@@ -211,7 +212,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#sort-by').change(function () {
+	$('sort-by').change(function () {
 		$.getJSON("<%=request.getContextPath()%>/api/shop",
 				{ s : $('#sort-by').val() },
 				function(data) {

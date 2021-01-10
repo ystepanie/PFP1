@@ -45,6 +45,7 @@ public class HomeController {
 	@GetMapping("/shop")
 	public String getShop(Model model) throws Exception {
 		List<GoodsVO> list = g_service.listRecommand();
+		System.out.println(list);
 		model.addAttribute("list", list);
 		return "shop";
 	}

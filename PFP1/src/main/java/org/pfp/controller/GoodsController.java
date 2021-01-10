@@ -27,7 +27,7 @@ public class GoodsController {
    private static final Logger logger = LoggerFactory.getLogger(GoodsController.class);
    
    @Inject
-   GoodsService g_service;
+   private GoodsService g_service;
    
    @GetMapping("/detail")
    public String getDetail(@RequestParam int m, Model model) throws Exception {

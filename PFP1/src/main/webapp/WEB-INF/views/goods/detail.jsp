@@ -194,7 +194,7 @@
                <!-- Nav tabs -->
                <ul class="nav product-nav">
                   <li class="active"><a data-toggle="tab" href="#description">최근 거래 목록</a></li>
-                  <li class=""><a data-toggle="tab" href="#review">입찰 현황</a></li>
+                  <li class=""><a data-toggle="tab" href="#bidStatus">입찰 현황</a></li>
                   <li class=""><a data-toggle="tab" href="#tags">tags</a></li>
                   <li class=""><a data-toggle="tab" href="#custom-tags">CUSTOM TABS</a></li>
                </ul>
@@ -253,7 +253,7 @@
                   		</tbody>
                   	</table>
                   </div>
-                  <div id="review" class="tab-pane fade" role="tabpanel" style="height:160px;">
+                  <div id="bidStatus" class="tab-pane fade" role="tabpanel" style="height:160px;">
                   	<div class="col-sm-6">
                   	<table class="table table-hover header-fixed col2">
                   		<thead>
@@ -545,27 +545,52 @@
 <script src="<%=request.getContextPath()%>/resources/plugins/chart.js/Chart.min.js"></script>
 <!--  javascript 끼리 충돌이 일어나는지 왜 차트가 안 뜨는지 모르겠다. js 파일들을 다시 잘 확인해봐야겠다. -->
 <script>
-
-var chartLabels = [];
-var chartData1=[], chartData2=[], chartData3=[];
+var dateLabels = [];
+var priceData=[], sizeData=[], avgData=[], cntData=[];
 var txtTitle = '전체 매출 차트';
 
+alert('비워졌어요');
+$('#description').empty();
+$('#bidStatus').empty();
+var table = '<table class="table table-hover header-fixed col3"><thead><tr><th>옵션</th><th>거래가</th><th>거래일</th></tr></thead><tbody style="overflow-y:scroll;height:100px;">';
+var table1 = '<div class="col-sm-6"><table class="table table-hover header-fixed col2"><thead><tr><th>옵션</th><th>구매입찰</th></tr></thead><tbody style="overflow-y:scroll;height:100px;background-color:#EBF7FF;">';
+var table2 = '<div class="col-sm-6"><table class="table table-hover header-fixed col2"><thead><tr><th>옵션</th><th>판매입찰</th></tr></thead><tbody style="overflow-y:scroll;height:100px;background-color:#FFEAEA;">';
 window.onload = function() {
-	<%-- $.getJSON("<%=request.getContextPath()%>/api/stat/manageChart",
+	$.getJSON("<%=request.getContextPath()%>/api/listDeal",
 			function(data) {
 	  $.each(data, function(idx, obj) {
-		 chartLabels.push(obj.period);
-	     chartData1.push(obj.totalPrice);
-	     chartData2.push(obj.orderCnt);
-	     chartData3.push(obj.cancleCnt);
+		 table += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td><td>'+obj.dealDate+'</td></tr>';
+		 dateLabels.push(obj.dealDate);
+	     priceData.push([obj.dealDate, obj.buyPrice]);
+	     sizeData.push(obj.size);
 	  });
-	  createChart();
-	}); --%>
-	chartLabels = [1, 2, 3, 4, 5];
-	chartData1 = [10, 10, 10, 10, 10];
-	chartData2=[11, 4, 12, 45,12];
-	chartData3=[50, 120 ,12 ,50, 17];
+	});
+	$.getJSON("<%=request.getContextPath()%>/api/dealCountPrice",
+			function(data) {
+	  $.each(data, function(idx, obj) {
+	     avgData.push(obj.avgDeal);
+	     cntData.push(obj.cntDeal);
+	  });
+	});
 	createChart();
+	table += '</tbody></table>';
+	$('#description').append(table);
+	$.getJSON("<%=request.getContextPath()%>/api/buyBid",
+			function(data) {
+	  $.each(data, function(idx, obj) {
+		  table1 += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td></tr>';
+	  });
+	});
+	table1 += '</tbody></table></div>';
+	$.getJSON("<%=request.getContextPath()%>/api/salesBid",
+			function(data) {
+	  $.each(data, function(idx, obj) {
+		  table2 += '<tr><td>'+obj.size+'</td><td>'+obj.salesPrice+'</td></tr>';
+	  });
+	});
+	table2 += '</tbody></table></div>';
+	$('#bidStatus').append(table1);
+	$('#bidStatus').append(table2);
 };
 
 function createChart() {
@@ -573,24 +598,25 @@ function createChart() {
 	var chartData = {
 			labels: chartLabels,
 			datasets: [{
-				type: 'line',
-				label: '총 주문금액(단위:10만원)',
+				type: 'scatter',
+				label: '거래가',
 				borderColor: '#FF5E00',
 				borderWidth: 2,
-				fill: false,
-				data: chartData1
+				data: priceData
 			}, {
-				type: 'bar',
-				label: '주문 수',
+				type: 'line',
+				label: '평균',
 				backgroundColor: '#1DDB16',
-				data: chartData2,
+				data: avgData,
 				borderColor: 'white',
-				borderWidth: 2
+				fill: false,
+				pointRadius: 0
 			}, {
 				type: 'bar',
-				label: '취소/교환/반품 수',
+				label: '거래수',
 				backgroundColor: '#FF00DD',
-				data: chartData3
+				borderWidth: 2,
+				data: cntData
 			}]
 
 		};

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.pfp.mapper.dealMapper">
+
+	<!-- 거래 날짜, 거래 가격, 옵션 -->
+	<select id="listDeal" resultType="org.pfp.dto.DealVO">
+		select d.dealDate, b.buyPrice, b.size
+		from deal d, buy b
+		where d.buyCode = b.buyCode
+		order by d.dealDate desc
+	</select>
+	
+	<!-- 거래 날짜별 수량, 평균 거래 가격 -->
+	<select id="dealCountPrice" resultType="org.pfp.dto.DealVO">
+		select count(*) as cntDeal, avg(b.buyPrice) as avgDeal
+		from deal d, buy b
+		where d.buyCode = b.buyCode
+		group by dealDate
+	</select>
+	
+	<!-- 구매 입찰 -->
+	<select id="buyBid" resultType="org.pfp.dto.DealVO">
+		select b.buyPrice, b.size, b.buyDate
+		from buy b
+		where b.buyCode not in (select d.buyCode from deal d) and date_format(b.endDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d')
+		order by b.buyDate desc
+	</select>
+	
+	<!-- 판매 입찰 -->
+	<select id="salesBid" resultType="org.pfp.dto.DealVO">
+		select s.salesPrice, s.size, s.saleDate
+		from sales s
+		where s.salesCode not in (select d.salesCode from deal d)
+		order by s.saleDate desc
+	</select>
+</mapper>

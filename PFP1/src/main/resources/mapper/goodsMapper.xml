@@ -51,4 +51,6 @@
     	from item i
     	where i.modelNum = #{modelNum}
 	</select>
+	
+	<!--  -->
 </mapper>
