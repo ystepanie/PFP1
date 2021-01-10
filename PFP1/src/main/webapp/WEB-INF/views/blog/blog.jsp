@@ -48,7 +48,7 @@
 	<div class="container">
 		<div class="row" style="margin:20px;">
 			<div style="float:left;">
-				<p><b>○○○</b> 30개의 글</p>
+				<p><b></b>  </p>
 			</div>
 			<div style="float:right;">
 				<a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-plus-square"></i><b> 목록열기</b></a>

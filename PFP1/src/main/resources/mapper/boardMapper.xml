@@ -21,4 +21,11 @@
 		limit #{displayPost}, #{postNum}
 	</select>
 	
+	<!-- 게시물 등록 -->
+	<insert id="resist">
+		insert into 
+		board(boardCode, userId, content, picture, tag, good, title, regiDate)
+		values(#{boardCode}, #{userId}, #{content}, #{picture}, #{tag}, 0, #{title}, SYSDATE())
+	</insert>
+	
 </mapper>

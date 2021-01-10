@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,11 +34,12 @@ public class BlogController {
    /**
     * Simply selects the home view to render by returning its name.
     */
+   //블로그 상세보기 페이지 
    @GetMapping("/detail")
    public String getDetail() {
       return "blog/detail";
    }
-   
+   //블로그 기본 페이지
    @GetMapping("/blog")
    public String getBlog(Model model) throws Exception {
 	   
@@ -46,6 +48,7 @@ public class BlogController {
 	   model.addAttribute("list", list);
 	   return "blog/blog";
    }
+   //블로그 + 페이징
    //페이징 num은 현재 페이지 번호
    @GetMapping("/listPage")
    public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
@@ -67,5 +70,19 @@ public class BlogController {
 	   model.addAttribute("pageNum", pageNum);
 	  
 	   model.addAttribute("select", num);
+	   model.addAttribute("count",count);
+   }
+   
+   @PostMapping("/blog_resist")
+   public String postBlog_resist(BoardVO vo) throws Exception {
+	   b_service.resist(vo);
+	   
+	   return "redirect:/blog/listPage?num=1";
+   }
+   
+   @GetMapping("/blog_resist")
+   public String getBlog_resist() throws Exception {
+	   
+	   return "blog/blog_resist";
    }
 }
