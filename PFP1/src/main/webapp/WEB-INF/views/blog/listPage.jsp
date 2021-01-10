@@ -48,10 +48,10 @@
 	<div class="container">
 		<div class="row" style="margin:20px;">
 			<div style="float:left;">
-				<p><b>○○○</b> 30개의 글</p>
+				<p><b>총 ${count} 개의 글</b></p>
 			</div>
 			<div style="float:right;">
-				<a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-plus-square"></i><b> 목록열기</b></a>
+				<!-- <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-plus-square"></i><b> 목록열기</b></a>
 				<div class="collapse" id="collapseExample">
 				 	<div class="well" style="position:absolute;width:80%;left:10%;height:300px;">
 						<table class="table">
@@ -77,7 +77,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<!-- Pagination -->
+						Pagination
 						<div class="pagination" style="position:absolute;top:220px;">
 							<ul>
 								<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
@@ -95,7 +95,7 @@
 						</div>
 				 	</div>
 					<div style="height:300px;"></div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 			<!-- <div class="col-sm-6 col-md-4">
@@ -125,10 +125,10 @@
 				<div class="single-blog">
 					<div class="content fix">
 						<a class="image fix" href="blog-details.html"><img src="${list.picture}" alt="" />
-						<div class="date">
+							<div class="date">
 								<h4>25</h4>
 								<h5>Aug</h5>
-						</div>
+							</div>
 						</a>
 						<h2><a class="title" href="blog-details.html">${list.title}</a></h2>
 						<div class="meta">

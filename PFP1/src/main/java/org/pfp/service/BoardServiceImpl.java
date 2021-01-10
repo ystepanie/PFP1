@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.pfp.dao.BoardDAO;
+import org.pfp.dto.BoardVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,6 +31,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List listPage(int displayPost, int postNum) throws Exception {
 		return dao.listPage(displayPost, postNum);
+	}
+	
+	//게시글 등록
+	@Override
+	public void resist(BoardVO vo) throws Exception {
+		dao.resist(vo);
 	}
 
 }
