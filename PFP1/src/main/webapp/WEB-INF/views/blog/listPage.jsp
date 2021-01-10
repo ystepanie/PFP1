@@ -144,12 +144,18 @@
 			</div>
 			<!-- Pagination -->
 			<div class="pagination">
+				<ul>	
 				<c:forEach begin="1" end="${pageNum}" var="num">
-					<span>
-						<a href="/pfp/blog/listPage?num=${num}">${num}</a>
-					</span>
+					<c:if test="${select != num }">
+					<li ><a href="/pfp/blog/listPage?num=${num}"><span>${num}</span></a></li>
+					</c:if>
+					<c:if test="${select == num }">
+					<li class="active"><a href="/pfp/blog/listPage?num=${num}"><span>${num}</span></a></li>
+					</c:if>	
 				</c:forEach>
+				</ul>
 			</div>
+			
 		</div>
 	</div>
 </section><!-- Start Blog Area-->

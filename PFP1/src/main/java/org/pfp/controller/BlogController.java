@@ -46,14 +46,14 @@ public class BlogController {
 	   model.addAttribute("list", list);
 	   return "blog/blog";
    }
-   //페이징 num은 페이지 번호
+   //페이징 num은 현재 페이지 번호
    @GetMapping("/listPage")
    public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
 	   int count = b_service.count();
 	   //한 페이지에 출력할 게시글의 개수 
 	   int postNum = 12;
 	   
-	   //하단 페이징 번호(총 개수 / 한 페이지에 출력할 개수)
+	   //하단 페이징 번호(총 개수 / 한 페이지에 출력할 개수)의 올림
 	   int pageNum = (int)Math.ceil((double)count/postNum);
 	   
 	   //출력 게시물 수
@@ -65,5 +65,7 @@ public class BlogController {
 	   list = b_service.listPage(displayPost, postNum);
 	   model.addAttribute("list", list);
 	   model.addAttribute("pageNum", pageNum);
+	  
+	   model.addAttribute("select", num);
    }
 }
