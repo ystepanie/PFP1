@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String modelNum = request.getParameter("m"); %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -141,19 +142,18 @@
                </div>
                <h3><span>$165</span>$150</h3>
                <h4>10 Reviews</h4>
-               <h5>Availability - <span>In Stock</span></h5>
-               <h6>QUICK OVERVIEW</h6>
+               <h5>발매일 - <span>${detail.releaseDate}</span></h5>
+               <h6>색상 - ${detail.itemGroup}</h6>
                <div class="bg-warning" style="height:200px;">${detail.itemContent}</div><br>
-               <div class="bg-danger" style="height:80px;">최근 거래가</div><br>
+               <div class="bg-danger" style="height:80px;">최근 거래가<p><h3>${latestPrice}</h3> ${changePrice}</div><br>
                <div class="select-menu fix">
                   <div class="sort fix">
                      <h4>SIZE</h4>
-                     <select>
+                     <select style="font-size:large;">
                         <option value="all">all</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                        <%for(int i=220; i<=310;i+=5){%>
+                        <option value="<%=i%>"><%=i%>&emsp;(<%if(request.getAttribute(Integer.toString(i))==null){%>-<%}else{%><%=request.getAttribute(Integer.toString(i))%><%}%>)</option>
+                        <%}%>
                      </select>
                   </div>
                </div><br>
@@ -210,46 +210,6 @@
 	                  		</tr>
                   		</thead>
                   		<tbody style="overflow-y:scroll;height:100px;">
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
                   		</tbody>
                   	</table>
                   </div>
@@ -263,22 +223,6 @@
 	                  		</tr>
                   		</thead>
                   		<tbody style="overflow-y:scroll;height:100px;background-color:#EBF7FF;" >
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>250mm</td>
-                  				<td>230,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>255mm</td>
-                  				<td>355,000원</td>
-                  			</tr>
                   		</tbody>
                   	</table>
                   	</div>
@@ -291,22 +235,6 @@
 	                  		</tr>
                   		</thead>
                   		<tbody style="overflow-y:scroll;height:100px;background-color:#FFEAEA;">
-                  			<tr>
-                  				<td>240mm</td>
-                  				<td>400,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>250mm</td>
-                  				<td>230,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>240mm</td>
-                  				<td>400,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>255mm</td>
-                  				<td>355,000원</td>
-                  			</tr>
                   		</tbody>
                   	</table>
                   	</div>  
@@ -549,7 +477,6 @@ var dateLabels = [];
 var priceData=[], sizeData=[], avgData=[], cntData=[];
 var txtTitle = '전체 매출 차트';
 
-alert('비워졌어요');
 $('#description').empty();
 $('#bidStatus').empty();
 var table = '<table class="table table-hover header-fixed col3"><thead><tr><th>옵션</th><th>거래가</th><th>거래일</th></tr></thead><tbody style="overflow-y:scroll;height:100px;">';
@@ -557,6 +484,7 @@ var table1 = '<div class="col-sm-6"><table class="table table-hover header-fixed
 var table2 = '<div class="col-sm-6"><table class="table table-hover header-fixed col2"><thead><tr><th>옵션</th><th>판매입찰</th></tr></thead><tbody style="overflow-y:scroll;height:100px;background-color:#FFEAEA;">';
 window.onload = function() {
 	$.getJSON("<%=request.getContextPath()%>/api/listDeal",
+			{modelNum: <%=modelNum%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		 table += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td><td>'+obj.dealDate+'</td></tr>';
@@ -564,33 +492,37 @@ window.onload = function() {
 	     priceData.push([obj.dealDate, obj.buyPrice]);
 	     sizeData.push(obj.size);
 	  });
+		table += '</tbody></table>';
+		$('#description').append(table);
+		createChart();
 	});
 	$.getJSON("<%=request.getContextPath()%>/api/dealCountPrice",
+			{modelNum: <%=modelNum%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 	     avgData.push(obj.avgDeal);
 	     cntData.push(obj.cntDeal);
 	  });
+		createChart();
 	});
-	createChart();
-	table += '</tbody></table>';
-	$('#description').append(table);
 	$.getJSON("<%=request.getContextPath()%>/api/buyBid",
+			{modelNum: <%=modelNum%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		  table1 += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td></tr>';
 	  });
+		table1 += '</tbody></table></div>';
+		$('#bidStatus').append(table1);
 	});
-	table1 += '</tbody></table></div>';
 	$.getJSON("<%=request.getContextPath()%>/api/salesBid",
+			{modelNum: <%=modelNum%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		  table2 += '<tr><td>'+obj.size+'</td><td>'+obj.salesPrice+'</td></tr>';
 	  });
+		table2 += '</tbody></table></div>';
+		$('#bidStatus').append(table2);
 	});
-	table2 += '</tbody></table></div>';
-	$('#bidStatus').append(table1);
-	$('#bidStatus').append(table2);
 };
 
 function createChart() {

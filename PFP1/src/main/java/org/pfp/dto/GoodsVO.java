@@ -12,6 +12,13 @@ public class GoodsVO {
 	String releaseDate;
 	int saleBid;
 	int buyBid;
+	int size;
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
 	public int getBuyBid() {
 		return buyBid;
 	}

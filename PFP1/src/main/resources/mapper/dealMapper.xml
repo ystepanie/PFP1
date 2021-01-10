@@ -4,9 +4,9 @@
 
 	<!-- 거래 날짜, 거래 가격, 옵션 -->
 	<select id="listDeal" resultType="org.pfp.dto.DealVO">
-		select d.dealDate, b.buyPrice, b.size
+		select date_format(d.dealDate, '%Y-%m-%d') as dealDate, b.buyPrice, b.size
 		from deal d, buy b
-		where d.buyCode = b.buyCode
+		where d.buyCode = b.buyCode and b.modelNum = #{modelNum}
 		order by d.dealDate desc
 	</select>
 	
@@ -14,23 +14,24 @@
 	<select id="dealCountPrice" resultType="org.pfp.dto.DealVO">
 		select count(*) as cntDeal, avg(b.buyPrice) as avgDeal
 		from deal d, buy b
-		where d.buyCode = b.buyCode
+		where d.buyCode = b.buyCode and b.modelNum = #{modelNum}
 		group by dealDate
 	</select>
 	
 	<!-- 구매 입찰 -->
 	<select id="buyBid" resultType="org.pfp.dto.DealVO">
-		select b.buyPrice, b.size, b.buyDate
+		select b.buyPrice, b.size, date_format(b.buyDate, '%Y-%m-%d') as buyDate
 		from buy b
-		where b.buyCode not in (select d.buyCode from deal d) and date_format(b.endDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d')
+		where b.buyCode not in (select d.buyCode from deal d) and date_format(b.endDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') and b.modelNum = #{modelNum}
 		order by b.buyDate desc
 	</select>
 	
 	<!-- 판매 입찰 -->
 	<select id="salesBid" resultType="org.pfp.dto.DealVO">
-		select s.salesPrice, s.size, s.saleDate
+		select s.salesPrice, s.size, date_format(s.saleDate, '%Y-%m-%d') as saleDate
 		from sales s
-		where s.salesCode not in (select d.salesCode from deal d)
+		where s.salesCode not in (select d.salesCode from deal d) and s.modelNum = #{modelNum}
 		order by s.saleDate desc
 	</select>
+	
 </mapper>
