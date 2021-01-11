@@ -76,6 +76,7 @@
 		<div class="inputArea">
 		<label>내용</label>
 		<textarea rows="5" cols="100" id="content" name="content"></textarea><br/>
+		<!--ckeditor 적용 및 이미지 경로 -->
 		<script>
 			var ckeditor_config = {
 					resize_enaleb : false,
