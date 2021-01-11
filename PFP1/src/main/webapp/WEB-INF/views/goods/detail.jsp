@@ -144,8 +144,8 @@
                <h4>10 Reviews</h4>
                <h5>발매일 - <span>${detail.releaseDate}</span></h5>
                <h6>색상 - ${detail.itemGroup}</h6>
-               <div class="bg-warning" style="height:200px;">${detail.itemContent}</div><br>
-               <div class="bg-danger" style="height:80px;">최근 거래가<p><h3>${latestPrice}</h3> ${changePrice}</div><br>
+               <div style="height:200px;background-color:#F6F6F6;padding:10px;">${detail.itemContent}</div><br>
+               <div style="height:80px;background:linear-gradient(to right,#F6F6F6,white,#F6F6F6);padding:10px;">최근 거래가<p><h3>${latestPrice}</h3> ${changePrice}</div><br>
                <div class="select-menu fix">
                   <div class="sort fix">
                      <h4>SIZE</h4>
@@ -475,7 +475,7 @@
 <script>
 var dateLabels = [];
 var priceData= [], avgData=[], cntData=[];
-var txtTitle = '전체 매출 차트';
+var txtTitle = '전체 거래 차트';
 
 $('#description').empty();
 $('#bidStatus').empty();
@@ -595,7 +595,16 @@ function createChart() {
 
 //사이즈 선택값에 따라 달라지는 이벤트
 function chageSizeSelect() {
-	alert($('#itemSize').val());
+	//최근 거래가 변경
+	
+	//즉시 구매/판매가 변경
+	
+	//그래프 변경
+	
+	//최근 거래 목록 변경
+	
+	//입찰 현황 변경
+	
 }
 </script>
 </body>

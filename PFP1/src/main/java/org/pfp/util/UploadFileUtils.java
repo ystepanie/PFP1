@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class UploadFileUtils {
 	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
 	
-	public static String uploadFile(String uploadPath, String originalName, byte[] byteData) throws Exception {
+	public static String uploadFile(String uploadPath, String originalName, byte[] byteData, String userid) throws Exception {
 		S3Util s3 = new S3Util();
 		String bucketName = "macapig-puzzle-bucket";
 		//uuid random

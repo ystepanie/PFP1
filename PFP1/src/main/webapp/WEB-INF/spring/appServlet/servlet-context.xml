@@ -38,6 +38,9 @@
 		</interceptor>
 	</interceptors>	
 	
-
+	<!-- 업로드 패스 설정 -->
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="macapig-puzzle-bucket"></beans:constructor-arg>
+	</beans:bean>
 
 </beans:beans>

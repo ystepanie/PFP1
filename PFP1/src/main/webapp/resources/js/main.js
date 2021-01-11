@@ -169,14 +169,14 @@ $(document).ready(function($){
 	$( "#slider-range" ).slider({
 	   range: true,
 	   min: 0,
-	   max: 10000,
-	   values: [ 0, 10000 ],
+	   max: 10000000,
+	   values: [ 0, 10000000 ],
 	   slide: function( event, ui ) {
-		$( "#price-amount" ).val( ui.values[ 0 ] + "원 - " + ui.values[ 1 ] + "원" );
+		$( "#price-amount" ).val( ui.values[ 0 ].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원 - " + ui.values[ 1 ].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원" );
 	   }
 	  });
-	$( "#price-amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + "원 - " 
-	   + $( "#slider-range" ).slider( "values", 1 ) + "원"  );  
+	$( "#price-amount" ).val( $( "#slider-range" ).slider( "values", 0 ).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원 - " 
+	   + $( "#slider-range" ).slider( "values", 1 ).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"  );  
 	   
 	$('.newslater-container .close').on("click", function(){
 		$('#popup-newslater').addClass('hidden');

@@ -78,9 +78,9 @@
 				<div class="sin-shop-sidebar product-price-range">
 						<h2>Price</h2>
 						<div class="slider-range-container">
-							<div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 77.125%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 77.125%;"></span></div>
+							<div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 77.125%;"></div><span id="slider-ui-first" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span><span id="slider-ui-second" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 77.125%;"></span></div>
 							<p>
-								<input type="text" id="price-amount" readonly="">
+								<input type="text" id="price-amount" readonly="" onchange="changePriceRange()">
 							</p>
 						</div>
 					</div>
@@ -185,6 +185,13 @@ function changeSortSelect() {
 	  });
 	  $('#shopList').empty();
 	  $('#shopList').append(strHtml);
+	});
+}
+
+function changePriceRange() {
+	$('#slider-ui-first').on('mouseout', function () {
+
+		alert('변경');
 	});
 }
 </script>
