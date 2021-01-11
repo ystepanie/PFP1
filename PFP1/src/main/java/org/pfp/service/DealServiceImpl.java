@@ -15,23 +15,23 @@ public class DealServiceImpl implements DealService {
 	public DealDAO dao;
 
 	@Override
-	public List<DealVO> listDeal() throws Exception {
-		return dao.listDeal();
+	public List<DealVO> listDeal(int modelNum) throws Exception {
+		return dao.listDeal(modelNum);
 	}
 
 	@Override
-	public List<DealVO> dealCountPrice() throws Exception {
-		return dao.dealCountPrice();
+	public List<DealVO> dealCountPrice(int modelNum) throws Exception {
+		return dao.dealCountPrice(modelNum);
 	}
 
 	@Override
-	public List<DealVO> buyBid() throws Exception {
-		return dao.buyBid();
+	public List<DealVO> buyBid(int modelNum) throws Exception {
+		return dao.buyBid(modelNum);
 	}
 
 	@Override
-	public List<DealVO> salesBid() throws Exception {
-		return dao.salesBid();
+	public List<DealVO> salesBid(int modelNum) throws Exception {
+		return dao.salesBid(modelNum);
 	}
 	
 }

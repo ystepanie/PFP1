@@ -17,23 +17,23 @@ public class DealDAOImpl implements DealDAO {
 	private static String namespace = "org.pfp.mapper.dealMapper";
 	
 	@Override
-	public List<DealVO> listDeal() throws Exception {
-		return sql.selectList(namespace + ".listDeal");
+	public List<DealVO> listDeal(int modelNum) throws Exception {
+		return sql.selectList(namespace + ".listDeal", modelNum);
 	}
 
 	@Override
-	public List<DealVO> dealCountPrice() throws Exception {
-		return sql.selectList(namespace + ".dealCountPrice");
+	public List<DealVO> dealCountPrice(int modelNum) throws Exception {
+		return sql.selectList(namespace + ".dealCountPrice", modelNum);
 	}
 
 	@Override
-	public List<DealVO> buyBid() throws Exception {
-		return sql.selectList(namespace + ".buyBid");
+	public List<DealVO> buyBid(int modelNum) throws Exception {
+		return sql.selectList(namespace + ".buyBid", modelNum);
 	}
 
 	@Override
-	public List<DealVO> salesBid() throws Exception {
-		return sql.selectList(namespace + ".salesBid");
+	public List<DealVO> salesBid(int modelNum) throws Exception {
+		return sql.selectList(namespace + ".salesBid", modelNum);
 	}
 
 }

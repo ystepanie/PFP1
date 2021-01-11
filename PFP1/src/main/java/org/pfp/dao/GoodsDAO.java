@@ -23,4 +23,7 @@ public interface GoodsDAO {
 	
 	//해당 상품의 detail
 	public GoodsVO detail(int modelNum) throws Exception;
+	
+	//size별 즉시구매가
+	public List<GoodsVO> priceBySize(int modelNum) throws Exception;
 }

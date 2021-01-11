@@ -55,7 +55,7 @@
 				</div>
 				<div class="sort-by">
 					<span>Sort By</span>
-					<select id="sort-by">
+					<select id="sort-by" onchange="changeSortSelect()">
 						<option selected="selected" value="recommendation">추천순</option>
 						<option value="popularity">인기순</option>
 						<option value="latest">최신 발매순</option>
@@ -85,45 +85,7 @@
 						</div>
 					</div>
 			</div>
-			
-			<div class="shop-products">
-			
-			<c:forEach var="list" items="${list}">
-				<div class="col-sm-4 col-md-3 fix">
-					<div class="product-item fix">
-						<div class="product-img-hover">
-							<!-- Product image -->
-							<a href="goods/detail?m=${list.modelNum}" class="pro-image fix"><img src="${list.thumbnail}" alt="product" /></a>
-							<!-- Product action Btn -->
-							<div class="product-action-btn">
-								<a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-								<a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-								<a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-							</div>
-						</div>
-						<div class="pro-name-price-ratting">
-							<!-- Product Name -->
-							<div class="pro-name">
-								<a href="product-details.html">${list.itemName}</a>
-							</div>
-							<!-- Product Ratting -->
-							<div class="pro-ratting">
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star"></i>
-								<i class="on fa fa-star-half-o"></i>
-							</div>
-							<!-- Product Price -->
-							<div class="pro-price fix">
-								<!-- <p><span class="old">$165</span> -->
-								<span class="new">${list.saleBid}원</span></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-			
+			<div id="shopList" class="shop-products">			
 			</div>
 		</div>
 	</div>
@@ -185,48 +147,46 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var charLabels = [];
-	
-	<%-- $.getJSON("<%=request.getContextPath()%>/api/shop",
-			{ s : 'recommendation' },
+	var strHtml = '';
+	$.getJSON("<%=request.getContextPath()%>/api/shop",
+			{ s: $('#sort-by').val() },
 			function(data) {
 	  $.each(data, function(idx, obj) {
-		 chartLabels.push(obj.period);
-	     chartData1.push(obj.totalPrice);
-	     chartData2.push(obj.orderCnt);
-	     chartData3.push(obj.cancleCnt);
+		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix"><div class="product-img-hover"><a href="goods/detail?m=';
+		strHtml += obj.modelNum;
+		strHtml += '" class="pro-image fix"><img src="';
+		strHtml += obj.thumbnail;
+		strHtml += '" alt="product" /></a><div class="product-action-btn"><a class="quick-view" href="#"><i class="fa fa-search"></i></a><a class="favorite" href="#"><i class="fa fa-heart-o"></i></a><a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a></div></div><div class="pro-name-price-ratting"><div class="pro-name"><a href="product-details.html">';
+		strHtml += obj.itemName;
+		strHtml += '</a></div><div class="pro-ratting"><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star-half-o"></i></div><div class="pro-price fix"><span class="new">';
+		strHtml += obj.saleBid;
+		strHtml += '원</span></p></div></div></div></div>';
 	  });
-	}); --%>
-	$('#price-amount').change(function () {
-		var strPrice = $('#price-amount').val().split(' - ');
-		strPrice[0]
-		$.getJSON("<%=request.getContextPath()%>/api/shop",
-				{ s : $('#sort-by').val() },
-				function(data) {
-		  $.each(data, function(idx, obj) {
-			 chartLabels.push(obj.period);
-		     chartData1.push(obj.totalPrice);
-		     chartData2.push(obj.orderCnt);
-		     chartData3.push(obj.cancleCnt);
-		  });
-		});
+	  $('#shopList').empty();
+	  $('#shopList').append(strHtml);
 	});
-	
-	$('sort-by').change(function () {
-		$.getJSON("<%=request.getContextPath()%>/api/shop",
-				{ s : $('#sort-by').val() },
-				function(data) {
-		  $.each(data, function(idx, obj) {
-			 chartLabels.push(obj.period);
-		     chartData1.push(obj.totalPrice);
-		     chartData2.push(obj.orderCnt);
-		     chartData3.push(obj.cancleCnt);
-		  });
-		});
-	})
+});
+
+function changeSortSelect() {
+	var strHtml = '';
+	$.getJSON("<%=request.getContextPath()%>/api/shop",
+			{ s: $('#sort-by').val() },
+			function(data) {
+	  $.each(data, function(idx, obj) {
+		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix"><div class="product-img-hover"><a href="goods/detail?m=';
+		strHtml += obj.modelNum;
+		strHtml += '" class="pro-image fix"><img src="';
+		strHtml += obj.thumbnail;
+		strHtml += '" alt="product" /></a><div class="product-action-btn"><a class="quick-view" href="#"><i class="fa fa-search"></i></a><a class="favorite" href="#"><i class="fa fa-heart-o"></i></a><a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a></div></div><div class="pro-name-price-ratting"><div class="pro-name"><a href="product-details.html">';
+		strHtml += obj.itemName;
+		strHtml += '</a></div><div class="pro-ratting"><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star-half-o"></i></div><div class="pro-price fix"><span class="new">';
+		strHtml += obj.saleBid;
+		strHtml += '원</span></p></div></div></div></div>';
+	  });
+	  $('#shopList').empty();
+	  $('#shopList').append(strHtml);
+	});
 }
-
-
 </script>
 </body>
 

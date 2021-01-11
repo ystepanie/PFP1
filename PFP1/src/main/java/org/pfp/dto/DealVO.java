@@ -11,6 +11,21 @@ public class DealVO {
 	int size;
 	int cntDeal;
 	int avgDeal;
+	String buyDate;
+	String saleDate;
+
+	public String getBuyDate() {
+		return buyDate;
+	}
+	public void setBuyDate(String buyDate) {
+		this.buyDate = buyDate;
+	}
+	public String getSaleDate() {
+		return saleDate;
+	}
+	public void setSaleDate(String saleDate) {
+		this.saleDate = saleDate;
+	}
 	public int getSalesPrice() {
 		return salesPrice;
 	}

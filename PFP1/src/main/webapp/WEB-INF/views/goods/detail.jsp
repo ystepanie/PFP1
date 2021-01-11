@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String modelNum = request.getParameter("m"); %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -141,19 +142,18 @@
                </div>
                <h3><span>$165</span>$150</h3>
                <h4>10 Reviews</h4>
-               <h5>Availability - <span>In Stock</span></h5>
-               <h6>QUICK OVERVIEW</h6>
+               <h5>발매일 - <span>${detail.releaseDate}</span></h5>
+               <h6>색상 - ${detail.itemGroup}</h6>
                <div class="bg-warning" style="height:200px;">${detail.itemContent}</div><br>
-               <div class="bg-danger" style="height:80px;">최근 거래가</div><br>
+               <div class="bg-danger" style="height:80px;">최근 거래가<p><h3>${latestPrice}</h3> ${changePrice}</div><br>
                <div class="select-menu fix">
                   <div class="sort fix">
                      <h4>SIZE</h4>
-                     <select>
+                     <select id="itemSize" style="font-size:large;"  onchange="chageSizeSelect()">
                         <option value="all">all</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                        <%for(int i=220; i<=310;i+=5){%>
+                        <option value="<%=i%>"><%=i%>&emsp;(<%if(request.getAttribute(Integer.toString(i))==null){%>-<%}else{%><%=request.getAttribute(Integer.toString(i))%><%}%>)</option>
+                        <%}%>
                      </select>
                   </div>
                </div><br>
@@ -195,8 +195,8 @@
                <ul class="nav product-nav">
                   <li class="active"><a data-toggle="tab" href="#description">최근 거래 목록</a></li>
                   <li class=""><a data-toggle="tab" href="#bidStatus">입찰 현황</a></li>
-                  <li class=""><a data-toggle="tab" href="#tags">tags</a></li>
-                  <li class=""><a data-toggle="tab" href="#custom-tags">CUSTOM TABS</a></li>
+                  <!-- <li class=""><a data-toggle="tab" href="#tags">tags</a></li>
+                  <li class=""><a data-toggle="tab" href="#custom-tags">CUSTOM TABS</a></li> -->
                </ul>
                <!-- Tab panes -->
                <div class="tab-content">
@@ -210,46 +210,6 @@
 	                  		</tr>
                   		</thead>
                   		<tbody style="overflow-y:scroll;height:100px;">
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  				<td>2021.01.01</td>
-                  			</tr>
                   		</tbody>
                   	</table>
                   </div>
@@ -263,60 +223,28 @@
 	                  		</tr>
                   		</thead>
                   		<tbody style="overflow-y:scroll;height:100px;background-color:#EBF7FF;" >
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>250mm</td>
-                  				<td>230,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>235mm</td>
-                  				<td>325,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>255mm</td>
-                  				<td>355,000원</td>
-                  			</tr>
                   		</tbody>
                   	</table>
                   	</div>
                   	<div class="col-sm-6"> 
                   	<table class="table table-hover header-fixed col2">
                   		<thead>
-                  			<tr>
+                  			<tr>can
 	                  			<th>옵션</th>
 	                  			<th>판매입찰</th>
 	                  		</tr>
                   		</thead>
                   		<tbody style="overflow-y:scroll;height:100px;background-color:#FFEAEA;">
-                  			<tr>
-                  				<td>240mm</td>
-                  				<td>400,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>250mm</td>
-                  				<td>230,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>240mm</td>
-                  				<td>400,000원</td>
-                  			</tr>
-                  			<tr>
-                  				<td>255mm</td>
-                  				<td>355,000원</td>
-                  			</tr>
                   		</tbody>
                   	</table>
                   	</div>  
                   </div>
-                  <div id="tags" class="tab-pane fade" role="tabpanel">
+<!--                   <div id="tags" class="tab-pane fade" role="tabpanel">
                      <a href="#">JEWELRY</a><a href="#">Necklaces</a><a href="#">Jewelry Sets</a><a href="#">Churi</a>
                   </div>
                   <div id="custom-tags" class="tab-pane fade" role="tabpanel">
                      <a href="#">JEWELRY</a><a href="#">Necklaces</a><a href="#">Jewelry Sets</a><a href="#">Churi</a>
-                  </div>
+                  </div> -->
                </div>
             </div>
          </div>
@@ -546,10 +474,9 @@
 <!--  javascript 끼리 충돌이 일어나는지 왜 차트가 안 뜨는지 모르겠다. js 파일들을 다시 잘 확인해봐야겠다. -->
 <script>
 var dateLabels = [];
-var priceData=[], sizeData=[], avgData=[], cntData=[];
+var priceData= [], avgData=[], cntData=[];
 var txtTitle = '전체 매출 차트';
 
-alert('비워졌어요');
 $('#description').empty();
 $('#bidStatus').empty();
 var table = '<table class="table table-hover header-fixed col3"><thead><tr><th>옵션</th><th>거래가</th><th>거래일</th></tr></thead><tbody style="overflow-y:scroll;height:100px;">';
@@ -557,66 +484,95 @@ var table1 = '<div class="col-sm-6"><table class="table table-hover header-fixed
 var table2 = '<div class="col-sm-6"><table class="table table-hover header-fixed col2"><thead><tr><th>옵션</th><th>판매입찰</th></tr></thead><tbody style="overflow-y:scroll;height:100px;background-color:#FFEAEA;">';
 window.onload = function() {
 	$.getJSON("<%=request.getContextPath()%>/api/listDeal",
+			{modelNum: <%=Integer.parseInt(modelNum)%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		 table += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td><td>'+obj.dealDate+'</td></tr>';
 		 dateLabels.push(obj.dealDate);
-	     priceData.push([obj.dealDate, obj.buyPrice]);
-	     sizeData.push(obj.size);
+		 priceData.push({x:obj.dealDate, y:obj.buyPrice});
 	  });
+		table += '</tbody></table>';
+		$('#description').append(table);
+		createChart();
 	});
 	$.getJSON("<%=request.getContextPath()%>/api/dealCountPrice",
+			{modelNum: <%=Integer.parseInt(modelNum)%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 	     avgData.push(obj.avgDeal);
 	     cntData.push(obj.cntDeal);
 	  });
+		createChart();
 	});
-	createChart();
-	table += '</tbody></table>';
-	$('#description').append(table);
 	$.getJSON("<%=request.getContextPath()%>/api/buyBid",
+			{modelNum: <%=Integer.parseInt(modelNum)%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		  table1 += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td></tr>';
 	  });
+		table1 += '</tbody></table></div>';
+		$('#bidStatus').append(table1);
 	});
-	table1 += '</tbody></table></div>';
 	$.getJSON("<%=request.getContextPath()%>/api/salesBid",
+			{modelNum: <%=modelNum%>},
 			function(data) {
 	  $.each(data, function(idx, obj) {
 		  table2 += '<tr><td>'+obj.size+'</td><td>'+obj.salesPrice+'</td></tr>';
 	  });
+		table2 += '</tbody></table></div>';
+		$('#bidStatus').append(table2);
 	});
-	table2 += '</tbody></table></div>';
-	$('#bidStatus').append(table1);
-	$('#bidStatus').append(table2);
 };
+
+//차트에 마우스 오버시 세로선 생성
+Chart.plugins.register({
+	   afterDatasetsDraw: function(chart) {
+	      if (chart.tooltip._active && chart.tooltip._active.length) {
+	         var activePoint = chart.tooltip._active[0],
+	             ctx = chart.ctx,
+	             y_axis = chart.scales['y-axis-0'],
+	             x = activePoint.tooltipPosition().x,
+	             topY = y_axis.top,
+	             bottomY = y_axis.bottom;
+	         // draw line
+	         ctx.save();
+	         ctx.beginPath();
+	         ctx.moveTo(x, topY);
+	         ctx.lineTo(x, bottomY);
+	         ctx.lineWidth = 2;
+	         ctx.strokeStyle = '#07C';
+	         ctx.stroke();
+	         ctx.restore();
+	      }
+	   }
+	});
 
 function createChart() {
 	var ctx = document.getElementById('canvasChart').getContext('2d');
 	var chartData = {
-			labels: chartLabels,
+			labels: dateLabels,
 			datasets: [{
 				type: 'scatter',
 				label: '거래가',
-				borderColor: '#FF5E00',
+				backgroundColor: '#BDBDBD',
 				borderWidth: 2,
-				data: priceData
+				data: priceData,
+				order: 1
 			}, {
 				type: 'line',
 				label: '평균',
-				backgroundColor: '#1DDB16',
+				backgroundColor: '#B5B2FF',
 				data: avgData,
 				borderColor: 'white',
 				fill: false,
-				pointRadius: 0
+				pointRadius: 1
 			}, {
 				type: 'bar',
 				label: '거래수',
-				backgroundColor: '#FF00DD',
+				backgroundColor: '#D5D5D5',
 				borderWidth: 2,
-				data: cntData
+				data: cntData,
+				order: 1
 			}]
 
 		};
@@ -637,6 +593,10 @@ function createChart() {
 	});
 }
 
+//사이즈 선택값에 따라 달라지는 이벤트
+function chageSizeSelect() {
+	alert($('#itemSize').val());
+}
 </script>
 </body>
 
