@@ -75,7 +75,7 @@
 		<input type="text" name="userId" id="userId"/><br/>
 		<div class="inputArea">
 		<label>내용</label>
-		<textarea rows="5" cols="50" id="content" name="content"></textarea><br/>
+		<textarea rows="5" cols="100" id="content" name="content"></textarea><br/>
 		<script>
 			var ckeditor_config = {
 					resize_enaleb : false,
