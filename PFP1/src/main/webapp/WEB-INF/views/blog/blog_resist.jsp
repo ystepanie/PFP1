@@ -52,6 +52,8 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/responsive.css" />
 <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<!-- ckeditor -->
+ <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 </head>
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -71,8 +73,20 @@
 		<input type="text" name="title" id="title"/><br/>
 		<label>작성자</label>
 		<input type="text" name="userId" id="userId"/><br/>
+		<div class="inputArea">
 		<label>내용</label>
-		<input type="text" name="content" id="content"/><br/>
+		<textarea rows="5" cols="50" id="content" name="content"></textarea><br/>
+		<script>
+			var ckeditor_config = {
+					resize_enaleb : false,
+					enterMode : CKEDITOR.ENTER_BR,
+					shiftEnterMode : CKEDITOR.ENTER_P,
+					filebrowserUploadUrl : "pfp/blog/ckUpload"
+			};
+			
+			CKEDITOR.replace("content", ckeditor_config);
+		</script>
+		</div>
 		<label>그림 업로드</label>
 		<input type="text" name="picture" id="picture"/><br/>
 		<label>태그</label>
@@ -82,7 +96,6 @@
 	</section>
 	<!-- Start Blog Area-->
 	<%@ include file="../include/footer.jsp"%>
-
 	<!-- jQuery 2.1.4 -->
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/resources/js/jquery-2.1.4.min.js"></script>
