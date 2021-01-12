@@ -34,11 +34,7 @@ public class BlogController {
    /**
     * Simply selects the home view to render by returning its name.
     */
-   //블로그 상세보기 페이지 
-   @GetMapping("/detail")
-   public String getDetail() {
-      return "blog/detail";
-   }
+   
    //블로그 기본 페이지
    @GetMapping("/blog")
    public String getBlog(Model model) throws Exception {
@@ -84,5 +80,14 @@ public class BlogController {
    public String getBlog_resist() throws Exception {
 	   
 	   return "blog/blog_resist";
+   }
+   
+ //블로그 상세보기 페이지 
+   @GetMapping("/detail")
+   public void getDetail(@RequestParam("no") int boardCode, Model model) throws Exception {
+      BoardVO vo = b_service.view(boardCode);
+      
+      model.addAttribute("view", vo);
+	   
    }
 }

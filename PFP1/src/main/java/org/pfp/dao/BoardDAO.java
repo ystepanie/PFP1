@@ -17,4 +17,7 @@ public interface BoardDAO {
 	
 	//게시글 작성
 	public void resist(BoardVO vo) throws Exception;
+	
+	//게시물 조회
+	public BoardVO view(int boardCode) throws Exception;
 }

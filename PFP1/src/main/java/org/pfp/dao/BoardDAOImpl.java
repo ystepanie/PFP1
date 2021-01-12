@@ -43,4 +43,9 @@ public class BoardDAOImpl implements BoardDAO {
 	public void resist(BoardVO vo) throws Exception {
 		sql.insert(namespace+".resist", vo);
 	}
+	
+	//게시물 조회
+	public BoardVO view(int boardCode) throws Exception {
+		return sql.selectOne(namespace + ".view", boardCode); 
+	}
 }

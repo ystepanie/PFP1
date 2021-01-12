@@ -49,23 +49,23 @@
 		<div class="row">
 				<div class="single-blog blog-details">
 					<div class="content fix">
-						<img src="<%=request.getContextPath() %>/resources/img/blog/blog-details.jpg" alt="" />
+						<img src="${view.picture}" alt="" />
 							<div class="date">
 								<h4>25</h4>
 								<h5>Aug</h5>
 							</div>
-						<h2>Lorem ipsum dolor sit amet</h2>
+						<h2>${view.title}</h2>
 						<div class="meta">
-							<a href="#"><i class="fa fa-pencil-square-o"></i>John Lee</a>
-							<a href="#"><i class="fa fa-calendar"></i>2 Days ago</a>
-							<a href="#"><i class="fa fa-comments"></i>12 Comments</a>
+							<a href="#"><i class="fa fa-pencil-square-o"></i>${view.userId}</a>
+							<a href="#"><i class="fa fa-calendar"></i>${view.regiDate }</a>
+							<a href="#"><i class="fa fa-comments"></i>아직안함</a>
 						</div>
-						<p>에디터를 사용할까 고민 중</p>
+						<p>${view.content}</p>
 					</div>
 				</div>
 				<div class="tagcloud fix">
 						<div class="tab-pane fade active in" role="tabpanel">
-							<a href="#">JEWELRY</a><a href="#">Necklaces</a><a href="#">Jewelry Sets</a><a href="#">Churi</a>
+							<a href="#">${view.tag}</a>
 						</div>
 					</div>
 				<div id="comments">

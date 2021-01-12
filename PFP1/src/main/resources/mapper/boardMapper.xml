@@ -28,4 +28,11 @@
 		values(#{boardCode}, #{userId}, #{content}, #{picture}, #{tag}, 0, #{title}, SYSDATE())
 	</insert>
 	
+	<!-- 게시물 조회 -->
+	<select id="view" parameterType="int" resultType="org.pfp.dto.BoardVO">
+		select boardCode, userId, content, picture, tag, good, title, regiDate
+		from board
+		where boardCode = #{boardCode}
+	</select>
+	
 </mapper>

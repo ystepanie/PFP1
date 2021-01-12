@@ -38,5 +38,11 @@ public class BoardServiceImpl implements BoardService {
 	public void resist(BoardVO vo) throws Exception {
 		dao.resist(vo);
 	}
+	
+	//게시물 조회
+	@Override
+	public BoardVO view(int boardCode) throws Exception {
+		return dao.view(boardCode);
+	}
 
 }
