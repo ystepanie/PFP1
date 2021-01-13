@@ -35,4 +35,19 @@
 		where boardCode = #{boardCode}
 	</select>
 	
+	<!-- 블로그 댓글 작성 -->
+	<insert id="registReply">
+		insert into comment(boardCode, userId, commentDate, reContent)
+		values (#{boardCode}, #{userId}, SYSDATE(), #{reContent})
+	</insert>
+	
+	<!-- 블로그 댓글 목록  -->
+	<select id="replyList" resultType="org.pfp.dto.ReplyVO">
+		select m.nickname, r.commentDate, r.reContent, r.userId
+		from comment r
+		inner join member m
+		on r.userId = m.userId
+		where boardCode = #{boardCode}
+	</select>
+	
 </mapper>

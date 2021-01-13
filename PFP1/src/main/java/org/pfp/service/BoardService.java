@@ -3,6 +3,7 @@ package org.pfp.service;
 import java.util.List;
 
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.ReplyVO;
 
 public interface BoardService {
 	
@@ -20,4 +21,10 @@ public interface BoardService {
 	
 	//게시물 조회
 	public BoardVO view(int boardCode) throws Exception;
+	
+	//게시물 댓글 작성
+	public void registReply(ReplyVO vo) throws Exception;
+	
+	//게시물 댓글 리스트
+	public List<ReplyVO> replyList(int boardCode) throws Exception;
 }

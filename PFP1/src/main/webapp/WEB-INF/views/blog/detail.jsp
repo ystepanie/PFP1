@@ -70,12 +70,22 @@
 					</div>
 				<div id="comments">
 					<div class="commentform">
-						<form class="comment-form" id="commentform" method="post" action="#">
+						<form class="comment-form" id="commentform" method="post" autocomplete="off">
+						<input type="hidden" name="boardCode" value="${view.boardCode}">
 							<div class="row">
 								<div class="col-md-10">
 									<div class="form-input">
 										<label for="comment" class="field-label">Your Comment<span>*</span></label>
-										<textarea aria-required="true" name="comment" id="comment" rows="4"></textarea>
+										<c:if test="${member == null }">
+										
+										<p><a href="<%=request.getContextPath() %>/member/login">댓글을 남기려면 로그인 해 주세요.</a></p>
+										
+										</c:if>
+										<c:if test="${member != null }">
+										<div class="input_area">
+										<textarea name="reContent" id="reContent" rows="4"></textarea>
+										</div>
+										</c:if>
 									</div>
 								</div>
 								<div class="col-md-2">
@@ -86,24 +96,26 @@
 							</div>
 						</form>
 					</div><!-- end commentform -->
+					<br/>
 					<div class="comments-list">
 						<h4 class="heading">댓글</h4>
 						<ol class="commentlists">
 							<li class="sin-comment">
+							<c:forEach items="${reply}" var="reply">
 								<div class="the-comment">
 									<div class="avatar">
 										<img alt="" src="img/blog/comment-1.jpg">	
 									</div>
 									<div class="comment-box">
 										<div class="comment-author">
-											<p class="com-name"><strong>Tom Cruze</strong></p>3 day ago  <a href="#" class="repost-link"> Repost </a> <a href="#" class="comment-reply-link"> Reply </a><a href="#"><i class="fa fa-bullhorn"></i>신고</a>
+											<p class="com-name"><strong>${reply.nickname}</strong></p>${reply.commentDate}<a href="#" class="comment-reply-link"> 답글달기 </a> 
 										</div>
 										<div class="comment-text">
-											<p>Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, </p>
+											<p>${reply.reContent} </p>
 										</div>
 									</div>
 								</div>
-								<ul class="children-comment">
+								<!-- <ul class="children-comment">
 									<li class="comment">
 										<div class="the-comment">
 											<div class="avatar">
@@ -118,24 +130,11 @@
 												</p></div>
 											</div>
 										</div>
-									</li><!-- #comment-## -->
-								</ul><!-- .children -->
+									</li>#comment-##
+								</ul>.children -->
+								</c:forEach>
 							</li><!-- #comment-## -->
-							<li class="sin-comment">
-								<div class="the-comment">
-									<div class="avatar">
-										<img alt="" src="img/blog/comment-3.jpg">
-									</div>
-									<div class="comment-box">
-										<div class="comment-author">
-											<p class="com-name"><strong>TOMAS LEE</strong></p>3 day ago  <a href="#" class="repost-link"> Repost </a> <a href="#" class="comment-reply-link"> Reply </a>
-										</div>
-										<div class="comment-text">
-											<p>Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, consectetur adi ing elit, sed do eiusmo empor incididunt ut labore et dolore magna aliqua magna aliqua Lorem ipsum dolor sit amet, </p>
-										</div>
-									</div>
-								</div>
-							</li><!-- #comment-## -->
+							
 						</ol>
 					</div>
 				</div>

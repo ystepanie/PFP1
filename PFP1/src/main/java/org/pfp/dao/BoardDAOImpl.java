@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.ReplyVO;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -45,7 +46,20 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	//게시물 조회
+	@Override
 	public BoardVO view(int boardCode) throws Exception {
 		return sql.selectOne(namespace + ".view", boardCode); 
+	}
+	
+	//게시물 댓글 작성
+	@Override
+	public void registReply(ReplyVO vo) throws Exception {
+		sql.insert(namespace + ".registReply", vo);
+	}
+	
+	//게시물 댓글 리스트
+	@Override
+	public List<ReplyVO> replyList(int boardCode) throws Exception {
+		return sql.selectList(namespace + ".replyList", boardCode);
 	}
 }

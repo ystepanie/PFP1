@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.MemberVO;
+import org.pfp.dto.ReplyVO;
 import org.pfp.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,6 +91,24 @@ public class BlogController {
       BoardVO vo = b_service.view(boardCode);
       
       model.addAttribute("view", vo);
+      //댓글 리스트 출력 
+      List<ReplyVO> reply = b_service.replyList(boardCode);
+      model.addAttribute("reply", reply);
 	   
    }
+   
+   //블로그 댓글 작성
+   @PostMapping(value="/detail")
+   public String registReply(ReplyVO reply, HttpSession session) throws Exception {
+	   logger.info("regist reply");
+	   
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   reply.setUserId(member.getUserId());
+	   
+	   b_service.registReply(reply);
+	   
+	   return "redirect:/blog/detail?no="+reply.getBoardCode();
+   }
+   
+   
 }
