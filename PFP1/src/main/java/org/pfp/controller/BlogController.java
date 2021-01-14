@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -103,10 +104,21 @@ public class BlogController {
       BoardVO vo = b_service.view(boardCode);
       
       model.addAttribute("view", vo);
-      //댓글 리스트 출력 
-      List<ReplyVO> reply = b_service.replyList(boardCode);
-      model.addAttribute("reply", reply);
+//      //댓글 리스트 출력 
+//      List<ReplyVO> reply = b_service.replyList(boardCode);
+//      model.addAttribute("reply", reply);
 	   
+   }
+   
+   //댓글 목록 ajax
+   @ResponseBody
+   @GetMapping("/replyList")
+   public List<ReplyVO> getReplyList(@RequestParam("no") int boardCode) throws Exception {
+	   logger.info("get replyList");
+	   
+	   List<ReplyVO> reply = b_service.replyList(boardCode);
+	   
+	   return reply;
    }
    
    //ckeditor에서 업로드
@@ -156,17 +168,49 @@ public class BlogController {
 		 return; 
    }
    
-   //블로그 댓글 작성
-   @PostMapping(value="/detail")
-   public String registReply(ReplyVO reply, HttpSession session) throws Exception {
-	   logger.info("regist reply");
+//   //블로그 댓글 작성
+//   @PostMapping(value="/detail")
+//   public String registReply(ReplyVO reply, HttpSession session) throws Exception {
+//	   logger.info("regist reply");
+//	   
+//	   MemberVO member = (MemberVO)session.getAttribute("member");
+//	   reply.setUserId(member.getUserId());
+//	   
+//	   b_service.registReply(reply);
+//	   
+//	   return "redirect:/blog/detail?no="+reply.getBoardCode();
+//   }
+   
+   //댓글 작성 ajax
+   @ResponseBody
+   @PostMapping("/registReply")
+   public void registReply(ReplyVO reply, HttpSession session) throws Exception {
+	   logger.info("registReply");
 	   
 	   MemberVO member = (MemberVO)session.getAttribute("member");
 	   reply.setUserId(member.getUserId());
 	   
 	   b_service.registReply(reply);
-	   
-	   return "redirect:/blog/detail?no="+reply.getBoardCode();
    }
    
+   //댓글 삭제 
+   @ResponseBody
+   @PostMapping("/deleteReply")
+   public int deleteReplyList(ReplyVO reply, HttpSession session) throws Exception {
+	   logger.info("delete reply");
+	   
+	   int result = 0;
+	   
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   String userId = b_service.idCheck(reply.getCommentNum());
+	   if(member.getUserId().equals(userId)) {
+		   reply.setUserId(member.getUserId());
+		   b_service.deleteReply(reply);
+		   
+		   result = 1;
+	   }
+	   
+	   return result;
+   }
+
 }

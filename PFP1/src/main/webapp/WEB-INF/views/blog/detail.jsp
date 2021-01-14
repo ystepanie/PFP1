@@ -36,6 +36,33 @@
 	<!-- Responsive Stylesheet -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+	function replyList() {
+		var boardCode = ${view.boardCode};
+		$.getJSON("/blog/replyList"+"?no="+boardCode, function(data) {
+			var str = "";
+			
+			$(data).each(function() {
+				console.log(data);
+				
+				var commentDate = new Date(this.commentDate);
+				commentDate = commentDate.toLocaleDateString("ko-US")
+				
+				str += "<div class='the-comment'>"
+				 + "<div class='avatar'>"
+				 + "<img alt='' src='img/blog/comment-1.jpg'>" + "</div>"
+				 + "<div class='comment-box'>"
+				 + "<div class='comment-author'>"
+				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate+"<a href='#' class='delete' data-commentNum='"+this.commentNum+"'>삭제</a>"
+				 +"</div>"
+				 + "<div class='comment-text'>"
+				 + "<p>"+this.reContent+"</p></div></div></div>"
+			});
+			$("ol.commentlists li").html(str);
+		});
+	}
+	</script>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -71,7 +98,7 @@
 				<div id="comments">
 					<div class="commentform">
 						<form class="comment-form" id="commentform" method="post" autocomplete="off">
-						<input type="hidden" name="boardCode" value="${view.boardCode}">
+						<input type="hidden" name="boardCode" id="boardCode" value="${view.boardCode}">
 							<div class="row">
 								<div class="col-md-10">
 									<div class="form-input">
@@ -90,7 +117,29 @@
 								</div>
 								<div class="col-md-2">
 									<p class="form-submit" style="margin-top:20px;">
-										<input type="submit" value="submit" id="submit" name="submit">
+										<button type="button" id="submit" name="submit">댓글 작성</button>
+										
+										<script>
+											$("#submit").click(function() {
+												var formObj = $(".commentform form[role='form']");
+												var boardCode = $("#boardCode").val();
+												var reContent = $("#reContent").val();
+												//키 값 data
+												var data = {
+														boardCode : boardCode,
+														reContent : reContent
+												};
+											$.ajax({
+												url : "/blog/registReply",
+												type : "post",
+												data : data,
+												success : function() {
+													replyList();
+													$("#reContent").val("");
+												}
+											});
+											});
+										</script>
 									</p>
 								</div>
 							</div>
@@ -101,14 +150,14 @@
 						<h4 class="heading">댓글</h4>
 						<ol class="commentlists">
 							<li class="sin-comment">
-							<c:forEach items="${reply}" var="reply">
+							<%-- <c:forEach items="${reply}" var="reply">
 								<div class="the-comment">
 									<div class="avatar">
 										<img alt="" src="img/blog/comment-1.jpg">	
 									</div>
 									<div class="comment-box">
 										<div class="comment-author">
-											<p class="com-name"><strong>${reply.nickname}</strong></p>${reply.commentDate}<a href="#" class="comment-reply-link"> 답글달기 </a> 
+										"<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate+"<a href='#' class='comment-reply-link'> 답글달기 </a>"
 										</div>
 										<div class="comment-text">
 											<p>${reply.reContent} </p>
@@ -132,9 +181,37 @@
 										</div>
 									</li>#comment-##
 								</ul>.children -->
-								</c:forEach>
+								</c:forEach> --%>
 							</li><!-- #comment-## -->
+							<script>
+							replyList();
+							</script>
+							<script>
+							$(document).on("click", ".delete", function() {
+								var data = {commentNum : $(this).attr("data-commentNum")};
+								var deleteConfirm = confirm("정말로 삭제하시겠습니까?");
+								if(deleteConfirm) {
+								$.ajax({
+									url : "/blog/deleteReply",
+									type : "post",
+									data : data,
+									success : function(result) {
+										if(result == 1){
+											
+										replyList();
+											
+										} else {
+											alert("작성자만 삭제할 수 있습니다.")
+										}
+									},
+									error : function() {
+										alert("로그인 후 사용 가능합니다.")
+									}
+								});
+								}
+							});
 							
+							</script>
 						</ol>
 					</div>
 				</div>

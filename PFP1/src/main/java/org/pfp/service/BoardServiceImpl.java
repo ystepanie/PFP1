@@ -57,5 +57,15 @@ public class BoardServiceImpl implements BoardService {
 	public List<ReplyVO> replyList(int boardCode) throws Exception {
 		return dao.replyList(boardCode);
 	}
+	
+	//게시물 댓글 삭제
+	public void deleteReply(ReplyVO vo) throws Exception {
+		dao.deleteReply(vo);
+	}
+		
+	//아이디 체크
+	public String idCheck(int commentNum) throws Exception{
+		return dao.idCheck(commentNum);
+	}
 
 }
