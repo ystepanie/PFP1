@@ -27,4 +27,10 @@ public interface BoardDAO {
 	
 	//게시물 댓글 리스트
 	public List<ReplyVO> replyList(int boardCode) throws Exception;
+	
+	//게시물 댓글 삭제
+	public void deleteReply(ReplyVO vo) throws Exception;
+	
+	//아이디 체크
+	public String idCheck(int commentNum) throws Exception;
 }

@@ -43,11 +43,26 @@
 	
 	<!-- 블로그 댓글 목록  -->
 	<select id="replyList" resultType="org.pfp.dto.ReplyVO">
-		select m.nickname, r.commentDate, r.reContent, r.userId
+		select m.nickname, r.commentDate, r.reContent, r.userId, r.commentNum, r.boardCode
 		from comment r
 		inner join member m
 		on r.userId = m.userId
 		where boardCode = #{boardCode}
+	</select>
+	
+	<!-- 블로그 댓글 삭제  -->
+	<delete id="deleteReply">
+		delete 
+		from comment
+		where commentNum = #{commentNum}
+		and userId = #{userId}
+	</delete>
+	
+	<!-- 댓글 아이디 체크  -->
+	<select id="replyUserIdCheck" resultType="String">
+		select userId
+		from comment
+		where commentNum = #{commentNum}
 	</select>
 	
 </mapper>

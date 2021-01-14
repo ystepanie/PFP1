@@ -62,4 +62,16 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<ReplyVO> replyList(int boardCode) throws Exception {
 		return sql.selectList(namespace + ".replyList", boardCode);
 	}
+	
+	//게시물 댓글 삭제
+	@Override
+	public void deleteReply(ReplyVO vo) throws Exception {
+		sql.delete(namespace + ".deleteReply", vo);
+	}
+		
+	//아이디 체크
+	@Override
+	public String idCheck(int commentNum) throws Exception {
+		return sql.selectOne(namespace+".replyUserIdCheck",commentNum);
+	}
 }

@@ -194,5 +194,25 @@ public class BlogController {
 	   
 	   b_service.registReply(reply);
    }
+   
+   //댓글 삭제 
+   @ResponseBody
+   @PostMapping("/deleteReply")
+   public int deleteReplyList(ReplyVO reply, HttpSession session) throws Exception {
+	   logger.info("delete reply");
+	   
+	   int result = 0;
+	   
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   String userId = b_service.idCheck(reply.getCommentNum());
+	   if(member.getUserId().equals(userId)) {
+		   reply.setUserId(member.getUserId());
+		   b_service.deleteReply(reply);
+		   
+		   result = 1;
+	   }
+	   
+	   return result;
+   }
 
 }

@@ -54,7 +54,8 @@
 				 + "<img alt='' src='img/blog/comment-1.jpg'>" + "</div>"
 				 + "<div class='comment-box'>"
 				 + "<div class='comment-author'>"
-				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate+"<a href='#' class='comment-reply-link'> 답글달기 </a>"+"</div>"
+				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate+"<a href='#' class='delete' data-commentNum='"+this.commentNum+"'>삭제</a>"
+				 +"</div>"
 				 + "<div class='comment-text'>"
 				 + "<p>"+this.reContent+"</p></div></div></div>"
 			});
@@ -184,6 +185,32 @@
 							</li><!-- #comment-## -->
 							<script>
 							replyList();
+							</script>
+							<script>
+							$(document).on("click", ".delete", function() {
+								var data = {commentNum : $(this).attr("data-commentNum")};
+								var deleteConfirm = confirm("정말로 삭제하시겠습니까?");
+								if(deleteConfirm) {
+								$.ajax({
+									url : "/blog/deleteReply",
+									type : "post",
+									data : data,
+									success : function(result) {
+										if(result == 1){
+											
+										replyList();
+											
+										} else {
+											alert("작성자만 삭제할 수 있습니다.")
+										}
+									},
+									error : function() {
+										alert("로그인 후 사용 가능합니다.")
+									}
+								});
+								}
+							});
+							
 							</script>
 						</ol>
 					</div>
