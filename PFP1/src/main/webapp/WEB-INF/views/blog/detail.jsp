@@ -36,6 +36,7 @@
 	<!-- Responsive Stylesheet -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>
 	function replyList() {
 		var boardCode = ${view.boardCode};
@@ -115,7 +116,7 @@
 								</div>
 								<div class="col-md-2">
 									<p class="form-submit" style="margin-top:20px;">
-										<input type="button" id="submit" name="submit" value="댓글 작성">
+										<button type="button" id="submit" name="submit">댓글 작성</button>
 										
 										<script>
 											$("#submit").click(function() {
@@ -223,7 +224,7 @@
 </script>   
 <!-- Main JS -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/main.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 </body>
 
 </html>

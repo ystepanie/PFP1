@@ -147,10 +147,10 @@
 				<ul>	
 				<c:forEach begin="1" end="${pageNum}" var="num">
 					<c:if test="${select != num }">
-					<li ><a href="/pfp/blog/listPage?num=${num}"><span>${num}</span></a></li>
+					<li ><a href="/blog/listPage?num=${num}"><span>${num}</span></a></li>
 					</c:if>
 					<c:if test="${select == num }">
-					<li class="active"><a href="/pfp/blog/listPage?num=${num}"><span>${num}</span></a></li>
+					<li class="active"><a href="/blog/listPage?num=${num}"><span>${num}</span></a></li>
 					</c:if>	
 				</c:forEach>
 				</ul>
