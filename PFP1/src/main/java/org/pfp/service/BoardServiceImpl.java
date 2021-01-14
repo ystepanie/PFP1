@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.pfp.dao.BoardDAO;
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.ReplyVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,6 +44,18 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVO view(int boardCode) throws Exception {
 		return dao.view(boardCode);
+	}
+	
+	//게시물 댓글 작성
+	@Override
+	public void registReply(ReplyVO vo) throws Exception {
+		dao.registReply(vo);
+	}
+	
+	//게시물 댓글 리스트
+	@Override
+	public List<ReplyVO> replyList(int boardCode) throws Exception {
+		return dao.replyList(boardCode);
 	}
 
 }
