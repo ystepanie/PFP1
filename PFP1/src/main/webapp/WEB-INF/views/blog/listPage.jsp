@@ -130,7 +130,7 @@
 								<h5>Aug</h5>
 							</div>
 						</a>
-						<h2><a class="title" href="/pfp/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
+						<h2><a class="title" href="/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
 						<div class="meta">
 							<i class="fa fa-pencil-square-o"></i>${list.userId}</a>
 							<i class="fa fa-calendar"></i>${list.regiDate}</a>
