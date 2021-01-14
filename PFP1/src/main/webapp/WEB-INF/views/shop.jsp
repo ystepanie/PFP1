@@ -80,7 +80,7 @@
 						<div class="slider-range-container">
 							<div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 77.125%;"></div><span id="slider-ui-first" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span><span id="slider-ui-second" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 77.125%;"></span></div>
 							<p>
-								<input type="text" id="price-amount" readonly="" onchange="changePriceRange()">
+								<input type="text" id="price-amount" readonly=""><input type="button" class="btn btn-warning" value="변경" style="padding-left:5%;padding-right:5%;float:right;" onclick="clickPriceRange()">
 							</p>
 						</div>
 					</div>
@@ -188,11 +188,35 @@ function changeSortSelect() {
 	});
 }
 
-function changePriceRange() {
-	$('#slider-ui-first').on('mouseout', function () {
-
-		alert('변경');
+function clickPriceRange() {
+	alert('변경 버튼 클릭');
+	var strHtml = '';
+	var strPriceRange = $('#price-amount').val().split(' - ');
+	$.getJSON("<%=request.getContextPath()%>/api/shop",
+			{ s: $('#sort-by').val(), ps: removeComma(strPriceRange[0].slice(0,-1)), pe: removeComma(strPriceRange[1].slice(0,-1))},
+			function(data) {
+	  $.each(data, function(idx, obj) {
+		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix"><div class="product-img-hover"><a href="goods/detail?m=';
+		strHtml += obj.modelNum;
+		strHtml += '" class="pro-image fix"><img src="';
+		strHtml += obj.thumbnail;
+		strHtml += '" alt="product" /></a><div class="product-action-btn"><a class="quick-view" href="#"><i class="fa fa-search"></i></a><a class="favorite" href="#"><i class="fa fa-heart-o"></i></a><a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a></div></div><div class="pro-name-price-ratting"><div class="pro-name"><a href="product-details.html">';
+		strHtml += obj.itemName;
+		strHtml += '</a></div><div class="pro-ratting"><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star-half-o"></i></div><div class="pro-price fix"><span class="new">';
+		strHtml += obj.saleBid;
+		strHtml += '원</span></p></div></div></div></div>';
+	  });
+	  $('#shopList').empty();
+	  $('#shopList').append(strHtml);
 	});
+}
+
+//숫자의 콤마 제거
+function removeComma(str){
+	var n = parseInt(str.replace(/,/g,""));
+
+	return n;
+
 }
 </script>
 </body>

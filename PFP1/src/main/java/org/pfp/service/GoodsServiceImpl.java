@@ -1,5 +1,6 @@
 package org.pfp.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,28 +16,28 @@ public class GoodsServiceImpl implements GoodsService {
 	public GoodsDAO dao;
 	
 	@Override
-	public List<GoodsVO> listRecommand() throws Exception {
-		return dao.listRecommand();
+	public List<GoodsVO> listRecommand(HashMap<String, Integer> range) throws Exception {
+		return dao.listRecommand(range);
 	}
 
 	@Override
-	public List<GoodsVO> listPopular() throws Exception {
-		return dao.listPopular();
+	public List<GoodsVO> listPopular(HashMap<String, Integer> range) throws Exception {
+		return dao.listPopular(range);
 	}
 
 	@Override
-	public List<GoodsVO> listLatest() throws Exception {
-		return dao.listLatest();
+	public List<GoodsVO> listLatest(HashMap<String, Integer> range) throws Exception {
+		return dao.listLatest(range);
 	}
 
 	@Override
-	public List<GoodsVO> listCheap() throws Exception {
-		return dao.listCheap();
+	public List<GoodsVO> listCheap(HashMap<String, Integer> range) throws Exception {
+		return dao.listCheap(range);
 	}
 
 	@Override
-	public List<GoodsVO> listExpensive() throws Exception {
-		return dao.listExpensive();
+	public List<GoodsVO> listExpensive(HashMap<String, Integer> range) throws Exception {
+		return dao.listExpensive(range);
 	}
 
 	@Override

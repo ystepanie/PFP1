@@ -2,6 +2,7 @@ package org.pfp.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -96,19 +97,23 @@ public class ApiController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/shop", produces = "application/json", method = RequestMethod.GET)
-	public String getSalesBid(@RequestParam String s) throws Exception {
+	public String getSalesBid(@RequestParam String s, @RequestParam(required = false) String ps, @RequestParam(required = false) String pe) throws Exception {
 		List<GoodsVO> list = null;
-		
+		HashMap<String, Integer> range = new HashMap<String, Integer>();
+		if(ps != null && pe != null) {
+			range.put("start", Integer.parseInt(ps));
+			range.put("end", Integer.parseInt(pe));
+		}
 		switch (s) {
-		case "recommendation": list = g_service.listRecommand();
+		case "recommendation": list = g_service.listRecommand(range);
 			break;
-		case "popularity": list = g_service.listPopular();
+		case "popularity": list = g_service.listPopular(range);
 			break;
-		case "latest": list = g_service.listLatest();
+		case "latest": list = g_service.listLatest(range);
 			break;
-		case "cheap": list = g_service.listCheap();
+		case "cheap": list = g_service.listCheap(range);
 			break;
-		case "expensive": list = g_service.listExpensive();
+		case "expensive": list = g_service.listExpensive(range);
 			break;
 		default:
 			break;

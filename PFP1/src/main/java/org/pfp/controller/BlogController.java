@@ -13,13 +13,9 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-=======
 import javax.servlet.http.HttpSession;
->>>>>>> branch 'main' of https://github.com/ystepanie/PFP1.git
-
 import org.pfp.dto.BoardVO;
 import org.pfp.dto.MemberVO;
 import org.pfp.dto.ReplyVO;
@@ -113,7 +109,6 @@ public class BlogController {
 	   
    }
    
-<<<<<<< HEAD
    //ckeditor에서 업로드
    @PostMapping("/ckUpload")
    public void hadleFileUpload(HttpServletRequest request, HttpServletResponse response,
@@ -160,8 +155,7 @@ public class BlogController {
 		 
 		 return; 
    }
-   //
-=======
+   
    //블로그 댓글 작성
    @PostMapping(value="/detail")
    public String registReply(ReplyVO reply, HttpSession session) throws Exception {
@@ -175,6 +169,4 @@ public class BlogController {
 	   return "redirect:/blog/detail?no="+reply.getBoardCode();
    }
    
-   
->>>>>>> branch 'main' of https://github.com/ystepanie/PFP1.git
 }

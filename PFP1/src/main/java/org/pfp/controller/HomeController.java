@@ -2,6 +2,7 @@ package org.pfp.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -44,7 +45,8 @@ public class HomeController {
 	
 	@GetMapping("/shop")
 	public String getShop(Model model) throws Exception {
-		List<GoodsVO> list = g_service.listRecommand();
+		HashMap<String, Integer> range = new HashMap<String, Integer>();
+		List<GoodsVO> list = g_service.listRecommand(range);
 		System.out.println(list);
 		model.addAttribute("list", list);
 		return "shop";
