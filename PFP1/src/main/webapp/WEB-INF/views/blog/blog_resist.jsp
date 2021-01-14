@@ -82,13 +82,13 @@
 					resize_enaleb : false,
 					enterMode : CKEDITOR.ENTER_BR,
 					shiftEnterMode : CKEDITOR.ENTER_P,
-					filebrowserUploadUrl : "pfp/blog/ckUpload"
+					filebrowserUploadUrl : "${pageContext.request.contextPath}/blog/ckUpload"
 			};
 			
 			CKEDITOR.replace("content", ckeditor_config);
 		</script>
 		</div>
-		<label>그림 업로드</label>
+		<label>썸네일 업로드</label>
 		<input type="text" name="picture" id="picture"/><br/>
 		<label>태그</label>
 		<input type="text" name="tag" id="tag"/><br/>

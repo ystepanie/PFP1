@@ -42,5 +42,9 @@
 	<beans:bean class="java.lang.String" id="uploadPath">
 		<beans:constructor-arg value="macapig-puzzle-bucket"></beans:constructor-arg>
 	</beans:bean>
+	<!--ck에디터 업로드 경로  -->
+	<resources mapping="/ckUpload/**" location="/resources/ckUpload/" />
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+	</beans:bean>
 
 </beans:beans>

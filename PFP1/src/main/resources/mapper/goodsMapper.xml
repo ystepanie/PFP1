@@ -55,8 +55,22 @@
 	<!-- size별 즉시구매가 -->
 	<select id="priceBySize" resultType="org.pfp.dto.GoodsVO">
 		select size ,min(salesPrice) as saleBid
-		from sales 
-		where modelNum = #{modelNum}
+		from sales
+		where modelNum = #{modelNum} and salesCode not in (select d.salesCode from deal d)
+		<if test="size != null and size > 0">
+		and size = #{size}
+		</if>
+		group by size
+	</select>
+	
+	<!-- size별 즉시핀매가 -->
+	<select id="salesBySize" resultType="org.pfp.dto.GoodsVO">
+		select size ,max(buyPrice) as buyBid
+		from buy
+		where modelNum = #{modelNum} and buyCode not in (select d.buyCode from deal d)
+		<if test="size != null and size > 0">
+		and size = #{size}
+		</if>
 		group by size
 	</select>
 </mapper>

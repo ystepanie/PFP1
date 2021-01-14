@@ -45,8 +45,13 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 
 	@Override
-	public List<GoodsVO> priceBySize(int modelNum) throws Exception {
-		return dao.priceBySize(modelNum);
+	public List<GoodsVO> priceBySize(GoodsVO goods) throws Exception {
+		return dao.priceBySize(goods);
+	}
+
+	@Override
+	public List<GoodsVO> salesBySize(GoodsVO goods) throws Exception {
+		return dao.salesBySize(goods);
 	}
 
 }

@@ -40,8 +40,13 @@ public class ApiController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/listDeal", produces = "application/json", method = RequestMethod.GET)
-	public String getDeal(@RequestParam int modelNum) throws Exception {
-		List<DealVO> list = d_service.listDeal(modelNum);
+	public String getDeal(@RequestParam int modelNum, @RequestParam(required = false, defaultValue = "all") String size) throws Exception {
+		GoodsVO goods = new GoodsVO();
+		goods.setModelNum(modelNum);
+		if (!size.equals("all")) {
+			goods.setSize(Integer.parseInt(size));
+		}
+		List<DealVO> list = d_service.listDeal(goods);
 		String json = gson.toJson(list);
 		
 		return json;
@@ -49,8 +54,13 @@ public class ApiController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/dealCountPrice", produces = "application/json", method = RequestMethod.GET)
-	public String getDealCountPrice(@RequestParam int modelNum) throws Exception {
-		List<DealVO> list = d_service.dealCountPrice(modelNum);
+	public String getDealCountPrice(@RequestParam int modelNum, @RequestParam(required = false, defaultValue = "all") String size) throws Exception {
+		GoodsVO goods = new GoodsVO();
+		goods.setModelNum(modelNum);
+		if (!size.equals("all")) {
+			goods.setSize(Integer.parseInt(size));
+		}
+		List<DealVO> list = d_service.dealCountPrice(goods);
 		String json = gson.toJson(list);
 		
 		return json;
@@ -58,8 +68,13 @@ public class ApiController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/buyBid", produces = "application/json", method = RequestMethod.GET)
-	public String getBuyBid(@RequestParam int modelNum) throws Exception {
-		List<DealVO> list = d_service.buyBid(modelNum);
+	public String getBuyBid(@RequestParam int modelNum, @RequestParam(required = false, defaultValue = "all") String size) throws Exception {
+		GoodsVO goods = new GoodsVO();
+		goods.setModelNum(modelNum);
+		if (!size.equals("all")) {
+			goods.setSize(Integer.parseInt(size));
+		}
+		List<DealVO> list = d_service.buyBid(goods);
 		String json = gson.toJson(list);
 		
 		return json;
@@ -67,8 +82,13 @@ public class ApiController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/salesBid", produces = "application/json", method = RequestMethod.GET)
-	public String getSalesBid(@RequestParam int modelNum) throws Exception {
-		List<DealVO> list = d_service.salesBid(modelNum);
+	public String getSalesBid(@RequestParam int modelNum, @RequestParam(required = false, defaultValue = "all") String size) throws Exception {
+		GoodsVO goods = new GoodsVO();
+		goods.setModelNum(modelNum);
+		if (!size.equals("all")) {
+			goods.setSize(Integer.parseInt(size));
+		}
+		List<DealVO> list = d_service.salesBid(goods);
 		String json = gson.toJson(list);
 		
 		return json;
@@ -93,6 +113,34 @@ public class ApiController {
 		default:
 			break;
 		}
+		String json = gson.toJson(list);
+		
+		return json;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/priceBySize", produces = "application/json", method = RequestMethod.GET)
+	public String getPriceBySize(@RequestParam int modelNum, @RequestParam(required = false, defaultValue = "all") String size) throws Exception {
+		GoodsVO goods = new GoodsVO();
+		goods.setModelNum(modelNum);
+		if (!size.equals("all")) {
+			goods.setSize(Integer.parseInt(size));
+		}
+		List<GoodsVO> list = g_service.priceBySize(goods);
+		String json = gson.toJson(list);
+		
+		return json;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/salesBySize", produces = "application/json", method = RequestMethod.GET)
+	public String getSalesBySize(@RequestParam int modelNum, @RequestParam(required = false, defaultValue = "all") String size) throws Exception {
+		GoodsVO goods = new GoodsVO();
+		goods.setModelNum(modelNum);
+		if (!size.equals("all")) {
+			goods.setSize(Integer.parseInt(size));
+		}
+		List<GoodsVO> list = g_service.salesBySize(goods);
 		String json = gson.toJson(list);
 		
 		return json;

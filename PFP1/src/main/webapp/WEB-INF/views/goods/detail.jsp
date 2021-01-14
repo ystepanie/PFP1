@@ -145,7 +145,7 @@
                <h5>발매일 - <span>${detail.releaseDate}</span></h5>
                <h6>색상 - ${detail.itemGroup}</h6>
                <div style="height:200px;background-color:#F6F6F6;padding:10px;">${detail.itemContent}</div><br>
-               <div style="height:80px;background:linear-gradient(to right,#F6F6F6,white,#F6F6F6);padding:10px;">최근 거래가<p><h3>${latestPrice}</h3> ${changePrice}</div><br>
+               <div id="latestDeal" style="height:80px;background:linear-gradient(to right,#F6F6F6,white,#F6F6F6);padding:10px;">최근 거래가<p><h3>${latestPrice}</h3> ${changePrice}</div><br>
                <div class="select-menu fix">
                   <div class="sort fix">
                      <h4>SIZE</h4>
@@ -160,8 +160,8 @@
                <div class="container" style="width:100%;">
                	<div class="row" style="width:100%;">
                		<div class="col" style="width:100%;">
-               			<button type="button" class="btn btn-primary" style="width:49%;font-size:100%;"><b style="float:left;">구매 |</b><font style="float:right;">즉시 구매가 - ${detail.saleBid}원</font></button>
-               			<button type="button" class="btn btn-danger" style="width:49%;font-size:100%;"><b style="float:left;">판매 |</b><font style="float:right;">즉시 판매가 - ${detail.buyBid}원</font></button>
+               			<button type="button" class="btn btn-primary" style="width:49%;font-size:100%;"><b style="float:left;">구매 |</b><font id="immediateBuy" style="float:right;">즉시 구매가 - ${detail.saleBid}원</font></button>
+               			<button type="button" class="btn btn-danger" style="width:49%;font-size:100%;"><b style="float:left;">판매 |</b><font id="immediateSales" style="float:right;">즉시 판매가 - ${detail.buyBid}원</font></button>
                		</div>
                	</div>
                </div><br>
@@ -595,16 +595,98 @@ function createChart() {
 
 //사이즈 선택값에 따라 달라지는 이벤트
 function chageSizeSelect() {
-	//최근 거래가 변경
+	var sizeVal = $('#itemSize').val(); //사이즈 선택값
+	
+	//테이블, 그래프 초기화
+	dateLabels = [];
+	priceData= [], avgData=[], cntData=[];
+	if(sizeVal == 'all'){
+		txtTitle = '전체 거래 차트';
+	} else{
+		txtTitle = sizeVal +' 거래 차트';
+	}
+
+	$('#description').empty();
+	$('#bidStatus').empty();
+	table = '<table class="table table-hover header-fixed col3"><thead><tr><th>옵션</th><th>거래가</th><th>거래일</th></tr></thead><tbody style="overflow-y:scroll;height:100px;">';
+	table1 = '<div class="col-sm-6"><table class="table table-hover header-fixed col2"><thead><tr><th>옵션</th><th>구매입찰</th></tr></thead><tbody style="overflow-y:scroll;height:100px;background-color:#EBF7FF;">';
+	table2 = '<div class="col-sm-6"><table class="table table-hover header-fixed col2"><thead><tr><th>옵션</th><th>판매입찰</th></tr></thead><tbody style="overflow-y:scroll;height:100px;background-color:#FFEAEA;">';
+
+	var latestPrice;
+	var prePrice;
+	//그래프, 최근 거래 목록, 입찰 현황 변경
+	$.getJSON("<%=request.getContextPath()%>/api/listDeal",
+			{modelNum: <%=Integer.parseInt(modelNum)%>, size: sizeVal},
+			function(data) {
+				if(data.length > 0){
+					latestPrice = data[(data.length-1)].buyPrice;
+					if(data.length > 1){
+						prePrice = data[(data.length-2)].buyPrice;
+					}
+				}//최근 거래가 변경
+				var changePrice = latestPrice - prePrice;
+				$('#latestDeal').empty();
+				$('#latestDeal').append('최근 거래가<p>');
+				if (latestPrice != undefined){
+					$('#latestDeal').append('<h3>'+latestPrice+'</h3>');
+				}
+				if (changePrice != undefined){
+					$('#latestDeal').append(changePrice);
+				}
+	  $.each(data, function(idx, obj) {
+		 table += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td><td>'+obj.dealDate+'</td></tr>';
+		 dateLabels.push(obj.dealDate);
+		 priceData.push({x:obj.dealDate, y:obj.buyPrice});
+	  });
+		table += '</tbody></table>';
+		$('#description').append(table);
+		createChart();
+	});
+	$.getJSON("<%=request.getContextPath()%>/api/dealCountPrice",
+			{modelNum: <%=Integer.parseInt(modelNum)%>, size: sizeVal},
+			function(data) {
+	  $.each(data, function(idx, obj) {
+	     avgData.push(obj.avgDeal);
+	     cntData.push(obj.cntDeal);
+	  });
+		createChart();
+	});
+	$.getJSON("<%=request.getContextPath()%>/api/buyBid",
+			{modelNum: <%=Integer.parseInt(modelNum)%>, size: sizeVal},
+			function(data) {
+	  $.each(data, function(idx, obj) {
+		  table1 += '<tr><td>'+obj.size+'</td><td>'+obj.buyPrice+'</td></tr>';
+	  });
+		table1 += '</tbody></table></div>';
+		$('#bidStatus').append(table1);
+	});
+	$.getJSON("<%=request.getContextPath()%>/api/salesBid",
+			{modelNum: <%=modelNum%>, size: sizeVal},
+			function(data) {
+	  $.each(data, function(idx, obj) {
+		  table2 += '<tr><td>'+obj.size+'</td><td>'+obj.salesPrice+'</td></tr>';
+	  });
+		table2 += '</tbody></table></div>';
+		$('#bidStatus').append(table2);
+	});
 	
 	//즉시 구매/판매가 변경
-	
-	//그래프 변경
-	
-	//최근 거래 목록 변경
-	
-	//입찰 현황 변경
-	
+	$.getJSON("<%=request.getContextPath()%>/api/priceBySize",
+			{modelNum: <%=modelNum%>, size: sizeVal},
+			function(data) {
+	  $.each(data, function(idx, obj) {
+		  $('#immediateBuy').empty();
+			$('#immediateBuy').append('즉시 구매가 - '+obj.saleBid+'원');
+	  });
+	});
+	$.getJSON("<%=request.getContextPath()%>/api/salesBySize",
+			{modelNum: <%=modelNum%>, size: sizeVal},
+			function(data) {
+	  $.each(data, function(idx, obj) {
+			$('#immediateSales').empty();
+			$('#immediateSales').append('즉시 판매가 - '+obj.buyBid+'원');
+	  });
+	});
 }
 </script>
 </body>

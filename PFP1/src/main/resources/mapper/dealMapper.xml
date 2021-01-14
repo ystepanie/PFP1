@@ -7,6 +7,9 @@
 		select date_format(d.dealDate, '%Y-%m-%d') as dealDate, b.buyPrice, b.size
 		from deal d, buy b
 		where d.buyCode = b.buyCode and b.modelNum = #{modelNum}
+		<if test="size != null and size > 0">
+		and b.size = #{size}
+		</if>
 		order by d.dealDate desc
 	</select>
 	
@@ -15,6 +18,9 @@
 		select count(*) as cntDeal, avg(b.buyPrice) as avgDeal
 		from deal d, buy b
 		where d.buyCode = b.buyCode and b.modelNum = #{modelNum}
+		<if test="size != null and size > 0">
+		and b.size = #{size}
+		</if>
 		group by dealDate
 	</select>
 	
@@ -23,6 +29,9 @@
 		select b.buyPrice, b.size, date_format(b.buyDate, '%Y-%m-%d') as buyDate
 		from buy b
 		where b.buyCode not in (select d.buyCode from deal d) and date_format(b.endDate, '%Y-%m-%d') >= date_format(curdate(), '%Y-%m-%d') and b.modelNum = #{modelNum}
+		<if test="size != null and size > 0">
+		and b.size = #{size}
+		</if>
 		order by b.buyDate desc
 	</select>
 	
@@ -31,6 +40,9 @@
 		select s.salesPrice, s.size, date_format(s.saleDate, '%Y-%m-%d') as saleDate
 		from sales s
 		where s.salesCode not in (select d.salesCode from deal d) and s.modelNum = #{modelNum}
+		<if test="size != null and size > 0">
+		and s.size = #{size}
+		</if>
 		order by s.saleDate desc
 	</select>
 	

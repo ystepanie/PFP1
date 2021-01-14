@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.pfp.dao.DealDAO;
 import org.pfp.dto.DealVO;
+import org.pfp.dto.GoodsVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,23 +16,23 @@ public class DealServiceImpl implements DealService {
 	public DealDAO dao;
 
 	@Override
-	public List<DealVO> listDeal(int modelNum) throws Exception {
-		return dao.listDeal(modelNum);
+	public List<DealVO> listDeal(GoodsVO goods) throws Exception {
+		return dao.listDeal(goods);
 	}
 
 	@Override
-	public List<DealVO> dealCountPrice(int modelNum) throws Exception {
-		return dao.dealCountPrice(modelNum);
+	public List<DealVO> dealCountPrice(GoodsVO goods) throws Exception {
+		return dao.dealCountPrice(goods);
 	}
 
 	@Override
-	public List<DealVO> buyBid(int modelNum) throws Exception {
-		return dao.buyBid(modelNum);
+	public List<DealVO> buyBid(GoodsVO goods) throws Exception {
+		return dao.buyBid(goods);
 	}
 
 	@Override
-	public List<DealVO> salesBid(int modelNum) throws Exception {
-		return dao.salesBid(modelNum);
+	public List<DealVO> salesBid(GoodsVO goods) throws Exception {
+		return dao.salesBid(goods);
 	}
 	
 }

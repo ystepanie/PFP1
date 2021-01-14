@@ -25,5 +25,8 @@ public interface GoodsService {
 		public GoodsVO detail(int modelNum) throws Exception;
 		
 		//size별 즉시구매가
-		public List<GoodsVO> priceBySize(int modelNum) throws Exception;
+		public List<GoodsVO> priceBySize(GoodsVO goods) throws Exception;
+		
+		//size별 즉시판매가
+		public List<GoodsVO> salesBySize(GoodsVO goods) throws Exception;
 }

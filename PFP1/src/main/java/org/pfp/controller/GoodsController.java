@@ -37,8 +37,9 @@ public class GoodsController {
    @GetMapping("/detail")
    public String getDetail(@RequestParam int m, Model model) throws Exception {
 	  GoodsVO detail = g_service.detail(m);
-	  
-	  List<DealVO> list = d_service.listDeal(m);
+	  GoodsVO goods = new GoodsVO();
+	  goods.setModelNum(m);
+	  List<DealVO> list = d_service.listDeal(goods);
 	  if(list.size() > 0) {
 		  int latestPrice = list.get(0).getBuyPrice();
 		  model.addAttribute("latestPrice", latestPrice+"원");
@@ -47,7 +48,7 @@ public class GoodsController {
 			  model.addAttribute("changePrice", changePrice+"원");
 		  }
 	  }
-	  List<GoodsVO> priceBySize = g_service.priceBySize(m);
+	  List<GoodsVO> priceBySize = g_service.priceBySize(goods);
 	  
 	  for (int i=0; i<priceBySize.size(); i++) {
 		  model.addAttribute(Integer.toString(priceBySize.get(i).getSize()), priceBySize.get(i).getSaleBid());
