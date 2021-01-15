@@ -189,7 +189,7 @@ function changeSortSelect() {
 }
 
 function clickPriceRange() {
-	alert('변경 버튼 클릭');
+	alert($('#price-amount').val()+'로 가격범위 변경');
 	var strHtml = '';
 	var strPriceRange = $('#price-amount').val().split(' - ');
 	$.getJSON("<%=request.getContextPath()%>/api/shop",

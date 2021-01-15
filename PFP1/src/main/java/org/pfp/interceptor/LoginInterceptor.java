@@ -17,7 +17,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		
 		if(vo == null) {
-			response.sendRedirect("/pfp/member/login");
+			response.sendRedirect(request.getContextPath()+"/member/login");
 			return false;
 		}
 		

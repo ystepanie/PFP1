@@ -53,8 +53,79 @@ public class GoodsController {
 	  for (int i=0; i<priceBySize.size(); i++) {
 		  model.addAttribute(Integer.toString(priceBySize.get(i).getSize()), priceBySize.get(i).getSaleBid());
 	  }
-	  
+	  String color = Integer.toString((int)(detail.getItemGroup()/10));
+	  String strColor = "";
+	  for(int i=0;i<(color.length()/2);i++) {
+		  if(i>0) {
+			  strColor += " / ";
+		  }
+		 switch (color.substring(2*i, 2*i+2)) {
+		case "11":
+			strColor += "하얀색";
+			break;
+		case "12":
+			strColor += "빨간색";
+			break;
+		case "13":
+			strColor += "갈색";
+			break;
+		case "14":
+			strColor += "주황색";
+			break;
+		case "15":
+			strColor += "아이보리색";
+			break;
+		case "16":
+			strColor += "살구색";
+			break;
+		case "17":
+			strColor += "황금색";
+			break;
+		case "18":
+			strColor += "노란색";
+			break;
+		case "19":
+			strColor += "황토색";
+			break;
+		case "20":
+			strColor += "녹갈색";
+			break;
+		case "21":
+			strColor += "연두색";
+			break;
+		case "22":
+			strColor += "초록색";
+			break;
+		case "23":
+			strColor += "청록색";
+		case "24":
+			strColor += "파란색";
+		case "25":
+			strColor += "하늘색";
+		case "26":
+			strColor += "남색";
+		case "27":
+			strColor += "보라색";
+		case "28":
+			strColor += "분홍색";
+		case "29":
+			strColor += "민트색";
+			break;
+		case "30":
+			strColor += "회색";
+			break;
+		case "31":
+			strColor += "검정색";
+			break;
+		case "32":
+			strColor += "무지개색";
+			break;
+		default:
+			break;
+		}
+	  }
 	  model.addAttribute("detail", detail);
+	  model.addAttribute("color", strColor);
       return "goods/detail";
    }
 }

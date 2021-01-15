@@ -51,7 +51,7 @@
 			<div class="col-sm-6 col-md-5">
 				<div class="login">
 				<c:if test="${member == null}">
-					<form role="form" method="post" autocomplete="off" action="/member/login">
+					<form role="form" method="post" autocomplete="off" action="<%=request.getContextPath() %>/member/login">
 						<h2>LOGIN</h2>
 						<p>LOGIN</p>
 						<label>ID<span>*</span></label>

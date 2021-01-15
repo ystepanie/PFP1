@@ -10,7 +10,23 @@
 		<if test="size != null and size > 0">
 		and b.size = #{size}
 		</if>
-		order by d.dealDate desc
+		<if test="itemContent != '1w'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK) AND NOW()
+	    </if>
+	    <if test="itemContent != '1m'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH) AND NOW()
+	    </if>
+	    <if test="itemContent != '3m'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -3 MONTH) AND NOW()
+	    </if>
+	    <if test="itemContent != '6m'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -6 MONTH) AND NOW()
+	    </if>
+	    <if test="itemContent != '1y'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -1 YEAR) AND NOW()
+	    </if>
+		group by date_format(d.dealDate, '%Y-%m-%d')
+        order by d.dealDate desc
 	</select>
 	
 	<!-- 거래 날짜별 수량, 평균 거래 가격 -->
@@ -21,7 +37,22 @@
 		<if test="size != null and size > 0">
 		and b.size = #{size}
 		</if>
-		group by dealDate
+		<if test="itemContent != '1w'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK) AND NOW()
+	    </if>
+	    <if test="itemContent != '1m'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH) AND NOW()
+	    </if>
+	    <if test="itemContent != '3m'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -3 MONTH) AND NOW()
+	    </if>
+	    <if test="itemContent != '6m'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -6 MONTH) AND NOW()
+	    </if>
+	    <if test="itemContent != '1y'">
+	     and d.dealDate BETWEEN DATE_ADD(NOW(),INTERVAL -1 YEAR) AND NOW()
+	    </if>
+	    group by date_format(d.dealDate, '%Y-%m-%d')
 	</select>
 	
 	<!-- 구매 입찰 -->
