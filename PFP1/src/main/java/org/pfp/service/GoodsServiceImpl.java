@@ -55,4 +55,14 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.salesBySize(goods);
 	}
 
+	@Override
+	public List<GoodsVO> similarGoods(GoodsVO goods) throws Exception {
+		return dao.similarGoods(goods);
+	}
+
+	@Override
+	public List<GoodsVO> relativeGoods(GoodsVO goods) throws Exception {
+		return dao.relativeGoods(goods);
+	}
+
 }

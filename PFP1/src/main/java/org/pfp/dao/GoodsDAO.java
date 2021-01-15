@@ -30,4 +30,10 @@ public interface GoodsDAO {
 			
 	//size별 즉시판매가
 	public List<GoodsVO> salesBySize(GoodsVO goods) throws Exception;
+	
+	//비슷한 색상/모양인 상품들
+	public List<GoodsVO> similarGoods(GoodsVO goods) throws Exception;
+	
+	//관련 상품들
+	public List<GoodsVO> relativeGoods(GoodsVO goods) throws Exception;
 }

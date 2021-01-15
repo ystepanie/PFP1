@@ -56,6 +56,16 @@ public class GoodsDAOImpl implements GoodsDAO {
 	public List<GoodsVO> salesBySize(GoodsVO goods) throws Exception {
 		return sql.selectList(namespace + ".salesBySize", goods);
 	}
+
+	@Override
+	public List<GoodsVO> similarGoods(GoodsVO goods) throws Exception {
+		return sql.selectList(namespace + ".similarGoods", goods);
+	}
+
+	@Override
+	public List<GoodsVO> relativeGoods(GoodsVO goods) throws Exception {
+		return sql.selectList(namespace + ".relativeGoods", goods);
+	}
 	
 	
 }

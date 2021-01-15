@@ -1,6 +1,7 @@
 package org.pfp.controller;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -53,79 +54,102 @@ public class GoodsController {
 	  for (int i=0; i<priceBySize.size(); i++) {
 		  model.addAttribute(Integer.toString(priceBySize.get(i).getSize()), priceBySize.get(i).getSaleBid());
 	  }
-	  String color = Integer.toString((int)(detail.getItemGroup()/10));
+	  String color = detail.getItemGroup().substring(0, (detail.getItemGroup().length()-1));
 	  String strColor = "";
-	  for(int i=0;i<(color.length()/2);i++) {
+	  ArrayList<String> arr = new ArrayList<String>();
+	  arr.add(color.substring(0, 1)+"%");
+	  for(int i=0;i<color.length();i++) {
 		  if(i>0) {
 			  strColor += " / ";
 		  }
-		 switch (color.substring(2*i, 2*i+2)) {
-		case "11":
+		 switch (color.substring(i, i+1)) {
+		case "a":
 			strColor += "하얀색";
 			break;
-		case "12":
+		case "b":
 			strColor += "빨간색";
 			break;
-		case "13":
+		case "c":
 			strColor += "갈색";
 			break;
-		case "14":
+		case "d":
 			strColor += "주황색";
 			break;
-		case "15":
+		case "e":
 			strColor += "아이보리색";
 			break;
-		case "16":
+		case "f":
 			strColor += "살구색";
 			break;
-		case "17":
+		case "g":
 			strColor += "황금색";
 			break;
-		case "18":
+		case "h":
 			strColor += "노란색";
 			break;
-		case "19":
+		case "i":
 			strColor += "황토색";
 			break;
-		case "20":
+		case "j":
 			strColor += "녹갈색";
 			break;
-		case "21":
+		case "k":
 			strColor += "연두색";
 			break;
-		case "22":
+		case "l":
 			strColor += "초록색";
 			break;
-		case "23":
+		case "m":
 			strColor += "청록색";
-		case "24":
+			break;
+		case "n":
 			strColor += "파란색";
-		case "25":
+			break;
+		case "o":
 			strColor += "하늘색";
-		case "26":
+			break;
+		case "p":
 			strColor += "남색";
-		case "27":
+			break;
+		case "q":
 			strColor += "보라색";
-		case "28":
+			break;
+		case "r":
 			strColor += "분홍색";
-		case "29":
+			break;
+		case "s":
 			strColor += "민트색";
 			break;
-		case "30":
+		case "t":
 			strColor += "회색";
 			break;
-		case "31":
+		case "u":
 			strColor += "검정색";
 			break;
-		case "32":
+		case "v":
 			strColor += "무지개색";
 			break;
 		default:
 			break;
 		}
+		 arr.add("%"+color.substring(i, i+1)+"%");
 	  }
+	  arr.add("%"+detail.getItemGroup().substring(detail.getItemGroup().length()-1));
+	  detail.setArrItemGroup(arr);
+	  List<GoodsVO> similar = g_service.similarGoods(detail);
+	  
+	  String[] strName= detail.getItemName().split(" ");
+	  arr.clear();
+	  for(int i=0; i < strName.length; i++) {
+		  arr.add("%"+strName[i]+"%");
+	  }
+	  detail.setArrItemGroup(arr);
+	  List<GoodsVO> relative = g_service.relativeGoods(detail);
+	  
 	  model.addAttribute("detail", detail);
 	  model.addAttribute("color", strColor);
+	  model.addAttribute("similar", similar);
+	  model.addAttribute("relative", relative);
       return "goods/detail";
    }
 }

@@ -196,7 +196,7 @@ function clickPriceRange() {
 			{ s: $('#sort-by').val(), ps: removeComma(strPriceRange[0].slice(0,-1)), pe: removeComma(strPriceRange[1].slice(0,-1))},
 			function(data) {
 	  $.each(data, function(idx, obj) {
-		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix"><div class="product-img-hover"><a href="goods/detail?m=';
+		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix"><div class="product-img-hover"><a href="<%=request.getContextPath() %>/goods/detail?m=';
 		strHtml += obj.modelNum;
 		strHtml += '" class="pro-image fix"><img src="';
 		strHtml += obj.thumbnail;

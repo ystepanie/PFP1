@@ -1,9 +1,11 @@
 package org.pfp.dto;
 
+import java.util.ArrayList;
+
 public class GoodsVO {
 	
 	int modelNum;
-	int itemGroup;
+	String itemGroup;
 	String itemName;
 	String thumbnail;
 	String itemContent;
@@ -13,6 +15,13 @@ public class GoodsVO {
 	int saleBid;
 	int buyBid;
 	int size;
+	ArrayList<String> arrItemGroup;
+	public ArrayList<String> getArrItemGroup() {
+		return arrItemGroup;
+	}
+	public void setArrItemGroup(ArrayList<String> arrItemGroup) {
+		this.arrItemGroup = arrItemGroup;
+	}
 	public int getSize() {
 		return size;
 	}
@@ -37,10 +46,10 @@ public class GoodsVO {
 	public void setModelNum(int modelNum) {
 		this.modelNum = modelNum;
 	}
-	public int getItemGroup() {
+	public String getItemGroup() {
 		return itemGroup;
 	}
-	public void setItemGroup(int itemGroup) {
+	public void setItemGroup(String itemGroup) {
 		this.itemGroup = itemGroup;
 	}
 	public String getItemName() {

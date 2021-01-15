@@ -250,15 +250,54 @@
          </div>
          <div class="col-md-12 fix">
             <div class="section-title">
+               <h2>색상/모양 비슷한 상품</h2>
+               <div class="underline"></div>
+            </div>
+            <div class="related-pro-slider owl-carousel">
+            
+            <c:forEach var="similar" items="${similar}" begin="0" end="9">
+            <div class="product-item fix">
+                  <div class="product-img-hover">
+                     <!-- Product image -->
+                     <a href="<%=request.getContextPath() %>/goods/detail?m=${similar.modelNum}" class="pro-image fix"><img src="${similar.thumbnail}" alt="product" /></a>
+                     <!-- Product action Btn -->
+                     <div class="product-action-btn">
+                        <a class="quick-view" href="#"><i class="fa fa-search"></i></a>
+                        <a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
+                        <a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
+                     </div>
+                  </div>
+                  <div class="pro-name-price-ratting">
+                     <!-- Product Name -->
+                     <div class="pro-name">
+                        <a href="<%=request.getContextPath() %>/goods/detail?m=${similar.modelNum}">${similar.itemName}</a>
+                     </div>
+                     <!-- Product Ratting -->
+                     <div class="pro-ratting">
+                        <i class="on fa fa-star"></i>
+                        <i class="on fa fa-star"></i>
+                        <i class="on fa fa-star"></i>
+                        <i class="on fa fa-star"></i>
+                        <i class="on fa fa-star-half-o"></i>
+                     </div>
+                  </div>
+               </div>
+            </c:forEach>
+               
+            </div>
+         </div>
+         <div class="col-md-12 fix">
+            <div class="section-title">
                <h2>관련 상품</h2>
                <div class="underline"></div>
             </div>
             <div class="related-pro-slider owl-carousel">
-               <!-- Single Product Start -->
-               <div class="product-item fix">
+            
+            <c:forEach var="relative" items="${relative}" begin="0" end="9">
+            <div class="product-item fix">
                   <div class="product-img-hover">
                      <!-- Product image -->
-                     <a href="product-details.html" class="pro-image fix"><img src="img/product/1.jpg" alt="product" /></a>
+                     <a href="<%=request.getContextPath() %>/goods/detail?m=${relative.modelNum}" class="pro-image fix"><img src="${relative.thumbnail}" alt="product" /></a>
                      <!-- Product action Btn -->
                      <div class="product-action-btn">
                         <a class="quick-view" href="#"><i class="fa fa-search"></i></a>
@@ -269,7 +308,7 @@
                   <div class="pro-name-price-ratting">
                      <!-- Product Name -->
                      <div class="pro-name">
-                        <a href="product-details.html">Product Name Demo</a>
+                        <a href="<%=request.getContextPath() %>/goods/detail?m=${relative.modelNum}">${relative.itemName}</a>
                      </div>
                      <!-- Product Ratting -->
                      <div class="pro-ratting">
@@ -279,136 +318,10 @@
                         <i class="on fa fa-star"></i>
                         <i class="on fa fa-star-half-o"></i>
                      </div>
-                     <!-- Product Price -->
-                     <div class="pro-price fix">
-                        <p><span class="old">$165</span><span class="new">$150</span></p>
-                     </div>
                   </div>
-               </div><!-- Single Product End -->
-               <!-- Single Product Start -->
-               <div class="product-item fix">
-                  <div class="product-img-hover">
-                     <!-- Product image -->
-                     <a href="product-details.html" class="pro-image fix"><img src="img/product/2.jpg" alt="product" /></a>
-                     <!-- Product action Btn -->
-                     <div class="product-action-btn">
-                        <a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-                        <a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-                        <a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-                     </div>
-                  </div>
-                  <div class="pro-name-price-ratting">
-                     <!-- Product Name -->
-                     <div class="pro-name">
-                        <a href="product-details.html">Product Name Demo</a>
-                     </div>
-                     <!-- Product Ratting -->
-                     <div class="pro-ratting">
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star-half-o"></i>
-                     </div>
-                     <!-- Product Price -->
-                     <div class="pro-price fix">
-                        <p><span class="old">$165</span><span class="new">$150</span></p>
-                     </div>
-                  </div>
-               </div><!-- Single Product End -->
-               <!-- Single Product Start -->
-               <div class="product-item fix">
-                  <div class="product-img-hover">
-                     <!-- Product image -->
-                     <a href="product-details.html" class="pro-image fix"><img src="img/product/3.jpg" alt="product" /></a>
-                     <!-- Product action Btn -->
-                     <div class="product-action-btn">
-                        <a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-                        <a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-                        <a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-                     </div>
-                  </div>
-                  <div class="pro-name-price-ratting">
-                     <!-- Product Name -->
-                     <div class="pro-name">
-                        <a href="product-details.html">Product Name Demo</a>
-                     </div>
-                     <!-- Product Ratting -->
-                     <div class="pro-ratting">
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star-half-o"></i>
-                     </div>
-                     <!-- Product Price -->
-                     <div class="pro-price fix">
-                        <p><span class="old">$165</span><span class="new">$150</span></p>
-                     </div>
-                  </div>
-               </div><!-- Single Product End -->
-               <!-- Single Product Start -->
-               <div class="product-item fix">
-                  <div class="product-img-hover">
-                     <!-- Product image -->
-                     <a href="product-details.html" class="pro-image fix"><img src="img/product/4.jpg" alt="product" /></a>
-                     <!-- Product action Btn -->
-                     <div class="product-action-btn">
-                        <a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-                        <a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-                        <a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-                     </div>
-                  </div>
-                  <div class="pro-name-price-ratting">
-                     <!-- Product Name -->
-                     <div class="pro-name">
-                        <a href="product-details.html">Product Name Demo</a>
-                     </div>
-                     <!-- Product Ratting -->
-                     <div class="pro-ratting">
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star-half-o"></i>
-                     </div>
-                     <!-- Product Price -->
-                     <div class="pro-price fix">
-                        <p><span class="old">$165</span><span class="new">$150</span></p>
-                     </div>
-                  </div>
-               </div><!-- Single Product End -->
-               <!-- Single Product Start -->
-               <div class="product-item fix">
-                  <div class="product-img-hover">
-                     <!-- Product image -->
-                     <a href="product-details.html" class="pro-image fix"><img src="img/product/5.jpg" alt="product" /></a>
-                     <!-- Product action Btn -->
-                     <div class="product-action-btn">
-                        <a class="quick-view" href="#"><i class="fa fa-search"></i></a>
-                        <a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
-                        <a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
-                     </div>
-                  </div>
-                  <div class="pro-name-price-ratting">
-                     <!-- Product Name -->
-                     <div class="pro-name">
-                        <a href="product-details.html">Product Name Demo</a>
-                     </div>
-                     <!-- Product Ratting -->
-                     <div class="pro-ratting">
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star"></i>
-                        <i class="on fa fa-star-half-o"></i>
-                     </div>
-                     <!-- Product Price -->
-                     <div class="pro-price fix">
-                        <p><span class="old">$165</span><span class="new">$150</span></p>
-                     </div>
-                  </div>
-               </div><!-- Single Product End -->
+               </div>
+            </c:forEach>
+               
             </div>
          </div>
       </div>
