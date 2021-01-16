@@ -68,7 +68,7 @@
 					<h5><a href="<%=request.getContextPath() %>/member/login">Login</a> or <a href="<%=request.getContextPath() %>/member/register">Create an account</a></h5>
 					</c:if>
 					<c:if test="${member != null }">
-					<h5><a href="<%=request.getContextPath() %>/board/blog">${member.nickname}의 블로그로 이동</a>
+					<h5><a href="<%=request.getContextPath() %>/blog/blog">${member.nickname}의 블로그로 이동</a>
 					</c:if>
 				</div>
 			</div>
@@ -127,7 +127,7 @@
 									<li><a href="index-3.html">Home 3</a></li>
 								</ul>
 							</li>
-							<li><a href="<%=request.getContextPath() %>/blog">blog</a>
+							<li><a href="<%=request.getContextPath() %>/blog/listPage?num=1">blog</a>
 								<div class="mega-menu mega-menu-page">
 									<div class="column-1 column">
 										<ul>

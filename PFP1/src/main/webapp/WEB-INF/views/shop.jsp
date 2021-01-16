@@ -152,7 +152,7 @@ $(document).ready(function(){
 			{ s: $('#sort-by').val() },
 			function(data) {
 	  $.each(data, function(idx, obj) {
-		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix"><div class="product-img-hover"><a href="goods/detail?m=';
+		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix" style="height:300px;"><div class="product-img-hover"><a href="goods/detail?m=';
 		strHtml += obj.modelNum;
 		strHtml += '" class="pro-image fix"><img src="';
 		strHtml += obj.thumbnail;
@@ -173,13 +173,13 @@ function changeSortSelect() {
 			{ s: $('#sort-by').val() },
 			function(data) {
 	  $.each(data, function(idx, obj) {
-		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix"><div class="product-img-hover"><a href="goods/detail?m=';
+		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix" style="height:300px;"><div class="product-img-hover"><a href="goods/detail?m=';
 		strHtml += obj.modelNum;
 		strHtml += '" class="pro-image fix"><img src="';
 		strHtml += obj.thumbnail;
 		strHtml += '" alt="product" /></a><div class="product-action-btn"><a class="quick-view" href="#"><i class="fa fa-search"></i></a><a class="favorite" href="#"><i class="fa fa-heart-o"></i></a><a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a></div></div><div class="pro-name-price-ratting"><div class="pro-name"><a href="product-details.html">';
 		strHtml += obj.itemName;
-		strHtml += '</a></div><div class="pro-ratting"><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star-half-o"></i></div><div class="pro-price fix"><span class="new">';
+		strHtml += '</a></div><div class="pro-ratting"><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star-half-o"></i></div><div class="pro-price fix"><p><span class="new">';
 		strHtml += obj.saleBid;
 		strHtml += '원</span></p></div></div></div></div>';
 	  });
@@ -196,7 +196,7 @@ function clickPriceRange() {
 			{ s: $('#sort-by').val(), ps: removeComma(strPriceRange[0].slice(0,-1)), pe: removeComma(strPriceRange[1].slice(0,-1))},
 			function(data) {
 	  $.each(data, function(idx, obj) {
-		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix"><div class="product-img-hover"><a href="<%=request.getContextPath() %>/goods/detail?m=';
+		strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix" style="height:300px;"><div class="product-img-hover"><a href="<%=request.getContextPath() %>/goods/detail?m=';
 		strHtml += obj.modelNum;
 		strHtml += '" class="pro-image fix"><img src="';
 		strHtml += obj.thumbnail;

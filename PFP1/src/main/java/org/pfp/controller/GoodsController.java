@@ -140,8 +140,9 @@ public class GoodsController {
 	  
 	  String[] strName= detail.getItemName().split(" ");
 	  arr.clear();
+	  arr.add(strName[0]+" %");
 	  for(int i=0; i < strName.length; i++) {
-		  arr.add("%"+strName[i]+"%");
+		  arr.add("% "+strName[i]+" %");
 	  }
 	  detail.setArrItemGroup(arr);
 	  List<GoodsVO> relative = g_service.relativeGoods(detail);
@@ -151,5 +152,10 @@ public class GoodsController {
 	  model.addAttribute("similar", similar);
 	  model.addAttribute("relative", relative);
       return "goods/detail";
+   }
+   
+   @GetMapping("/buy")
+   public String getBuy() {
+	   return "/buy_sell";
    }
 }
