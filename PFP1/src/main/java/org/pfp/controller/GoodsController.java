@@ -156,6 +156,6 @@ public class GoodsController {
    
    @GetMapping("/buy")
    public String getBuy() {
-	   return "/buy_sell";
+	   return "goods/buy_sell";
    }
 }

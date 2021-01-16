@@ -54,10 +54,10 @@
 				 + "<img alt='' src='img/blog/comment-1.jpg'>" + "</div>"
 				 + "<div class='comment-box'>"
 				 + "<div class='comment-author'>"
-				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate+"<a href='#' class='delete' data-commentNum='"+this.commentNum+"'>삭제</a>"
+				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate+"<a href='#' class='delete' data-commentNum='"+this.commentNum+"'>삭제</a><a href='#' class='modify' data-commentNum='"+this.commentNum+"'>수정</a>"
 				 +"</div>"
 				 + "<div class='comment-text'>"
-				 + "<p>"+this.reContent+"</p></div></div></div>"
+				 + "<p id='"+this.commentNum+"'>"+this.reContent+"</p></div></div></div>"
 			});
 			$("ol.commentlists li").html(str);
 		});
@@ -211,6 +211,17 @@
 								}
 							});
 							
+							$(document).on("click", ".modify", function() {
+								var data = {commentNum : $(this).attr("data-commentNum")};
+								var modifyConfirm = confirm("정말로 수정하시겠습니까?");
+								if(modifyConfirm) {
+									alert($(this).attr("data-commentNum"));
+									var originComment = $("#"+$(this).attr("data-commentNum")).text();
+									alert(originComment);
+									$("#"+$(this).attr("data-commentNum")).empty();
+									$("#"+$(this).attr("data-commentNum")).append("<textarea id='moContent' name='moContent' rows='4'>"+originComment+"</textarea>")
+								}
+							});
 							</script>
 						</ol>
 					</div>
