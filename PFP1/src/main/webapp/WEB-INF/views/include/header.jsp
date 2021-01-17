@@ -68,7 +68,7 @@
 					<h5><a href="<%=request.getContextPath() %>/member/login">Login</a> or <a href="<%=request.getContextPath() %>/member/register">Create an account</a></h5>
 					</c:if>
 					<c:if test="${member != null }">
-					<h5><a href="<%=request.getContextPath() %>/blog/blog">${member.nickname}의 블로그로 이동</a>
+					<h5><a href="<%=request.getContextPath() %>/blog/myblog?userId=${member.userId}">${member.nickname}의 블로그로 이동</a>
 					</c:if>
 				</div>
 			</div>

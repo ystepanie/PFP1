@@ -110,6 +110,13 @@ public class BlogController {
 	   
    }
    
+   //개인 블로그 페이지
+   @GetMapping("/myblog")
+   public void getMyblog(@RequestParam("userId") String userId, Model model, HttpSession session) throws Exception {
+	   MemberVO vo = (MemberVO)session.getAttribute("member");
+	   model.addAttribute("member", vo);
+   }
+   
    //댓글 목록 ajax
    @ResponseBody
    @GetMapping("/replyList")
