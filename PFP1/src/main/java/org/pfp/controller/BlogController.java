@@ -212,5 +212,26 @@ public class BlogController {
 	   
 	   return result;
    }
+   
+   //댓글 수정
+   @ResponseBody
+   @PostMapping("/modifyReply")
+   public int modifyReply(ReplyVO reply, HttpSession session) throws Exception {
+	   logger.info("modify reply");
+	   
+	   int result =0;
+	   
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   String userId = b_service.idCheck(reply.getCommentNum());
+	   
+	   if(member.getUserId().equals(userId)) {
+		   reply.setUserId(member.getUserId());
+		   b_service.modifyReply(reply);
+		   result = 1;
+	   }
+	   return result;
+	   
+	   
+   }
 
 }

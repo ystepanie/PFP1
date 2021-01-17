@@ -74,4 +74,10 @@ public class BoardDAOImpl implements BoardDAO {
 	public String idCheck(int commentNum) throws Exception {
 		return sql.selectOne(namespace+".replyUserIdCheck",commentNum);
 	}
+	
+	//게시물 댓글 수정
+	@Override
+	public void modifyReply(ReplyVO vo) throws Exception {
+		sql.update(namespace + ".modifyReply", vo);
+	}
 }

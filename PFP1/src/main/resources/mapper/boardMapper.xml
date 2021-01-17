@@ -65,4 +65,14 @@
 		where commentNum = #{commentNum}
 	</select>
 	
+	<!-- 댓글 수정  -->
+	<update id="modifyReply">
+		update comment
+		set 
+		reContent = #{reContent},
+		commentDate = SYSDATE()
+		where commentNum = #{commentNum}
+		and userId = #{userId}
+	</update>
+	
 </mapper>

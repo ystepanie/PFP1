@@ -67,5 +67,10 @@ public class BoardServiceImpl implements BoardService {
 	public String idCheck(int commentNum) throws Exception{
 		return dao.idCheck(commentNum);
 	}
-
+	
+	//게시물 댓글 수정
+	@Override
+	public void modifyReply(ReplyVO vo) throws Exception {
+		dao.modifyReply(vo);
+	}
 }

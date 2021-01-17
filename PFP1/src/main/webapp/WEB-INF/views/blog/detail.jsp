@@ -54,7 +54,11 @@
 				 + "<img alt='' src='img/blog/comment-1.jpg'>" + "</div>"
 				 + "<div class='comment-box'>"
 				 + "<div class='comment-author'>"
-				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate+"<a href='#' class='delete' data-commentNum='"+this.commentNum+"'>삭제</a><a href='#' class='modify' data-commentNum='"+this.commentNum+"'>수정</a>"
+				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate
+				 + "<c:if test = '${member != null}'>"
+				 + "<a href='#' class='delete' data-commentNum='"+this.commentNum+"'>삭제</a>"
+				 + "<a href='#' class='modify' data-commentNum='"+this.commentNum+"'>수정</a>"
+				 + "</c:if>"
 				 +"</div>"
 				 + "<div class='comment-text'>"
 				 + "<p id='"+this.commentNum+"'>"+this.reContent+"</p></div></div></div>"
@@ -215,13 +219,39 @@
 								var data = {commentNum : $(this).attr("data-commentNum")};
 								var modifyConfirm = confirm("정말로 수정하시겠습니까?");
 								if(modifyConfirm) {
-									alert($(this).attr("data-commentNum"));
 									var originComment = $("#"+$(this).attr("data-commentNum")).text();
-									alert(originComment);
-									$("#"+$(this).attr("data-commentNum")).empty();
-									$("#"+$(this).attr("data-commentNum")).append("<textarea id='moContent' name='moContent' rows='4'>"+originComment+"</textarea>")
+									$("#"+$(this).attr("data-commentNum")).append("<textarea id='moContent' name='moContent' rows='4'>"+originComment+"</textarea><button type='button' id='modifyCom' name='modifyCom'>댓글 작성</button>");
 								}
 							});
+							
+							$("#modifyCom").click(function() {
+								var formObj = $(".commentform form[role='form']");
+								var modifyComnum = $("#"+$(this).attr("data-commentNum")).val();
+								var modifyCom = $("#"+$(this).attr("data-commentNum")).text();
+								//키 값 data
+								var data = {
+										modifyComnum : modifyComnum,
+										modifyCom : modifyCom
+								};
+								
+								$.ajax({
+									url : "/blog/modifyReply",
+									type : "post",
+									data : data,
+									success : function(result) {
+										
+										if(result == 1) {
+										replyList();
+										$("#moContent").val("");
+										} else {
+											alert('작성자 본인만 할 수 있습니다.');
+										}
+									},
+									error : function(){
+										alert("로그인 후 사용가능합니다.");
+									}
+								});
+								});
 							</script>
 						</ol>
 					</div>

@@ -33,4 +33,7 @@ public interface BoardDAO {
 	
 	//아이디 체크
 	public String idCheck(int commentNum) throws Exception;
+	
+	//게시물 댓글 수정
+	public void modifyReply(ReplyVO vo) throws Exception;
 }
