@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -35,6 +37,40 @@
    <!-- Responsive Stylesheet -->
    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+   <style>
+.header-fixed {
+    width: 100% 
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.header-fixed > tbody {
+    overflow-y: auto;
+    height: 180px;
+    scrollbar-width: none;
+}
+
+.col3 > tbody > tr > td,
+.col3 > thead > tr > th {
+   width:33.3%;
+   float:left;
+}
+   </style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -50,182 +86,182 @@
 				<div class="panel-group" id="checkout-progress">
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#checkout-method"><span>1</span>CHECKOUT METHOD</a>
+							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#size-selection"><span>1</span>사이즈 선택</a>
 						</div>
-						<div id="checkout-method" class="panel-collapse collapse in">
+						<div id="size-selection" class="panel-collapse collapse in">
 							<div class="panel-body">
-								<div class="col-sm-6">
-									<div class="checkout-method checkout-reg fix">
-										<h2>CHECKOUT AS A GUEST OR REGISTER</h2>
-										<input type="radio" />
-										<p>Checkout as Guest</p>
-										<input type="radio" />
-										<p>Register</p>
-										<h3>REGISTER AND SAVE TIME!</h3>
-										<ul>
-											<li>Fast and easy checkout</li>
-											<li>Easy access to your order history and status</li>
-										</ul>
-										<a href="#">CONTINUE</a>
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="checkout-method  checkout-login">
-										<h2>login</h2>
-										<h3>Already registered?</h3>
-										<h4>Please login below</h4>
-										<label>E-mail address*</label>
-										<input type="email" />
-										<br />
-										<label>Password*</label>
-										<input type="password" />
-										<a href="#">login</a>
-									</div>
-								</div>
+								<table class="table table-hover header-fixed col3">
+									<thead>
+										<tr>
+											<th>옵션 선택</th>
+											<th>최고 입찰가</th>
+											<th>최저 판매가</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>200</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>200</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>200</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>200</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>200</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>200</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bill-info"><span>2</span>BILLING INFORMATION</a>
+							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-price"><span>2</span>결제금액</a>
 						</div>
-						<div id="bill-info" class="panel-collapse collapse">
+						<div id="bid-price" class="panel-collapse collapse">
 							<div class="panel-body">
-								<div class="bill-info">
-									<div class="group">
-										<input type="text" placeholder="First Name*" class="half">
-										<input type="text" placeholder="Last Name*" class="half">
+								<div class="col-sm-12" style="background-color:#F6F6F6;">
+									<p style="padding-top:10px;padding-bottom:30px;">최고입찰가 최저판매가</p>
+									<div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;margin-bottom:30px;">
+										<label class="btn btn-primary" id="btnBid" style="width:50%;font-size:large;" onclick="$('#btnImmediate').removeClass('btn btn-primary').addClass('btn btn-default');$(this).removeClass('btn btn-default').addClass('btn btn-primary');">
+											<input type="radio" name="jb-radio" id="jb-radio-1"> 구매입찰
+										</label>
+										<label class="btn btn-default" id="btnImmediate" style="width:50%;font-size:large;" onclick="$('#btnBid').removeClass('btn btn-primary').addClass('btn btn-default');$(this).removeClass('btn btn-default').addClass('btn btn-primary');">
+											<input type="radio" name="jb-radio" id="jb-radio-2"> 즉시구매
+										</label>
 									</div>
-									<input type="text" placeholder="COMPANY NAME (OPTIONAL)">
-									<input type="text" placeholder="STREET ADDRESS*">
-									<input type="text" placeholder="city">
-									<div class="group">
-										<input type="text" placeholder="POSTCODE / ZIP*" class="third">
-										<input type="text" placeholder="STATE / COUNTRY" class="onethird">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-won"></i></span>
+										<input id="txtBidPrice" type="number" placeholder="입찰가격입력" class="form-control" step="1000" style="text-align:right;" autocomplete="on">
+										<span class="input-group-addon">원</span>
 									</div>
-									<div class="group">
-										<input type="text" placeholder="E-mail Address*" class="half">
-										<input type="text" placeholder="PHONE NUMBER*" class="half">
-									</div>
-									<input type="checkbox" class="check">
-									<p>Check this if the billing address is the same as Shipping address</p>
-									<a href="#">CONTINUE</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-info"><span>3</span>SHIPPING INFORMATION</a>
-						</div>
-						<div id="shipping-info" class="panel-collapse collapse">
-							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-method"><span>4</span>SHIPPING METHOD</a>
-						</div>
-						<div id="shipping-method" class="panel-collapse collapse">
-							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#payment-met"><span>5</span>PAYMENT INFORMATION</a>
-						</div>
-						<div id="payment-met" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="payment-met">
-									<p>Choose your payment method :</p>
-									<ul>
-										<li><a href="#"><img src="img/footer/paypal.jpg" alt="" /></a></li>
-										<li><a href="#"><img src="img/footer/visa.jpg" alt="" /></a></li>
-										<li><a href="#"><img src="img/footer/master.jpg" alt="" /></a></li>
-										<li><a href="#"><img src="img/footer/cards.jpg" alt="" /></a></li>
-										<li><a href="#"><img src="img/footer/discover.jpg" alt="" /></a></li>
-									</ul>
-									<div class="pay">
-										<h2>YOUR PAYPAL ACCOUNT</h2>
-										<p>Pay via credit or debit card, Paypal transfer or even via Bank account in just a few clicks.</p>
-										<p>This method is super easy and well protected.</p>
-										<a href="#">continue</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#order-review"><span>6</span>ORDER REVIEW</a>
-						</div>
-						<div id="order-review" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="col-sm-4">
-									<div class="information">
-										<h3>BILLING INFORMATION</h3>
-										<h4>Thomas Albert</h4>
-										<h5>Lorem Street 2178</h5>
-										<p>12358 New Yourk</p>
-										<h5>Phone : 123 456 789</h5>
-										<p>E-mail: email@you,com</p>
-										<a href="#">MODIFY</a>
-									</div>
-								</div>
-							
-								<div class="col-sm-4">
-									<div class="information">
-										<h3>SHIPPING INFORMATION</h3>
-										<h4>Thomas Albert</h4>
-										<h5>Lorem Street 2178</h5>
-										<p>12358 New Yourk</p>
-										<h5>Phone : 123 456 789</h5>
-										<p>E-mail: email@you,com</p>
-										<a href="#">MODIFY</a>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="information">
-										<h3>CHOOSED PAYMENT METHOD</h3>
-										<h4>Method : Paypal</h4>
-										<p>Paypal address : email@you.com</p>
-										<a id="shipping" href="#">MODIFY</a>
-									</div>
+									<div class="price-desc" id="price-desc-msg" style="float:right;margin-bottom:10px;">천원 단위로 입찰가능합니다</div>
 								</div>
 								<div class="col-sm-12">
 									<div class="place-order">
 										<div class="order-list">
-											<h1>PRODUCTS</h1>
-											<h2>Total</h2>
-											<h3>PRODUCT NAME DEMO   x 1 <span>$210</span></h3>
-											<h3>PRODUCT NAME DEMO   x 2 <span>$300</span></h3>
+											<h3>배송비 <span>0원</span></h3>
+											<h3>정품 판정비 <span>0원</span></h3>
 										</div>
 										<div class="final-total">
-											<h4>Sub Total <span>$420</span></h4>
-											<h5>Grand Total <span>$420</span></h5>
-											<a href="#">Place Order</a>
+											<h5>총 결제금액 <span>42000원</span></h5>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" >
+							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-period"><span>3</span>입찰기한</a>
+						</div>
+						<div id="bid-period" class="panel-collapse collapse">
+							<div class="panel-body">
+								<h4 align="center" style="margin:10px;" id="bidEndDate">2020-0 입찰 종료</h4>
+								<div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;margin-bottom:30px;">
+									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-1d">
+										<input type="radio" name="bidPeriod" id="bp-1d"> 1일
+									</label>
+									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-3d">
+										<input type="radio" name="bidPeriod" id="bp-3d"> 3일
+									</label>
+									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-7d">
+										<input type="radio" name="bidPeriod" id="bp-7d"> 7일
+									</label>
+									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-15d">
+										<input type="radio" name="bidPeriod" id="bp-15d"> 15일
+									</label>
+									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-30d">
+										<input type="radio" name="bidPeriod" id="bp-30d" checked="checked"> 30일
+									</label>
+									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-60d">
+										<input type="radio" name="bidPeriod" id="bp-60d"> 60일
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" >
+							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-method"><span>4</span>배송지</a>
+						</div>
+						<div id="shipping-method" class="panel-collapse collapse">
+							<div class="panel-body">
+								<label for="shipping-address">배송지</label><c:if test="${member != null}"><p align="right">${member.address} <i class="fa fa-chevron-right"></i></p></c:if>
+								<hr>
+								<div class="dropdown" style="width:100%;">
+								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="width:100%;">
+								    <font id="shippingMessageDrop" style="float:left;">배송 메세지 직접 입력</font>
+								    <span class="caret" style="float:right;"></span>
+								  </button>
+								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('배송 메세지 직접 입력');$('#txtShippingMessage').val('');$('#txtShippingMessage').attr('disabled', false);">배송 메세지 직접 입력</a></li>
+								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('배송 전에 미리 연락 바랍니다');$('#txtShippingMessage').val('배송 전에 미리 연락 바랍니다');$('#txtShippingMessage').attr('disabled', true);">배송 전에 미리 연락 바랍니다</a></li>
+								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 택배 보관함에 맡겨주세요');$('#txtShippingMessage').val('부재 시 택배 보관함에 맡겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 택배 보관함에 맡겨주세요</a></li>
+								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 경비실에 맡겨주세요');$('#txtShippingMessage').val('부재 시 경비실에 맡겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 경비실에 맡겨주세요</a></li>
+								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 전화주시거나 문자 남겨주세요');$('#txtShippingMessage').val('부재 시 전화주시거나 문자 남겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 전화주시거나 문자 남겨주세요</a></li>
+								  </ul>
+								</div>
+								<div class="input-group" style="width:100%;">
+  									<input type="text" class="form-control" placeholder="요청사항을 직접 입력해주세요(최대 20자)" maxlength="21" id="txtShippingMessage" autocomplete="on">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" >
+							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#payment-met"><span>5</span>유의사항</a>
+						</div>
+						<div id="payment-met" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul style="list-style-type:disc;">
+		                            <li>구매입찰 가격을 등록하면 최고 입찰가부터 거래가 체결됩니다.</li>
+		                            <li>판매자와 구매자가 등록한 가격이 동일할 경우, 거래가 자동으로 성사되고 자동 결제됩니다.</li>
+		                            <li>검수 성공 상품만 배송해 드립니다.</li>
+		                            <li>즉시구매 가격을 입력하면 할부 결제할 수 있습니다.</li>
+		                            <li>할부 결제를 원할 시 신용카드 및 카카오페이 등을 선택해 주세요. 결제하실 신용카드와 할부 기간을 선택할 수 있습니다.</li>
+		                            <li>XXBLUE에 등록한 카드로 자동 결제하려면 '자동결제' 버튼을 클릭하세요. '자동결제'를 이용하면 신용카드 정보를 매번 입력하지 않아도, 등록된 신용카드 정보로 편리하게 결제할 수 있습니다.</li>
+		                        </ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="btn-group btn-group-justified" role="group" style="margin-top:30px;">
+					<button type="button" class="btn btn-inverse">이전</button>
+	  				<button type="button" class="btn btn-primary">확인</button>
 				</div>
 			</div>
 			<div class="col-md-3">
+				<img alt="" src="http://t3.gstatic.com/images?q=tbn:ANd9GcSs4PkoAnfcMkhH5v9IGZuAZTf74ttvvbmBnFtjHttGicvPPs05a-zMMYDbPhp2">
+				<p style="margin:10px;padding-bottom:10px;font-weight:bold;">상품이름</p>
 				<div class="checkout-right">
 					<h2>CHECKOUT PROGRESS</h2>
 					<ul>
-						<li><a href="#">Checkout Method</a></li>
-						<li><a href="#">Billing  Information</a></li>
-						<li><a href="#">Shipping  Information</a></li>
-						<li><a href="#">Shipping  Method</a></li>
-						<li><a href="#">Payment Information</a></li>
-						<li><a href="#">Order Review</a></li>
+						<li><a data-toggle="collapse" data-parent="#checkout-progress" href="#size-selection">사이즈 선택</a></li>
+						<li><a data-toggle="collapse" data-parent="#checkout-progress" href="#bid-price">결제금액</a></li>
+						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-period">입찰기한</a></li>
+						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-method">배송지</a></li>
+						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#payment-met">유의사항</a></li>
 					</ul>
 				</div>
 			</div>
@@ -289,5 +325,54 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 
 </body>
-
+<script type="text/javascript">
+//입찰가격입력 폼에서 천단위만 입력 가능한 함수
+$('#txtBidPrice').on('change', function() {
+    var n = $(this).val(); 
+    n = Math.floor(n/1000) * 1000; 
+    //alert(n);  
+    $(this).val(n);
+ });
+ 
+ //입찰 종료일 변경 함수
+<% Calendar day = Calendar.getInstance();
+day.add(Calendar.DATE , 30);%>
+$('#bidEndDate').text(<%=day.get(day.YEAR)%>+'-'+<%=(day.get(day.MONTH)+1)%>+'-'+<%=day.get(day.DATE)%>+ ' 입찰 종료');
+$('#lbBp-30d').trigger('click');
+$('#lbBp-30d').bind('click', function () {
+	<% day = Calendar.getInstance();
+	day.add(Calendar.DATE , 30);%>
+	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+});
+$('#lbBp-1d').bind('click', function () {
+	<% day = Calendar.getInstance();
+	day.add(Calendar.DATE , 1);%>
+	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+});
+$('#lbBp-3d').bind('click', function () {
+	<% day = Calendar.getInstance();
+	day.add(Calendar.DATE , 3);%>
+	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+});
+$('#lbBp-7d').bind('click', function () {
+	<% day = Calendar.getInstance();
+	day.add(Calendar.DATE , 7);%>
+	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+});
+$('#lbBp-15d').bind('click', function () {
+	<% day = Calendar.getInstance();
+	day.add(Calendar.DATE , 15);%>
+	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+});
+$('#lbBp-30d').bind('click', function () {
+	<% day = Calendar.getInstance();
+	day.add(Calendar.DATE , 30);%>
+	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+});
+$('#lbBp-60d').bind('click', function () {
+	<% day = Calendar.getInstance();
+	day.add(Calendar.DATE , 60);%>
+	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+});
+</script>
 </html>

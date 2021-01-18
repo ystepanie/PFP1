@@ -37,7 +37,7 @@
    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
    <style>
-      .header-fixed {
+.header-fixed {
     width: 100% 
 }
 
@@ -229,7 +229,7 @@
                      <div class="col-sm-6"> 
                      <table class="table table-hover header-fixed col2">
                         <thead>
-                           <tr>can
+                           <tr>
                               <th>옵션</th>
                               <th>판매입찰</th>
                            </tr>
