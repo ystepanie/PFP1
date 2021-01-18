@@ -230,7 +230,7 @@ public class BlogController {
 	   
 	   MemberVO member = (MemberVO)session.getAttribute("member");
 	   String userId = b_service.idCheck(reply.getCommentNum());
-	   
+	   logger.info(userId+","+member.getUserId());
 	   if(member.getUserId().equals(userId)) {
 		   reply.setUserId(member.getUserId());
 		   b_service.modifyReply(reply);
