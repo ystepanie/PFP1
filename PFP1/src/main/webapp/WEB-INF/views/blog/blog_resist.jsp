@@ -67,8 +67,6 @@
 	<section class="blog-page page fix">
 		<!-- Start Blog Area-->
 		<form method="post">
-		<label>코드번호</label>
-		<input type="text" name="boardCode" id="boardCode"/><br/>
 		<label>제목</label>
 		<input type="text" name="title" id="title"/><br/>
 		<label>작성자</label>
