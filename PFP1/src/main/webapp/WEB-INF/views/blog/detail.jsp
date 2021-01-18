@@ -56,8 +56,8 @@
 				 + "<div class='comment-author'>"
 				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate
 				 + "<c:if test = '${member != null}'>"
-				 + "<a href='#' class='delete' data-commentNum='"+this.commentNum+"'>삭제</a>"
-				 + "<a href='#' class='modify' data-commentNum='"+this.commentNum+"'>수정</a>"
+				 + "<a href='#' class='delete' onclick='' data-commentNum='"+this.commentNum+"'>삭제</a>"
+				 + "<a href='#' class='modify' onclick='' data-commentNum='"+this.commentNum+"'>수정</a>"
 				 + "</c:if>"
 				 +"</div>"
 				 + "<div class='comment-text'>"
@@ -214,24 +214,22 @@
 								});
 								}
 							});
-							
 							$(document).on("click", ".modify", function() {
+								
+								var originComment = $("#"+$(this).attr("data-commentNum")).text();
 								var data = {commentNum : $(this).attr("data-commentNum")};
-								var modifyConfirm = confirm("정말로 수정하시겠습니까?");
-								if(modifyConfirm) {
-									var originComment = $("#"+$(this).attr("data-commentNum")).text();
-									$("#"+$(this).attr("data-commentNum")).append("<textarea id='moContent' name='moContent' rows='4'>"+originComment+"</textarea><button type='button' id='modifyCom' name='modifyCom'>댓글 작성</button>");
-								}
+								$("#"+$(this).attr("data-commentNum")).append("<br/><textarea id='moContent' class='moContent' rows='4'>"+originComment+"</textarea><button type='button' id='modifyCom' class='modifyCom' data-commentNum2='"+data.commentNum+"'>댓글 작성</button>");
 							});
+									
 							
-							$("#modifyCom").click(function() {
+							$(document).on("click", ".modifyCom", function() {
 								var formObj = $(".commentform form[role='form']");
-								var modifyComnum = $("#"+$(this).attr("data-commentNum")).val();
-								var modifyCom = $("#"+$(this).attr("data-commentNum")).text();
+								
+								var reContent = $(".moContent").val();
 								//키 값 data
 								var data = {
-										modifyComnum : modifyComnum,
-										modifyCom : modifyCom
+										commentNum : $(this).attr("data-commentNum2"),
+										reContent : reContent
 								};
 								
 								$.ajax({
@@ -242,8 +240,9 @@
 										
 										if(result == 1) {
 										replyList();
-										$("#moContent").val("");
+										reContent.val("");
 										} else {
+											
 											alert('작성자 본인만 할 수 있습니다.');
 										}
 									},
@@ -251,6 +250,7 @@
 										alert("로그인 후 사용가능합니다.");
 									}
 								});
+								
 								});
 							</script>
 						</ol>
