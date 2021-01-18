@@ -47,7 +47,7 @@
 <section class="blog-page page fix"><!-- Start Blog Area-->
 	<div class="container">
 		<div class="row">
-		<%-- <c:forEach items="${list}" var="list"> --%>
+		<c:forEach items="${list}" var="list"> 
 			 <div class="col-sm-4 col-md-3">
 				<div class="single-blog">
 					<div class="content fix">
@@ -66,98 +66,7 @@
 					</div>
 				</div>
 			</div>		
-		<%-- </c:forEach> --%>
-		
-		<div class="col-sm-4 col-md-3">
-				<div class="single-blog">
-					<div class="content fix">
-						<a class="image fix" href="blog-details.html"><img src="${list.picture}" alt="" />
-							<div class="date">
-								<h4>25</h4>
-								<h5>Aug</h5>
-							</div>
-						</a>
-						<h2><a class="title" href="/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
-						<div class="meta">
-							<i class="fa fa-pencil-square-o"></i>${list.userId}
-							<i class="fa fa-calendar"></i>${list.regiDate}
-							<i class="fa fa-comments"></i>12 Comments(아직안함)
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3">
-				<div class="single-blog">
-					<div class="content fix">
-						<a class="image fix" href="blog-details.html"><img src="${list.picture}" alt="" />
-							<div class="date">
-								<h4>25</h4>
-								<h5>Aug</h5>
-							</div>
-						</a>
-						<h2><a class="title" href="/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
-						<div class="meta">
-							<i class="fa fa-pencil-square-o"></i>${list.userId}
-							<i class="fa fa-calendar"></i>${list.regiDate}
-							<i class="fa fa-comments"></i>12 Comments(아직안함)
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3">
-				<div class="single-blog">
-					<div class="content fix">
-						<a class="image fix" href="blog-details.html"><img src="${list.picture}" alt="" />
-							<div class="date">
-								<h4>25</h4>
-								<h5>Aug</h5>
-							</div>
-						</a>
-						<h2><a class="title" href="/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
-						<div class="meta">
-							<i class="fa fa-pencil-square-o"></i>${list.userId}
-							<i class="fa fa-calendar"></i>${list.regiDate}
-							<i class="fa fa-comments"></i>12 Comments(아직안함)
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3">
-				<div class="single-blog">
-					<div class="content fix">
-						<a class="image fix" href="blog-details.html"><img src="${list.picture}" alt="" />
-							<div class="date">
-								<h4>25</h4>
-								<h5>Aug</h5>
-							</div>
-						</a>
-						<h2><a class="title" href="/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
-						<div class="meta">
-							<i class="fa fa-pencil-square-o"></i>${list.userId}
-							<i class="fa fa-calendar"></i>${list.regiDate}
-							<i class="fa fa-comments"></i>12 Comments(아직안함)
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-md-3">
-				<div class="single-blog">
-					<div class="content fix">
-						<a class="image fix" href="blog-details.html"><img src="${list.picture}" alt="" />
-							<div class="date">
-								<h4>25</h4>
-								<h5>Aug</h5>
-							</div>
-						</a>
-						<h2><a class="title" href="/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
-						<div class="meta">
-							<i class="fa fa-pencil-square-o"></i>${list.userId}
-							<i class="fa fa-calendar"></i>${list.regiDate}
-							<i class="fa fa-comments"></i>12 Comments(아직안함)
-						</div>
-					</div>
-				</div>
-			</div>
+		 </c:forEach> 
 		
 		</div>
 	</div>

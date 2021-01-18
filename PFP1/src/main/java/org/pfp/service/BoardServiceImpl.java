@@ -73,4 +73,10 @@ public class BoardServiceImpl implements BoardService {
 	public void modifyReply(ReplyVO vo) throws Exception {
 		dao.modifyReply(vo);
 	}
+	
+	//개인 게시물 목록
+	@Override
+	public List personalList(String userId) throws Exception {
+		return dao.personalList(userId);
+	}
 }

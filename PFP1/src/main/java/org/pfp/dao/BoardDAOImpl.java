@@ -80,4 +80,10 @@ public class BoardDAOImpl implements BoardDAO {
 	public void modifyReply(ReplyVO vo) throws Exception {
 		sql.update(namespace + ".modifyReply", vo);
 	}
+	
+	//개인 게시물 목록
+	@Override
+	public List personalList(String userId) throws Exception {
+		return sql.selectList(namespace+".personalList", userId);
+	}
 }

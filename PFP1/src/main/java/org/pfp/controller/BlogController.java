@@ -115,6 +115,9 @@ public class BlogController {
    public void getMyblog(@RequestParam("userId") String userId, Model model, HttpSession session) throws Exception {
 	   MemberVO vo = (MemberVO)session.getAttribute("member");
 	   model.addAttribute("member", vo);
+	   List<BoardVO> list = null;
+	   list = b_service.personalList(userId);
+	   model.addAttribute("list", list);
    }
    
    //댓글 목록 ajax

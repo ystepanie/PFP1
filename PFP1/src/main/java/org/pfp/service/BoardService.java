@@ -36,4 +36,7 @@ public interface BoardService {
 	
 	//게시물 댓글 수정
 	public void modifyReply(ReplyVO vo) throws Exception;
+	
+	//개인 게시물 목록
+	public List personalList(String userId) throws Exception;
 }

@@ -75,4 +75,10 @@
 		and userId = #{userId}
 	</update>
 	
+	<!-- 개인 블로그  -->
+	<select id="personalList" resultType="org.pfp.dto.BoardVO">
+		select boardCode, userId, content, picture, tag, good, title, regiDate
+		from board
+		where userId = #{userId}
+	</select>
 </mapper>
