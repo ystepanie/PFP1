@@ -39,6 +39,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return sql.selectList(namespace+".listPage", data);
 	}
 	
+	//게시물 목록 + 무한 스크롤 
+	@Override
+	public List infiniteScrollDown(Integer boardCode) throws Exception {
+		return sql.selectList(namespace+".infiniteScrollDown", boardCode);
+	}
+	
 	//게시글 작성
 	@Override
 	public void resist(BoardVO vo) throws Exception {

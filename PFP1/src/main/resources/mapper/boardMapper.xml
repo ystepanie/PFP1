@@ -21,6 +21,8 @@
 		limit #{displayPost}, #{postNum}
 	</select>
 	
+	
+	
 	<!-- 게시물 등록 -->
 	<insert id="resist">
 		insert into 
@@ -77,8 +79,23 @@
 	
 	<!-- 개인 블로그  -->
 	<select id="personalList" resultType="org.pfp.dto.BoardVO">
+	<![CDATA[
 		select boardCode, userId, content, picture, tag, good, title, regiDate
 		from board
-		where userId = #{userId}
+		where userId = #{userId} and boardCode>0
+		order by boardCode desc, regiDate desc
+		limit 0,12;
+		]]>
+	</select>
+	
+	<!-- 무한 스크롤 다운  -->
+	<select id="infiniteScrollDown" resultType="org.pfp.dto.BoardVO">
+	<![CDATA[
+		select select boardCode, userId, content, picture, tag, good, title, regiDate
+		from board
+		where boardCode <= #{boardCode}
+		and boardCode > #{boardCode} -12
+		order by boardCode desc, regiDate desc
+	]]>
 	</select>
 </mapper>

@@ -9,5 +9,8 @@ public interface MemberService {
 	
 	//로그인
 	public MemberVO login(MemberVO vo) throws Exception;
+	
+	//개인정보
+	public MemberVO memberInfo(String userId) throws Exception;
 
 }

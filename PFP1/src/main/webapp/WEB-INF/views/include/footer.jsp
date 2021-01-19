@@ -14,24 +14,24 @@
 		<div class="row">
 			<div class="support col-sm-3">
 				<i class="fa fa-thumbs-up"></i>
-				<h3>High quality</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+				<h3>100% 정품취급</h3>
+				<p>Puzzle은 내부 품질 검사를 통해 오직 정품만을 취급합니다. </p>
 			</div>
 			<div class="support col-sm-3">
 				<i class="fa fa-bus"></i>
-				<h3>Fast Delivery</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+				<h3>빠른배송</h3>
+				<p>택배사와의 협약을 통해 가장 빠르게 고객님의 집까지 배송해드립니다.</p>
 			</div>
 			<div class="support col-sm-3">
 				<i class="fa fa-phone"></i>
-				<h3>24/7 support</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
+				<h3>24/7 상담</h3>
+				<p>직원 및 AI상담을 통해 언제든지 문의할 수 있습니다.</p>
 			</div>
 			<div class="support col-sm-3">
 				<i class="fa fa-random"></i>
-				<h3>14 - Day Returns</h3>
-				<p>Lorem ipsum dolor sit amet, conseetur adipiscing elit, consectetur</p>
-			</div>
+				<h3>사후처리 서비스</h3>
+				<p>거래 후 발생한 특이사항에 대해서 원만한 협의가 이루어지도록 돕습니다.</p>
+			</div> 
 		</div>
 	</div>
 </div><!--Start Support Area-->

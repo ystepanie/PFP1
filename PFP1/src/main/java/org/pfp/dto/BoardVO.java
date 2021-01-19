@@ -1,7 +1,7 @@
 package org.pfp.dto;
 
 public class BoardVO {
-	private String boardCode;
+	private int boardCode;
 	private String userId;
 	private String content;
 	private String picture;
@@ -22,10 +22,10 @@ public class BoardVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getBoardCode() {
+	public int getBoardCode() {
 		return boardCode;
 	}
-	public void setBoardCode(String boardCode) {
+	public void setBoardCode(int boardCode) {
 		this.boardCode = boardCode;
 	}
 	public String getUserId() {

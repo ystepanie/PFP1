@@ -34,6 +34,12 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listPage(displayPost, postNum);
 	}
 	
+	//게시물 목록 + 무한 스크롤 
+	@Override
+	public List infiniteScrollDown(Integer boardCode) throws Exception {
+		return dao.infiniteScrollDown(boardCode);
+	}
+	
 	//게시글 등록
 	@Override
 	public void resist(BoardVO vo) throws Exception {

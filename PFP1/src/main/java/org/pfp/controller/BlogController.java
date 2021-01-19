@@ -20,12 +20,14 @@ import org.pfp.dto.BoardVO;
 import org.pfp.dto.MemberVO;
 import org.pfp.dto.ReplyVO;
 import org.pfp.service.BoardService;
+import org.pfp.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +43,8 @@ public class BlogController {
 	
 	@Inject
 	private BoardService b_service;
+	@Inject
+	private MemberService m_service;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -85,6 +89,7 @@ public class BlogController {
 	   model.addAttribute("count",count);
    }
    
+   
    @PostMapping("/blog_resist")
    public String postBlog_resist(BoardVO vo) throws Exception {
 	   b_service.resist(vo);
@@ -113,11 +118,23 @@ public class BlogController {
    //개인 블로그 페이지
    @GetMapping("/myblog")
    public void getMyblog(@RequestParam("userId") String userId, Model model, HttpSession session) throws Exception {
-	   MemberVO vo = (MemberVO)session.getAttribute("member");
-	   model.addAttribute("member", vo);
+	   MemberVO vo = m_service.memberInfo(userId);
+	   model.addAttribute("vo", vo);
 	   List<BoardVO> list = null;
 	   list = b_service.personalList(userId);
+	   
+	   
 	   model.addAttribute("list", list);
+   }
+   
+   //무한 스크롤 다운 
+   @PostMapping("/infiniteScrollDown")
+   public @ResponseBody List<BoardVO> infiniteScrollDownPost(@RequestBody BoardVO boardVO) throws Exception {
+	   logger.info("infiniteScrollDown Post");
+	   
+	   Integer boardCodeStart = boardVO.getBoardCode()-1;
+	   
+	   return b_service.infiniteScrollDown(boardCodeStart);
    }
    
    //댓글 목록 ajax

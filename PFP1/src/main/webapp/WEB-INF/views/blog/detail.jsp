@@ -56,8 +56,8 @@
 				 + "<div class='comment-author'>"
 				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate
 				 + "<c:if test = '${member != null}'>"
-				 + "<a href='#' class='delete' onclick='' data-commentNum='"+this.commentNum+"'>삭제</a>"
-				 + "<a href='#' class='modify' onclick='' data-commentNum='"+this.commentNum+"'>수정</a>"
+				 + "<a class='delete' onclick='' data-commentNum='"+this.commentNum+"'>삭제</a>"
+				 + "<a class='modify' onclick='' data-commentNum='"+this.commentNum+"'>수정</a>"
 				 + "</c:if>"
 				 +"</div>"
 				 + "<div class='comment-text'>"
