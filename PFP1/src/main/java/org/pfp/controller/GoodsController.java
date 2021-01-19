@@ -155,7 +155,11 @@ public class GoodsController {
    }
    
    @GetMapping("/buy")
-   public String getBuy() {
+   public String getBuy(@RequestParam int m, Model model) throws Exception {
+	   GoodsVO detail = g_service.detail(m);
+	   List<GoodsVO> priceBySize = g_service.priceBySize(detail);
+	   model.addAttribute("detail", detail);
+	   model.addAttribute("priceBySize", priceBySize);
 	   return "goods/buy_sell";
    }
 }

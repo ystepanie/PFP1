@@ -10,7 +10,7 @@
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="org.pfp.dto.MemberVO">
-		select userId, userPw, nickname, address
+		select userId, userPw, nickname, address, postNum
 		from member
 		where userId = #{userId}
 		<!--  and userPw = #{userPw} -->

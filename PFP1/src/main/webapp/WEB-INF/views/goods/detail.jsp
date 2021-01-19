@@ -160,7 +160,7 @@
                <div class="container" style="width:100%;">
                   <div class="row" style="width:100%;">
                      <div class="col" style="width:100%;">
-                        <button type="button" class="btn btn-primary" style="width:49%;font-size:100%;"><b style="float:left;">구매 |</b><font id="immediateBuy" style="float:right;">즉시 구매가 - ${detail.saleBid}원</font></button>
+                        <button type="button" class="btn btn-primary" style="width:49%;font-size:100%;" onclick="location.href='<%=request.getContextPath() %>/goods/buy?m=${detail.modelNum}'"><b style="float:left;">구매 |</b><font id="immediateBuy" style="float:right;">즉시 구매가 - ${detail.saleBid}원</font></button>
                         <button type="button" class="btn btn-danger" style="width:49%;font-size:100%;"><b style="float:left;">판매 |</b><font id="immediateSales" style="float:right;">즉시 판매가 - ${detail.buyBid}원</font></button>
                      </div>
                   </div>
