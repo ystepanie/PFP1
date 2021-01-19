@@ -56,8 +56,8 @@
 				 + "<div class='comment-author'>"
 				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate
 				 + "<c:if test = '${member != null}'>"
-				 + "<a href='#' class='delete' onclick='' data-commentNum='"+this.commentNum+"'>삭제</a>"
-				 + "<a href='#' class='modify' onclick='' data-commentNum='"+this.commentNum+"'>수정</a>"
+				 + "<a class='delete' onclick='' data-commentNum='"+this.commentNum+"'>삭제</a>"
+				 + "<a class='modify' onclick='' data-commentNum='"+this.commentNum+"'>수정</a>"
 				 + "</c:if>"
 				 +"</div>"
 				 + "<div class='comment-text'>"
@@ -218,7 +218,8 @@
 								
 								var originComment = $("#"+$(this).attr("data-commentNum")).text();
 								var data = {commentNum : $(this).attr("data-commentNum")};
-								$("#"+$(this).attr("data-commentNum")).append("<br/><textarea id='moContent' class='moContent' rows='4'>"+originComment+"</textarea><button type='button' id='modifyCom' class='modifyCom' data-commentNum2='"+data.commentNum+"'>댓글 작성</button>");
+								$("#"+$(this).attr("data-commentNum")).append("<br/><br/><label for='comment' class='field-label'>Your Comment<span>*</span></label><textarea id='moContent' class='moContent' rows='4' cols='80'>"+originComment+"</textarea>"+
+										"<button type='button' id='modifyCom' class='modifyCom' data-commentNum2='"+data.commentNum+"'>댓글 작성</button>");
 							});
 									
 							
