@@ -56,8 +56,8 @@
 				 + "<div class='comment-author'>"
 				 + "<p class='com-name'><strong>"+this.nickname+"</strong></p>"+commentDate
 				 + "<c:if test = '${member != null}'>"
-				 + "<a class='delete' onclick='' data-commentNum='"+this.commentNum+"'>삭제</a>"
-				 + "<a class='modify' onclick='' data-commentNum='"+this.commentNum+"'>수정</a>"
+				 + "<a class='delete' onclick='' data-commentNum='"+this.commentNum+"'>삭제<i class='fa fa-trash'></i></a>"
+				 + "<a class='modify' onclick='' data-commentNum='"+this.commentNum+"'>수정<i class='fa fa-edit'></i></a>"
 				 + "</c:if>"
 				 +"</div>"
 				 + "<div class='comment-text'>"
@@ -215,11 +215,11 @@
 								}
 							});
 							$(document).on("click", ".modify", function() {
-								
+								$(".modify").empty();
 								var originComment = $("#"+$(this).attr("data-commentNum")).text();
 								var data = {commentNum : $(this).attr("data-commentNum")};
-								$("#"+$(this).attr("data-commentNum")).append("<br/><br/><label for='comment' class='field-label'>Your Comment<span>*</span></label><textarea id='moContent' class='moContent' rows='4' cols='80'>"+originComment+"</textarea>"+
-										"<button type='button' id='modifyCom' class='modifyCom' data-commentNum2='"+data.commentNum+"'>댓글 작성</button>");
+								$("#"+$(this).attr("data-commentNum")).append("<br/><label for='comment' class='field-label'>Your Comment<span>*</span></label><br/><textarea id='moContent' class='moContent' rows='4' cols='80'>"+originComment+"</textarea>"+
+										"<p class='form-submit' style='margin-top:20px;'><button type='button' id='modifyCom' class='modifyCom' data-commentNum2='"+data.commentNum+"'>댓글 작성</button></p>").trigger("create");
 							});
 									
 							
@@ -242,6 +242,7 @@
 										if(result == 1) {
 										replyList();
 										reContent.val("");
+										$(".modify").append("수정<i class='fa fa-edit'></i>");
 										} else {
 											
 											alert('작성자 본인만 할 수 있습니다.');

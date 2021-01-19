@@ -78,6 +78,7 @@
 //스크롤 이벤트 
 var lastScrollTop = 0;
 $(window).scroll(function() {
+	alert('scroll!!');
 	var currentScrollTop = $(window).scrollTop();
 	//다운 스크롤 상태 
 	if(currentScrollTop - lastScrollTop > 0){
@@ -132,20 +133,6 @@ $(window).scroll(function() {
 		var position = $(."col-sm-4 col-md-3").offset(); //위치값
 		
 		$('html,body').stop().animate({scrollTop : position.top}, 600, easeEffect);
-		
-		
-		/* //스크롤 이벤트 최초 발생
-		$(window).scroll(function() {
-			
-			//image fix class의 마지막 data 값을 받아옴 
-			
-			//다운 스크롤 
-			if(currentScrollTop - lastScrollTop > 0) {
-				lastScrollTop = currentScrollTop;
-			} else {
-				lastScrollTop = currentScrollTop;
-			}
-		}); */
 		}
 	
 		lastScrollTop = currentScrollTop;
