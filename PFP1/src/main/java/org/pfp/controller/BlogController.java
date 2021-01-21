@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.LikeVO;
 import org.pfp.dto.MemberVO;
 import org.pfp.dto.ReplyVO;
 import org.pfp.service.BoardService;
@@ -146,6 +147,35 @@ public class BlogController {
 	   List<ReplyVO> reply = b_service.replyList(boardCode);
 	   
 	   return reply;
+   }
+   
+   //좋아요 수 조회
+   @ResponseBody
+   @GetMapping("/likeView")
+   public int getLikeView(@RequestParam("no") int boardCode) throws Exception {
+	   logger.info("get likeView");
+	   int good = b_service.likeView(boardCode);
+	   return good;
+   }
+   
+   //좋아요 추가
+   @ResponseBody
+   @PostMapping("/likeAdd")
+   public void getLikeAdd(LikeVO vo, HttpSession session) throws Exception {
+	   logger.info("post likeAdd");
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   vo.setUserId(member.getUserId());
+	   b_service.likeAdd(vo.getLikeCheck());
+   }
+   
+   //좋아요 감소
+   @ResponseBody
+   @PostMapping("/likeCancel")
+   public void getLikeCancel(LikeVO vo, HttpSession session) throws Exception {
+	   logger.info("post likeCancel");
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   vo.setUserId(member.getUserId());
+	   b_service.likeCancel(vo.getLikeCheck());
    }
    
    //ckeditor에서 업로드

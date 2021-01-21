@@ -42,4 +42,13 @@ public interface BoardService {
 	
 	//개인 게시물 목록
 	public List personalList(String userId) throws Exception;
+		
+	//게시물 좋아요 조회
+	public int likeView(int boardCode) throws Exception;
+	
+	//게시물 좋아요 추가
+	public int likeAdd(int likeCheck) throws Exception;
+	
+	//게시물 좋아요 감소 
+	public int likeCancel(int likeCheck) throws Exception;
 }

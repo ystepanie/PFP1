@@ -92,4 +92,21 @@ public class BoardDAOImpl implements BoardDAO {
 	public List personalList(String userId) throws Exception {
 		return sql.selectList(namespace+".personalList", userId);
 	}
+	
+	//게시물 좋아요 조회
+	public int likeView(int boardCode) throws Exception {
+		return sql.selectOne(namespace+".likeView",boardCode);
+	}
+	
+	//게시물 좋아요 추가
+	@Override
+	public int likeAdd(int likeCheck) throws Exception {
+		return sql.update(namespace+".likeAdd",likeCheck);
+	}
+	
+	//게시물 좋아요 감소 
+	@Override
+	public int likeCancel(int likeCheck) throws Exception {
+		return sql.update(namespace+".likeCancel",likeCheck);
+	}
 }

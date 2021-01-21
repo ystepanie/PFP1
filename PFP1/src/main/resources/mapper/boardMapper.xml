@@ -98,4 +98,26 @@
 		order by boardCode desc, regiDate desc
 	]]>
 	</select>
+	<!-- 게시물 좋아요 증가-->
+	<update id="likeAdd" parameterType="HashMap">
+		update like
+		set
+		likeCheck = likeCheck+1
+		where boardCode = #{boardCode} and userId = #{userId}
+	</update>
+	
+	<!-- 게시물 좋아요 감소 -->
+	<update id="likeCancel" parameterType="HashMap">
+		update like
+		set
+		likeCheck = 0
+		where boardCode = #{boardCode} and userId = #{userId}
+	</update>
+	
+	<!-- 게시물 좋아요 조회 -->
+	<select id="likeView" resultType="int">
+		select good
+		from board
+		where boardCode = #{boardCode}
+	</select>
 </mapper>

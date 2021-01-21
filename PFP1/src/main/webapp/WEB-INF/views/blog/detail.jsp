@@ -37,7 +37,9 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<script>
+	//댓글 리스트 
 	function replyList() {
 		var boardCode = ${view.boardCode};
 		$.getJSON("/blog/replyList"+"?no="+boardCode, function(data) {
@@ -65,6 +67,46 @@
 			});
 			$("ol.commentlists li").html(str);
 		});
+	}
+	//좋아요 조회,버튼 생성 
+	function likeView() {
+	var boardCode = ${view.boardCode};
+	$.getJSON("/blog/likeView"+"?no="+boardCode, function(data) {
+		var str = "";
+		$(data).each(function() {
+		console.log(data);
+			
+		str += "<c:if test='${member != null}'>" 
+			+ "<button type='button' id='like' class='like' onclick='likeAdd()'><i class='far fa-heart'></i>"+data+"</button>"
+			+ "</c:if>"
+			+ "<c:if test='${member == null}'>"
+			+ "<button type='button' id='like' class='like' onclick='likeAdd()' disabled='disabled'><i class='far fa-heart'></i>"+data+"</button>"
+			+ "</c:if>"
+		});
+		if(data == 0) {
+		$("#likeView").append(str);
+		} else {
+		$("#likeView").html(str);
+		}
+	});
+	}
+	
+	function likeAdd() {
+		var boardCode = $("#boardCode").val();
+		var good = $("#good").val();
+		var data = {
+				boardCode : boardCode,
+				good : good
+		};
+	$.ajax({
+		url : "/blog/likeAdd",
+		type : "post",
+		data : data,
+		success : function() {
+			replyList();
+			$("#reContent").val("");
+		}
+	});
 	}
 	</script>
 </head>
@@ -99,6 +141,19 @@
 							<a href="#">${view.tag}</a>
 						</div>
 					</div>
+					<br/>
+					<!-- 좋아요 표시  -->
+					<div id="likeView">
+					<c:if test="${member != null }">
+					<button type="button" id="like" class="like" onclick="likeAdd()"><i class="far fa-heart"></i>${view.good }</button>
+					</c:if>
+					<c:if test="${member == null }">
+					<button type="button" id="like" class="like" onclick="likeAdd()"><i class="far fa-heart" disabled="disabled"></i>${view.good }</button>
+					</c:if>
+					<script>
+					likeView();
+					</script>
+					</div>
 				<div id="comments">
 					<div class="commentform">
 						<form class="comment-form" id="commentform" method="post" autocomplete="off">
@@ -124,6 +179,7 @@
 										<button type="button" id="submit" name="submit">댓글 작성</button>
 										
 										<script>
+										//댓글 작성 이벤트 
 											$("#submit").click(function() {
 												var formObj = $(".commentform form[role='form']");
 												var boardCode = $("#boardCode").val();
@@ -191,6 +247,7 @@
 							replyList();
 							</script>
 							<script>
+							//댓글 삭제 이벤트 
 							$(document).on("click", ".delete", function() {
 								var data = {commentNum : $(this).attr("data-commentNum")};
 								var deleteConfirm = confirm("정말로 삭제하시겠습니까?");
@@ -214,6 +271,7 @@
 								});
 								}
 							});
+							//댓글 수정 창 생성하는 부분 
 							$(document).on("click", ".modify", function() {
 								$(".modify").empty();
 								var originComment = $("#"+$(this).attr("data-commentNum")).text();
@@ -222,7 +280,7 @@
 										"<p class='form-submit' style='margin-top:20px;'><button type='button' id='modifyCom' class='modifyCom' data-commentNum2='"+data.commentNum+"'>댓글 작성</button></p>").trigger("create");
 							});
 									
-							
+							//댓글 수정버튼 클릭 시 이벤트 
 							$(document).on("click", ".modifyCom", function() {
 								var formObj = $(".commentform form[role='form']");
 								

@@ -85,4 +85,22 @@ public class BoardServiceImpl implements BoardService {
 	public List personalList(String userId) throws Exception {
 		return dao.personalList(userId);
 	}
+	
+	//게시물 좋아요 조회
+	@Override
+	public int likeView(int boardCode) throws Exception {
+		return dao.likeView(boardCode);
+	}
+	
+	//게시물 좋아요 추가
+	@Override
+	public int likeAdd(int likeCheck) throws Exception {
+		return dao.likeAdd(likeCheck);
+	}
+	
+	//게시물 좋아요 감소 
+	@Override
+	public int likeCancel(int likeCheck) throws Exception {
+		return dao.likeCancel(likeCheck);
+	}
 }
