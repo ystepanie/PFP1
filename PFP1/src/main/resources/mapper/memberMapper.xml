@@ -21,4 +21,21 @@
 		from member
 		where userId = #{userId}
 	</select>
+	
+	<!-- 회원 수정 -->
+	<update id="memberModify">
+		update member
+		<trim prefix="set" suffixOverrides=",">
+			<if test="userPw != null">userPw = #{userPw},</if>
+			<if test="nickname != null">nickname = #{nickname},</if>
+			<if test="userTel != null">userTel = #{userTel},</if>
+			<if test="email != null">email = #{email},</if>
+			<if test="address != null">address = #{address},</if>
+			<if test="postNum != null">postNum = #{postNum},</if>
+			<if test="birthday != null">birthday = #{birthday},</if>
+			<if test="emailReceive != null || emailReceive >= 0">emailReceive = #{emailReceive},</if>
+			<if test="messageReceive != null || messageReceive >= 0">messageReceive = #{messageReceive},</if>
+		</trim>
+		where userId = #{userId}
+	</update>
 </mapper>

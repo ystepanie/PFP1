@@ -11,5 +11,7 @@ public interface MemberDAO {
 	
 	//개인정보
 	public MemberVO memberInfo(String userId) throws Exception;
-		
+	
+	//회원수정
+	public void memberModify(MemberVO vo) throws Exception;
 }

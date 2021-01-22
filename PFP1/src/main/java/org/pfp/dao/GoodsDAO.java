@@ -36,4 +36,5 @@ public interface GoodsDAO {
 	
 	//관련 상품들
 	public List<GoodsVO> relativeGoods(GoodsVO goods) throws Exception;
+	
 }

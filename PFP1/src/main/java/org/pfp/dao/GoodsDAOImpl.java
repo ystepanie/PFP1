@@ -66,6 +66,7 @@ public class GoodsDAOImpl implements GoodsDAO {
 	public List<GoodsVO> relativeGoods(GoodsVO goods) throws Exception {
 		return sql.selectList(namespace + ".relativeGoods", goods);
 	}
+
 	
 	
 }

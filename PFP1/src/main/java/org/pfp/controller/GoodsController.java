@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -158,8 +159,15 @@ public class GoodsController {
    public String getBuy(@RequestParam int m, Model model) throws Exception {
 	   GoodsVO detail = g_service.detail(m);
 	   List<GoodsVO> priceBySize = g_service.priceBySize(detail);
+	   List<GoodsVO> salesBySize = g_service.salesBySize(detail);
 	   model.addAttribute("detail", detail);
 	   model.addAttribute("priceBySize", priceBySize);
+	   model.addAttribute("salesBySize", salesBySize);
 	   return "goods/buy_sell";
+   }
+   
+   @PostMapping("/buy-confirm")
+   public String postBuyConfirm() {
+	   return "goods/confirm";
    }
 }

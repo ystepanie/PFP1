@@ -31,5 +31,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO memberInfo(String userId) throws Exception {
 		return sql.selectOne(namespace+".memberInfo", userId);
 	}
+
+	@Override
+	public void memberModify(MemberVO vo) throws Exception {
+		sql.update(namespace + ".memberModify", vo);
+	}
 	
 }
