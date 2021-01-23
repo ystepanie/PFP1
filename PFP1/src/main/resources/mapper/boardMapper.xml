@@ -98,17 +98,18 @@
 		order by boardCode desc, regiDate desc
 	]]>
 	</select>
-	<!-- 게시물 좋아요 증가-->
+	<!-- 게시물 좋아요 눌렀는지 여부 -->
 	<update id="likeAdd" parameterType="HashMap">
-		update like
+		update likeBoard
 		set
 		likeCheck = likeCheck+1
 		where boardCode = #{boardCode} and userId = #{userId}
 	</update>
 	
+	
 	<!-- 게시물 좋아요 감소 -->
 	<update id="likeCancel" parameterType="HashMap">
-		update like
+		update likeBoard
 		set
 		likeCheck = 0
 		where boardCode = #{boardCode} and userId = #{userId}

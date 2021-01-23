@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -34,6 +36,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.JsonObject;
 
 /**
  * Handles requests for the application home page.
@@ -161,11 +165,16 @@ public class BlogController {
    //좋아요 추가
    @ResponseBody
    @PostMapping("/likeAdd")
-   public void getLikeAdd(LikeVO vo, HttpSession session) throws Exception {
+   public void getLikeAdd(HttpSession session, int boardCode) throws Exception {
 	   logger.info("post likeAdd");
-	   MemberVO member = (MemberVO)session.getAttribute("member");
-	   vo.setUserId(member.getUserId());
-	   b_service.likeAdd(vo.getLikeCheck());
+	   String userId = (String)session.getAttribute("userId");
+	  JsonObject obj = new JsonObject();
+	  
+	  ArrayList<String> msgs = new ArrayList<String>();
+	  HashMap<String,Object> hashMap = new HashMap<String,Object>();
+	  hashMap.put("boardCode", boardCode);
+	  hashMap.put("userId", userId);
+//	  LikeVO likeVO = LikeVOProc.read(hashMap);
    }
    
    //좋아요 감소

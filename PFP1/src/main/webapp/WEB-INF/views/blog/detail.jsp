@@ -77,10 +77,10 @@
 		console.log(data);
 			
 		str += "<c:if test='${member != null}'>" 
-			+ "<button type='button' id='like' class='like' onclick='likeAdd()'><i class='far fa-heart'></i>"+data+"</button>"
+			+ "<button type='button' id='like' class='like' onclick='like_func()'><i class='far fa-heart'></i>"+data+"</button>"
 			+ "</c:if>"
 			+ "<c:if test='${member == null}'>"
-			+ "<button type='button' id='like' class='like' onclick='likeAdd()' disabled='disabled'><i class='far fa-heart'></i>"+data+"</button>"
+			+ "<button type='button' id='like' class='like' onclick='like_func()' disabled='disabled'><i class='far fa-heart'></i>"+data+"</button>"
 			+ "</c:if>"
 		});
 		if(data == 0) {
@@ -90,21 +90,34 @@
 		}
 	});
 	}
-	
-	function likeAdd() {
+	//좋아요 추가 (likecheck+1)
+	function like_func() {
 		var boardCode = $("#boardCode").val();
 		var good = $("#good").val();
-		var data = {
-				boardCode : boardCode,
-				good : good
-		};
 	$.ajax({
 		url : "/blog/likeAdd",
-		type : "post",
-		data : data,
-		success : function() {
-			replyList();
-			$("#reContent").val("");
+		type : "get",
+		cache : false,
+		dataType : "json",
+		data :'boardCode=' + boardCode,
+		success : function(data) {
+			var msg='';
+			var like_img ='';
+			msg+=data.msg;
+			alert(msg);
+			
+			if(data.likeAdd == 0) {
+				 $(".like").html("<i class='far fa-heart'></i>"+good);
+				
+			} else {
+				$(".like").html("<i class='fas fa-heart'></i>"+good);
+			}
+			$('#good').html(data.good);
+			$('#likeCheck').html(data.likeCheck);
+			
+		},
+		error: function(request, status, error) {
+			alert('code:'+request.status+'\n'+request.responseText+'\n'+error);
 		}
 	});
 	}
