@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.pfp.dto.DealVO;
@@ -166,16 +167,14 @@ public class ApiController {
    //회원의 주소와 우편번호 수정
    @ResponseBody
    @RequestMapping(value = "/modifyAddress", produces = "application/json", method = RequestMethod.GET)
-   public String getModifyAddress(@RequestParam String address, @RequestParam String postNum, HttpSession session) throws Exception {
-	   MemberVO member = (MemberVO) session.getAttribute("member");
-	   if(member != null) {
-		   member.setAddress(address);
-		   member.setPostNum(postNum);
-		   m_service.memberModify(member);
-		   
-		   return member.getUserId();
-	   }
-	   return null;
+   public void getModifyAddress(@RequestParam String address, @RequestParam String postNum, HttpServletRequest request) throws Exception {
+	   HttpSession session = request.getSession();
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   logger.info("id : " + member.getUserId());
+	   logger.info("address : " + address);
+	   member.setAddress(address);
+	   member.setPostNum(postNum);
+	   m_service.memberModify(member);
    }
    
 }

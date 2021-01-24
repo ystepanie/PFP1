@@ -6,7 +6,7 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>Puzzle | Product Details</title>
+   <title>Puzzle | Check Bid-Content</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- Fav Icon -->
    <link id="favicon" rel="icon" type="image/png" href="<%=request.getContextPath() %>/resources/img/puzzle.ico" />
@@ -76,177 +76,65 @@
 <%@ include file="../include/header.jsp" %>
 <div class="page-title fix"><!--Start Title-->
 	<div class="overlay section">
-		<h2>입찰</h2>
+		<h2>입찰 내용 확인</h2>
 	</div>
 </div><!--End Title-->
 <section class="checkout-page page fix"><!--Start Checkout Area-->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9">
+				<div class="card" style="background-color:white;margin-bottom:20px;">
+					<div class="card-body" style="padding:10px;">
+						<h5 class="card-title" style="background-color:gray;color:white;text-align:center;padding:5px;">입찰 금액</h5>
+						<div class="place-order" style="padding:5px;">
+							<div class="order-list">
+								<h3>입찰가 <span>${buyPrice}원</span></h3>
+								<h3>배송비 <span>0원</span></h3>
+								<h3>정품 판정비 <span>0원</span></h3>
+							</div>
+							<div class="final-total">
+								<h5>총 결제금액 <span id="totalPrice">${buyPrice}원</span></h5>
+							</div>
+						</div>
+						<h5 class="card-title" style="background-color:gray;color:white;text-align:center;padding:5px;">세부내용</h5>
+						<div class="place-order" style="padding:5px;">
+							<div class="order-list">
+								<h3>입찰기한 <span>${endDate}ay</span></h3><hr>
+								<h3>배송주소 <span>${buyAddress}</span></h3><hr>
+								<h3>배송메세지 <span>${deliveryMessage}</span></h3>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="panel-group" id="checkout-progress">
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#size-selection"><span>1</span>사이즈 선택 <i id="iconSizeSelection" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtSizeSelection" style="float:right;margin-right:30px;"></font></a>
+							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#payment-method"><span>1</span>결제방법 <i id="iconSizeSelection" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtSizeSelection" style="float:right;margin-right:30px;"></font></a>
 						</div>
-						<div id="size-selection" class="panel-collapse collapse in">
+						<div id="payment-method" class="panel-collapse collapse in">
 							<div class="panel-body">
-								<table class="table table-hover header-fixed col3" id="tableSizeSelection">
-									<thead>
-										<tr onclick="return false;">
-											<th>옵션 선택</th>
-											<th>최고 입찰가</th>
-											<th>최저 판매가</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:set var="size" value="220"/>
-									<c:forEach  begin="1" end="19">
-										<tr>
-											<td><b>${size}</b></td>
-											<td>
-											<c:forEach var="minSales" items="${salesBySize}">
-											<c:if test="${salesBySize.size eq size}">
-												${salesBySize.buyBid}
-											</c:if>
-											</c:forEach>
-											</td>
-											<td>
-											<c:forEach var="minSales" items="${priceBySize}">
-											<c:if test="${minSales.size eq size}">
-												${minSales.saleBid}
-											</c:if>
-											</c:forEach>
-											</td>
-										</tr>
-									<c:set var="size" value="${size+5}"/>
-									</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-price"><span>2</span>결제금액 <i id="iconBidPrice" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtBidPrice" style="float:right;margin-right:30px;"></font></a>
-						</div>
-						<div id="bid-price" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="col-sm-12" style="background-color:#F6F6F6;">
-									<div class="col-sm-5" style="padding-top:10px;padding-bottom:30px;"><b>최고입찰가</b><font id="txtBestBid" style="float:right;" data-price="0">원</font></div>
-									<div class="col-sm-2" style="text-align:center;padding-top:10px;font-size:large;">|</div>
-									<div class="col-sm-5" style="padding-top:10px;padding-bottom:30px;"><b>최저판매가</b><font id="txtSaleBid" style="float:right;" data-price="${detail.saleBid}">${detail.saleBid}원</font></div>
-									<div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;margin-bottom:30px;">
-										<label class="btn btn-primary" id="btnBid" style="width:50%;font-size:large;" onclick="$('#btnImmediate').removeClass('btn btn-primary').addClass('btn btn-default');$(this).removeClass('btn btn-default').addClass('btn btn-primary');">
-											<input type="radio" name="jb-radio" id="jb-radio-1"> 구매입찰
-										</label>
-										<c:choose>
-										<c:when test="${detail.saleBid eq 0 || empty detail.saleBid}">
-											<label class="btn btn-default disabled" id="btnImmediate" style="width:50%;font-size:large;" onclick="alert('즉시구매가가 없습니다');">
-												<input disabled="disabled" type="radio" name="jb-radio" id="jb-radio-2"> 즉시구매
-											</label>
-										</c:when>
-										<c:otherwise>
-											<label class="btn btn-default" id="btnImmediate" style="width:50%;font-size:large;" onclick="$('#btnBid').removeClass('btn btn-primary').addClass('btn btn-default');$(this).removeClass('btn btn-default').addClass('btn btn-primary');">
-												<input type="radio" name="jb-radio" id="jb-radio-2"> 즉시구매
-											</label>
-										</c:otherwise>
-										</c:choose>
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-won"></i></span>
-										<input id="inputBidPrice" type="number" placeholder="입찰가격입력" class="form-control" step="1000" style="text-align:right;" autocomplete="on">
-										<span class="input-group-addon">원</span>
-									</div>
-									<div class="price-desc" id="price-desc-msg" style="float:right;margin-bottom:10px;">천원 단위로 입찰가능합니다</div>
-								</div>
-								<div class="col-sm-12">
-									<div class="place-order">
-										<div class="order-list">
-											<h3>배송비 <span>0원</span></h3>
-											<h3>정품 판정비 <span>0원</span></h3>
-										</div>
-										<div class="final-total">
-											<h5>총 결제금액 <span id="totalPrice">0원</span></h5>
-										</div>
-									</div>
+								<label class="btn btn-default" id="lbEasy-payment" style="width:100%;margin-bottom:10px;">
+									<input type="radio" name="methodOfPayment" id="easy-payment" value="easy" checked="checked"> 간편결제
+								</label>
+								<div id="card-plus">
+									<button class="btn btn-light btn-lg"><i class="fa fa-plus" style=""></i> 카드추가</button>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-period"><span>3</span>입찰기한<font id="txtBidPeriod" style="float:right;margin-right:30px;">30d</font></a>
+							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-agreement"><span>2</span>입찰동의 <i id="iconBidPrice" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtBidPrice" style="float:right;margin-right:30px;"></font></a>
 						</div>
-						<div id="bid-period" class="panel-collapse collapse">
+						<div id="bid-agreement" class="panel-collapse collapse">
 							<div class="panel-body">
-								<h4 align="center" style="margin:10px;" id="bidEndDate">2020-0 입찰 종료</h4>
-								<div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;margin-bottom:30px;">
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-1d">
-										<input type="radio" name="bidPeriod" id="bp-1d" value="1d"> 1일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-3d">
-										<input type="radio" name="bidPeriod" id="bp-3d" value="3d"> 3일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-7d">
-										<input type="radio" name="bidPeriod" id="bp-7d" value="7d"> 7일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-15d">
-										<input type="radio" name="bidPeriod" id="bp-15d" value="15d"> 15일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-30d">
-										<input type="radio" name="bidPeriod" id="bp-30d" checked="checked" value="30d"> 30일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-60d">
-										<input type="radio" name="bidPeriod" id="bp-60d" value="60d"> 60일
-									</label>
-								</div>
+							
 							</div>
 						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-address"><span>4</span>배송지 <i id="iconShippingAddress" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtShippingAddress" style="float:right;margin-right:30px;"></font></a>
-						</div>
-						<div id="shipping-address" class="panel-collapse collapse">
-							<div class="panel-body">
-								<label for="shipping-address">배송지</label><hr style="border-style:dotted;">
-								<div class="radio">
-								  <label>
-								    <input type="radio" name="radioShippingAddress" id="standardAddress" value="standardAddress">
-								    <b>기본 배송지 : </b>
-								  </label>
-								  <a href="#" onclick="editStandardAddress();"><c:if test="${member != null}"><p id="txtStandard" align="right">${member.address} <i class="fa fa-edit"></i></p></c:if></a><input type="hidden" id="standardPostNum" value="${member.postNum}">
-								</div><br>
-								<div class="radio">
-								  <label>
-								    <input type="radio" name="radioShippingAddress" id="newAddress" value="newAddress" disabled="disabled">
-								    <b>새 배송지 : </b>
-								  </label>
-								  <a href="#" onclick="editNewAddress();"><p id="txtNew" align="right"><i class="fa fa-edit"></i></p></a><input type="hidden" id="newPostNum">
-								</div>
-								<hr>
-								<div class="dropdown" style="width:100%;">
-								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="width:100%;">
-								    <font id="shippingMessageDrop" style="float:left;">배송 메세지 직접 입력</font>
-								    <span class="caret" style="float:right;"></span>
-								  </button>
-								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('배송 메세지 직접 입력');$('#txtShippingMessage').val('');$('#txtShippingMessage').attr('disabled', false);">배송 메세지 직접 입력</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('배송 전에 미리 연락 바랍니다');$('#txtShippingMessage').val('배송 전에 미리 연락 바랍니다');$('#txtShippingMessage').attr('disabled', true);">배송 전에 미리 연락 바랍니다</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 택배 보관함에 맡겨주세요');$('#txtShippingMessage').val('부재 시 택배 보관함에 맡겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 택배 보관함에 맡겨주세요</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 경비실에 맡겨주세요');$('#txtShippingMessage').val('부재 시 경비실에 맡겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 경비실에 맡겨주세요</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 전화주시거나 문자 남겨주세요');$('#txtShippingMessage').val('부재 시 전화주시거나 문자 남겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 전화주시거나 문자 남겨주세요</a></li>
-								  </ul>
-								</div>
-								<div class="input-group" style="width:100%;">
-  									<input type="text" class="form-control" placeholder="요청사항을 직접 입력해주세요(최대 20자)" maxlength="21" id="txtShippingMessage" autocomplete="on">
-								</div>
-							</div>
-						</div>
-					</div>                        
+					</div>         
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#warning-things"><span>5</span>유의사항</a>
+							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#warning-things"><span>3</span>유의사항</a>
 						</div>
 						<div id="warning-things" class="panel-collapse collapse">
 							<div class="panel-body">
@@ -283,10 +171,8 @@
 				<div class="checkout-right">
 					<h2>CHECKOUT PROGRESS</h2>
 					<ul>
-						<li><a data-toggle="collapse" data-parent="#checkout-progress" href="#size-selection">사이즈 선택</a></li>
-						<li><a data-toggle="collapse" data-parent="#checkout-progress" href="#bid-price">결제금액</a></li>
-						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-period">입찰기한</a></li>
-						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-address">배송지</a></li>
+						<li><a data-toggle="collapse" data-parent="#checkout-progress" href="#payment-method">결제방법</a></li>
+						<li><a data-toggle="collapse" data-parent="#checkout-progress" href="#bid-agreement">입찰동의</a></li>
 						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#warning-things">유의사항</a></li>
 					</ul>
 				</div>

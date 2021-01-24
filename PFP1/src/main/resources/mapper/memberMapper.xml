@@ -33,8 +33,8 @@
 			<if test="address != null">address = #{address},</if>
 			<if test="postNum != null">postNum = #{postNum},</if>
 			<if test="birthday != null">birthday = #{birthday},</if>
-			<if test="emailReceive != null || emailReceive >= 0">emailReceive = #{emailReceive},</if>
-			<if test="messageReceive != null || messageReceive >= 0">messageReceive = #{messageReceive},</if>
+			<if test="emailReceive != null || emailReceive == 0 || emailReceive == 1">emailReceive = #{emailReceive},</if>
+			<if test="messageReceive != null || messageReceive == 0 || messageReceive == 1">messageReceive = #{messageReceive},</if>
 		</trim>
 		where userId = #{userId}
 	</update>

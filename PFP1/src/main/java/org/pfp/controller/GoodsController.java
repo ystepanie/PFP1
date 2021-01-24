@@ -167,7 +167,15 @@ public class GoodsController {
    }
    
    @PostMapping("/buy-confirm")
-   public String postBuyConfirm() {
+   public String postBuyConfirm(@RequestParam int modelNum, @RequestParam int size, @RequestParam int buyPrice, @RequestParam String endDate, @RequestParam String buyAddress, @RequestParam String postNum, @RequestParam String deliveryMessage, Model model) throws Exception {
+	   GoodsVO detail = g_service.detail(modelNum);
+	   model.addAttribute("detail", detail);
+	   model.addAttribute("size", size);
+	   model.addAttribute("buyPrice", buyPrice);
+	   model.addAttribute("endDate", endDate);
+	   model.addAttribute("buyAddress", buyAddress);
+	   model.addAttribute("postNum", postNum);
+	   model.addAttribute("deliveryMessage", deliveryMessage);
 	   return "goods/confirm";
    }
 }

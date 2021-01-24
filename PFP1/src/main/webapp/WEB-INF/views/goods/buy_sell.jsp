@@ -263,9 +263,9 @@
 					</div>
 				</div>
 				<div class="btn-group btn-group-justified" role="group" style="margin-top:30px;">
-				<form action="<%=request.getContextPath() %>/goods/buy-confirm" onsubmit="btnCheckOk();" method="post">
+				<form action="<%=request.getContextPath() %>/goods/buy-confirm" onsubmit="return btnCheckOk();" method="post">
 					<button type="button" class="btn btn-inverse" style="width:50%;" onclick="history.back()">이전</button>
-	  				<button type="submit" class="btn btn-primary" style="width:50%;" onclick="btnCheckOk()">확인</button>
+	  				<button type="submit" class="btn btn-primary" style="width:50%;">확인</button>
 	  				<input type="hidden" id="size" name="size">
 	  				<input type="hidden" id="buyPrice" name="buyPrice">
 	  				<input type="hidden" id="endDate" name="endDate">
@@ -460,7 +460,7 @@ var divisionAddress = 0; //기본 배송지인지 새 배송지인지 구분
 function editStandardAddress() {
 	if (confirm("기본 배송지가 변경되어 저장됩니다. 변경하시겠습니까??") == true){
 		divisionAddress = 0;
-		var pop = window.open("/popup/address_popup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+		var pop = window.open("<%=request.getContextPath() %>/popup/address_popup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 	}else{
 		return false;
 	}
@@ -468,25 +468,19 @@ function editStandardAddress() {
 //새 배송지 수정 클릭
 function editNewAddress() {
 	divisionAddress = 1;
-	var pop = window.open("/popup/address_popup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	var pop = window.open("<%=request.getContextPath() %>/popup/address_popup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes");
 }
 //배송지 수정 후 값 받아오기
 function jusoCallBack(roadFullAddr, zipNo) {
+	alert(roadFullAddr);
 	if(divisionAddress == 0){
-		$.ajax({
-			url : "<%=request.getContextPath()%>/api/modifyAddress",
-			type : "get",
-			data : { address: roadFullAddr, postNum: zipNo },
-			success : function(result){
-				if(result != null){
-					alert(result+"님의 기본 배송지가 수정되었습니다.");
+		$.getJSON("<%=request.getContextPath()%>/api/modifyAddress",
+	    		{address: roadFullAddr, postNum: zipNo},
+	    		function() {
+	    			alert("기본 배송지가 수정되었습니다.");
 					$('#txtStandard').html(roadFullAddr+' <i class="fa fa-edit"></i>');
 					$('#standardPostNum').val(zipNo);
-				}else {
-					alert("기본 배송지 수정에 오류가 발생했습니다.");
-				}
-			}
-		});
+	   	});
 	}else{
 		$('#newAddress').attr('disabled', false);
 		$('#txtNew').html(roadFullAddr+' <i class="fa fa-edit"></i>');
