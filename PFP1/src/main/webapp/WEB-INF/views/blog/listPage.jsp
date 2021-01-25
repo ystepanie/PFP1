@@ -41,7 +41,7 @@
 <%@ include file="../include/header.jsp" %>
 <div class="page-title fix"><!--Start Title-->
 	<div class="overlay section">
-		<h2>○○○'s Blog</h2>
+		<h2>Blog</h2>
 	</div>
 </div><!--End Title-->
 <section class="blog-page page fix"><!-- Start Blog Area-->
@@ -49,6 +49,13 @@
 		<div class="row" style="margin:20px;">
 			<div style="float:left;">
 				<p><b>총 ${count} 개의 글</b></p>
+			</div>
+			<div style="float:right;">
+			<select id="sort-by" onchange="changeSortSelect()">
+						<option selected="selected" value="recommendation">최신순</option>
+						<option value="popularity">인기순</option>
+						<option value="view">조회순</option>
+					</select>
 			</div>
 			<div style="float:right;">
 				<!-- <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-plus-square"></i><b> 목록열기</b></a>
