@@ -64,7 +64,7 @@
 						<div class="meta">
 							<i class="fa fa-pencil-square-o"></i>${list.userId}
 							<i class="fa fa-calendar"></i>${list.regiDate}
-							<i class="fa fa-comments"></i>12 Comments(아직안함)
+							<i class="fa fa-comments"></i>${list.recnt}
 						</div>
 					</div>
 				</div>
@@ -114,7 +114,7 @@ $(window).scroll(function() {
 								+ "<div class='meta'>"
 								+ "<i class='fa fa-pencil-square-o'></i>"+this.userId
 								+ "<i class='fa fa-calendar'></i>"+this.regiDate
-								+ "<i class='fa fa-comments'></i>12 Comments(아직안함)	</div></div></div></div>";
+								+ "<i class='fa fa-comments'></i>"+this.recnt+"</div></div></div></div>";
 							}); //each
 							
 							$(".col-sm-4 col-md-3").empty();
@@ -168,7 +168,7 @@ $(window).scroll(function() {
 									+ "<div class='meta'>"
 									+ "<i class='fa fa-pencil-square-o'></i>"+this.userId
 									+ "<i class='fa fa-calendar'></i>"+this.regiDate
-									+ "<i class='fa fa-comments'></i>12 Comments(아직안함)	</div></div></div></div>";
+									+ "<i class='fa fa-comments'></i>"+this.recnt+"</div></div></div></div>";
 								}); //each
 								
 								$(".col-sm-4 col-md-3").empty();

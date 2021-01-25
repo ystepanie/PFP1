@@ -10,6 +10,7 @@ public class ReplyVO {
 	private String reContent;
 	private String nickname;
 	
+	
 	public String getNickname() {
 		return nickname;
 	}

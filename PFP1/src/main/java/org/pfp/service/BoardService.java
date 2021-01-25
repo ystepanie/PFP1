@@ -31,6 +31,7 @@ public interface BoardService {
 	//게시물 댓글 리스트
 	public List<ReplyVO> replyList(int boardCode) throws Exception;
 	
+	
 	//게시물 댓글 삭제
 	public void deleteReply(ReplyVO vo) throws Exception;
 		

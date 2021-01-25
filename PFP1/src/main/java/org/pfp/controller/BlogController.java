@@ -89,7 +89,7 @@ public class BlogController {
 	   list = b_service.listPage(displayPost, postNum);
 	   model.addAttribute("list", list);
 	   model.addAttribute("pageNum", pageNum);
-	  
+	   
 	   model.addAttribute("select", num);
 	   model.addAttribute("count",count);
    }

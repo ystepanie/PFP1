@@ -15,8 +15,10 @@
 	
 	<!-- 게시물 목록 + 페이 -->
 	<select id="listPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
-		select boardCode, userId, content, picture, tag, good, title, regiDate
-		from board
+		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
+		<!-- 댓글 숫자 -->
+		(select count(*) from comment where boardCode=b.boardCode) as recnt
+		from board b
 		order by boardCode desc
 		limit #{displayPost}, #{postNum}
 	</select>
@@ -80,8 +82,9 @@
 	<!-- 개인 블로그  -->
 	<select id="personalList" resultType="org.pfp.dto.BoardVO">
 	<![CDATA[
-		select boardCode, userId, content, picture, tag, good, title, regiDate
-		from board
+		select boardCode, userId, content, picture, tag, good, title, regiDate,
+		(select count(*) from comment where boardCode=b.boardCode) as recnt
+		from board b
 		where userId = #{userId} and boardCode>0
 		order by boardCode desc, regiDate desc
 		limit 0,12;

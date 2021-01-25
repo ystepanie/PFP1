@@ -134,7 +134,7 @@
 						<div class="meta">
 							<i class="fa fa-pencil-square-o"></i>${list.userId}</a>
 							<i class="fa fa-calendar"></i>${list.regiDate}</a>
-							<i class="fa fa-comments"></i>12 Comments(아직안함)</a>
+							<i class="fa fa-comments"></i>${list.recnt}</a>
 						</div>
 					</div>
 				</div>

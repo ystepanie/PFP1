@@ -9,7 +9,14 @@ public class BoardVO {
 	private int good;
 	private String title;
 	private String regiDate;
+	private int recnt;
 	
+	public int getRecnt() {
+		return recnt;
+	}
+	public void setRecnt(int recnt) {
+		this.recnt = recnt;
+	}
 	public String getRegiDate() {
 		return regiDate;
 	}
