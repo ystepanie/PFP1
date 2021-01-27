@@ -133,4 +133,11 @@
 		    </foreach>
 		ORDER BY score DESC
 	</select>
+	
+	<!-- 해당 회원에 대한 카드 정보들 -->
+   <select id="listCardInfo" resultType="org.pfp.dto.CardVO">
+      select cardNum, userId, cardPass, date_format(period, '%Y-%m-%d') as period, division, birth, checkMail, cardOp, name
+      from card_info
+      where userId = #{userId}
+   </select>
 </mapper>
