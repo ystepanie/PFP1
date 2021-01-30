@@ -138,15 +138,15 @@ input[type="checkbox"]:checked + label span {
                            <input type="radio" name="methodOfPayment" id="easy-payment" value="easy" checked="checked"> 간편결제
                         </label>
                         <div id="card-plus">
-                        	<label class="btn btn-default" style="">
+                        	<label class="btn btn-default">
                         		카드번호<br>이름<br>유효기간<br><i class="fa fa-trash"></i>
                         	</label>
                         	<c:forEach var="listCardInfo" items="${listCardInfo}">
-                        		<label class="btn btn-default" style="">
+                        		<label class="btn btn-default">
 	                        		${listCardInfo.cardNum}<br>${listCardInfo.name}<br>${listCardInfo.period}<br><i class="fa fa-trash"></i>
 	                        	</label>
                         	</c:forEach>
-                           <button class="btn btn-light btn-lg"><i class="fa fa-plus" style=""></i> 카드추가</button>
+                           <button class="btn btn-light btn-lg" onclick="addCardPopupClick()"><i class="fa fa-plus"></i> 카드추가</button>
                         </div>
                      </div>
                   </div>
@@ -299,6 +299,12 @@ function checkSelectAll() {
       $("#iconBidPrice").addClass("fa fa-exclamation-triangle fa-lg");
       $("#iconBidPrice").css("color","red");
    }
+}
+
+function addCardPopupClick() {
+	var url = "<%=request.getContextPath() %>/popup/addCard_popup.jsp";
+	var name = "카드 추가";
+	var option = "width = 500, height = 500, top = 100, left = 200, location = no";
 }
 </script>
 </html>

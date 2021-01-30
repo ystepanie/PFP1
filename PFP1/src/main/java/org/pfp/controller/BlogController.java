@@ -72,7 +72,7 @@ public class BlogController {
    //블로그 + 페이징
    //페이징 num은 현재 페이지 번호
    @GetMapping("/listPage")
-   public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+   public void getListPage(Model model, @RequestParam("num") int num, @RequestParam(required = false, defaultValue = "-1") int order) throws Exception {
 	   int count = b_service.count();
 	   //한 페이지에 출력할 게시글의 개수 
 	   int postNum = 12;
@@ -85,11 +85,16 @@ public class BlogController {
 	   
 	   List list = null;
 	   
-	   
-	   list = b_service.listPage(displayPost, postNum);
+	   if(order == 0) {
+		   list = b_service.listPopPage(displayPost, postNum);
+	   }else if(order == 1) {
+		   list = b_service.listNewPage(displayPost, postNum);
+	   }else {
+		   list = b_service.listPage(displayPost, postNum);
+	   }
 	   model.addAttribute("list", list);
 	   model.addAttribute("pageNum", pageNum);
-	   
+	   model.addAttribute("order", order);
 	   model.addAttribute("select", num);
 	   model.addAttribute("count",count);
    }
@@ -167,13 +172,13 @@ public class BlogController {
    @PostMapping("/likeAdd")
    public void getLikeAdd(HttpSession session, int boardCode) throws Exception {
 	   logger.info("post likeAdd");
-	   String userId = (String)session.getAttribute("userId");
+	   
 	  JsonObject obj = new JsonObject();
-	  
+	  MemberVO member = (MemberVO)session.getAttribute("member");
 	  ArrayList<String> msgs = new ArrayList<String>();
 	  HashMap<String,Object> hashMap = new HashMap<String,Object>();
 	  hashMap.put("boardCode", boardCode);
-	  hashMap.put("userId", userId);
+	  hashMap.put("userId", member.getUserId());
 //	  LikeVO likeVO = LikeVOProc.read(hashMap);
    }
    
