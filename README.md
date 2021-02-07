@@ -7,6 +7,7 @@ portfolio project
 # logo
 ![puzzle](https://user-images.githubusercontent.com/65270992/103644421-b3cbca80-4f99-11eb-8651-0ab7c4f3398a.png)
 
+---
 # description
 It is a website centered on a platform where convenient transactions are made due to the provision of market data and Inspection services.
 It is for practicing building websites and adding great projects to the portfolio.
@@ -18,12 +19,13 @@ It's not very organized, but you can take a look if you're interested.
 * dbms : mariadb
 * design : bootstrap
 * server : apache tomcat 9.0
-* api : daum 주소 팝업 api, emailjs, chartjs, gson
+* api : ckeditor, daum 주소 팝업 api, emailjs, chartjs, gson
 * Development program : eclipse, datagrip
 * java version : 1.8
 * security : spring-security
 * language : java, jsp, jquery, javascript
 
+---
 # code explanation
 ## change price range
 screen for category 'shop'
@@ -69,7 +71,47 @@ function clickPriceRange() {
 	</select>
 ```
 위의 코드를 실행하여 데이터베이스에서 해당 결과 list를 가져온다. 위의 코드는 설정된 가격 범위 안에서의 인기순으로 data를 가져오는 것이다.
+## login interceptor
+screen for category 'login'
+![image](https://user-images.githubusercontent.com/65270992/107148533-03d1ee80-6997-11eb-8061-c688ba5f02f2.png)
+```java
+//로그인 post
+	@PostMapping("/login")
+	public String postLogin(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
+		logger.info("post login");
+	
+		session.getAttribute("member");
+		MemberVO login = m_service.login(vo);
+		boolean pwdMatch = pwdEncoder.matches(vo.getUserPw(), login.getUserPw());
+		
+		if(login != null && pwdMatch == true) {
+			session.setAttribute("member", login);
+			return "redirect:/";
+		} else {
+			session.setAttribute("member", null);
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:login";
+		}
+```
+아이디와 비밀번호를 작성한 후에 로그인 버튼 클릭 후 실행되는 java 코드문이다. 비밀번호를 암호화하여 해당 아이디와 암호화된 비밀번호가 일치하면 session에 로그인 정보를 저장한다.
+```java
+@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+		throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		
+		if(vo == null) {
+			response.sendRedirect(request.getContextPath()+"/member/login");
+			return false;
+		}
+		
+		return true;
+	}
+```
+interceptor 부분으로 로그인이 필요한 url에 접속할 시 session에 로그인 정보가 없을 경우 로그인 창으로 이동시킨다.
 
+---
 # authors
-* Yang Chan jin - <https://github.com/ystepanie>
-* Yu Da Yeon - <https://github.com/ydy2128>
+* Yang Chan jin - github : <https://github.com/ystepanie> portfolio : <https://ystepanie.github.io/portfolio/>
+* Yu Da Yeon - github : <https://github.com/ydy2128> portfolio : <https://ydy2128.github.io/portfolio/>
