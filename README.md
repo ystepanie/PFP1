@@ -111,6 +111,9 @@ screen for category 'login'
 ```
 interceptor 부분으로 로그인이 필요한 url에 접속할 시 session에 로그인 정보가 없을 경우 로그인 창으로 이동시킨다.
 
+
+---
+# 현재 개발 진행중...
 ---
 # authors
 * Yang Chan jin - github : <https://github.com/ystepanie> portfolio : <https://ystepanie.github.io/portfolio/>
