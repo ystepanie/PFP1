@@ -26,6 +26,11 @@ It's not very organized, but you can take a look if you're interested.
 * language : java, jsp, jquery, javascript
 
 ---
+# Run Video
+https://user-images.githubusercontent.com/65270992/107237923-a018f580-6a6a-11eb-9430-e2c536901f7c.mp4
+https://user-images.githubusercontent.com/65270992/107238046-bfb01e00-6a6a-11eb-8791-d3132657f806.mp4
+
+---
 # code explanation
 ## change price range
 screen for category 'shop'
