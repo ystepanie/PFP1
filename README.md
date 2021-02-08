@@ -27,8 +27,13 @@ It's not very organized, but you can take a look if you're interested.
 
 ---
 # Run Video
+↓click!
 [![Watch the video](https://user-images.githubusercontent.com/65270992/107238476-38af7580-6a6b-11eb-81ff-e638ab20763b.png)](https://user-images.githubusercontent.com/65270992/107237923-a018f580-6a6a-11eb-9430-e2c536901f7c.mp4)
+↓click!
 [![Watch the video](https://user-images.githubusercontent.com/65270992/107238570-58469e00-6a6b-11eb-8dbf-9e9e3fe80219.png)](https://user-images.githubusercontent.com/65270992/107238046-bfb01e00-6a6a-11eb-8791-d3132657f806.mp4)
+↓click!
+[![Watch the video](https://user-images.githubusercontent.com/65270992/107241029-ecb20000-6a6d-11eb-9205-da58a74f8b20.png)](https://user-images.githubusercontent.com/65270992/107241115-05221a80-6a6e-11eb-9d70-2e83ad45d78f.mp4)
+
 
 ---
 # code explanation
