@@ -31,7 +31,7 @@ public class BoardDAOImpl implements BoardDAO {
 	//게시물 목록 + 페이징
 	@Override
 	public List listPage(int displayPost, int postNum) throws Exception {
-		HashMap data = new HashMap();
+		HashMap<String, Integer> data = new HashMap<String, Integer>();
 		
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
@@ -108,5 +108,23 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int likeCancel(int likeCheck) throws Exception {
 		return sql.update(namespace+".likeCancel",likeCheck);
+	}
+
+	@Override
+	public List listPopPage(int displayPost, int postNum) throws Exception {
+HashMap<String, Integer> data = new HashMap<String, Integer>();
+		
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		return sql.selectList(namespace + ".listPopPage", data);
+	}
+
+	@Override
+	public List listNewPage(int displayPost, int postNum) throws Exception {
+HashMap<String, Integer> data = new HashMap<String, Integer>();
+		
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		return sql.selectList(namespace + ".listNewPage", data);
 	}
 }

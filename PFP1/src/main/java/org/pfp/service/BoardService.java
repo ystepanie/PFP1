@@ -52,4 +52,10 @@ public interface BoardService {
 	
 	//게시물 좋아요 감소 
 	public int likeCancel(int likeCheck) throws Exception;
+	
+	//게시물 목록 + 페이징 + 인기순
+	public List listPopPage(int displayPost, int postNum) throws Exception;
+		
+	//게시물 목록 + 페이징 + 최신순
+	public List listNewPage(int displayPost, int postNum) throws Exception;
 }

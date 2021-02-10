@@ -74,10 +74,17 @@
 				<p><b>총 ${count} 개의 글</b></p>
 			</div>
 			<div style="float:right;">
+<<<<<<< HEAD
 			<select id="sort-by" onchange="changeSortSelect()">
 						<option selected="selected" value="latest">최신순</option>
 						<option value="popularity">인기순</option>
 						<option value="view">조회순</option>
+=======
+			<select id="sort-by" onchange="if(this.value) location.href=(this.value);">
+						<c:choose><c:when test="${order eq -1}"><option value="<%=request.getContextPath()%>/blog/listPage?num=&order=-1" selected="selected"></c:when><c:otherwise><option value="<%=request.getContextPath()%>/blog/listPage?num=&order=-1"></c:otherwise></c:choose> 정렬순</option>
+						<option value="<%=request.getContextPath()%>/blog/listPage?num=1&order=0" selected="selected"> 최신순</option>
+						<option value="<%=request.getContextPath()%>/blog/listPage?num=1&order=1">인기순</option>
+>>>>>>> branch 'main' of https://github.com/ystepanie/PFP1.git
 					</select>
 			</div>
 			<div style="float:right;">
@@ -177,10 +184,10 @@
 				<ul>	
 				<c:forEach begin="1" end="${pageNum}" var="num">
 					<c:if test="${select != num }">
-					<li ><a href="/blog/listPage?num=${num}"><span>${num}</span></a></li>
+					<li ><a href="/blog/listPage?num=${num}&order=${order}"><span>${num}</span></a></li>
 					</c:if>
 					<c:if test="${select == num }">
-					<li class="active"><a href="/blog/listPage?num=${num}"><span>${num}</span></a></li>
+					<li class="active"><a href="/blog/listPage?num=${num}&order=${order}"><span>${num}</span></a></li>
 					</c:if>	
 				</c:forEach>
 				</ul>

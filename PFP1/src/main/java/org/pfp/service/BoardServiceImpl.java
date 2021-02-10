@@ -103,4 +103,14 @@ public class BoardServiceImpl implements BoardService {
 	public int likeCancel(int likeCheck) throws Exception {
 		return dao.likeCancel(likeCheck);
 	}
+
+	@Override
+	public List listPopPage(int displayPost, int postNum) throws Exception {
+		return dao.listPopPage(displayPost, postNum);
+	}
+
+	@Override
+	public List listNewPage(int displayPost, int postNum) throws Exception {
+		return dao.listNewPage(displayPost, postNum);
+	}
 }

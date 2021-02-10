@@ -75,245 +75,245 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 <div class="page-title fix"><!--Start Title-->
-	<div class="overlay section">
-		<h2>입찰</h2>
-	</div>
+   <div class="overlay section">
+      <h2>입찰</h2>
+   </div>
 </div><!--End Title-->
 <section class="checkout-page page fix"><!--Start Checkout Area-->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-9">
-				<div class="panel-group" id="checkout-progress">
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#size-selection"><span>1</span>사이즈 선택 <i id="iconSizeSelection" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtSizeSelection" style="float:right;margin-right:30px;"></font></a>
-						</div>
-						<div id="size-selection" class="panel-collapse collapse in">
-							<div class="panel-body">
-								<table class="table table-hover header-fixed col3" id="tableSizeSelection">
-									<thead>
-										<tr onclick="return false;">
-											<th>옵션 선택</th>
-											<th>최고 입찰가</th>
-											<th>최저 판매가</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:set var="size" value="220"/>
-									<c:forEach  begin="1" end="19">
-										<tr>
-											<td><b>${size}</b></td>
-											<td>
-											<c:forEach var="minSales" items="${salesBySize}">
-											<c:if test="${salesBySize.size eq size}">
-												${salesBySize.buyBid}
-											</c:if>
-											</c:forEach>
-											</td>
-											<td>
-											<c:forEach var="minSales" items="${priceBySize}">
-											<c:if test="${minSales.size eq size}">
-												${minSales.saleBid}
-											</c:if>
-											</c:forEach>
-											</td>
-										</tr>
-									<c:set var="size" value="${size+5}"/>
-									</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-price"><span>2</span>결제금액 <i id="iconBidPrice" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtBidPrice" style="float:right;margin-right:30px;"></font></a>
-						</div>
-						<div id="bid-price" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="col-sm-12" style="background-color:#F6F6F6;">
-									<div class="col-sm-5" style="padding-top:10px;padding-bottom:30px;"><b>최고입찰가</b><font id="txtBestBid" style="float:right;" data-price="0">원</font></div>
-									<div class="col-sm-2" style="text-align:center;padding-top:10px;font-size:large;">|</div>
-									<div class="col-sm-5" style="padding-top:10px;padding-bottom:30px;"><b>최저판매가</b><font id="txtSaleBid" style="float:right;" data-price="${detail.saleBid}">${detail.saleBid}원</font></div>
-									<div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;margin-bottom:30px;">
-										<label class="btn btn-primary" id="btnBid" style="width:50%;font-size:large;" onclick="$('#btnImmediate').removeClass('btn btn-primary').addClass('btn btn-default');$(this).removeClass('btn btn-default').addClass('btn btn-primary');">
-											<input type="radio" name="jb-radio" id="jb-radio-1"> 구매입찰
-										</label>
-										<c:choose>
-										<c:when test="${detail.saleBid eq 0 || empty detail.saleBid}">
-											<label class="btn btn-default disabled" id="btnImmediate" style="width:50%;font-size:large;" onclick="alert('즉시구매가가 없습니다');">
-												<input disabled="disabled" type="radio" name="jb-radio" id="jb-radio-2"> 즉시구매
-											</label>
-										</c:when>
-										<c:otherwise>
-											<label class="btn btn-default" id="btnImmediate" style="width:50%;font-size:large;" onclick="$('#btnBid').removeClass('btn btn-primary').addClass('btn btn-default');$(this).removeClass('btn btn-default').addClass('btn btn-primary');">
-												<input type="radio" name="jb-radio" id="jb-radio-2"> 즉시구매
-											</label>
-										</c:otherwise>
-										</c:choose>
-									</div>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-won"></i></span>
-										<input id="inputBidPrice" type="number" placeholder="입찰가격입력" class="form-control" step="1000" style="text-align:right;" autocomplete="on">
-										<span class="input-group-addon">원</span>
-									</div>
-									<div class="price-desc" id="price-desc-msg" style="float:right;margin-bottom:10px;">천원 단위로 입찰가능합니다</div>
-								</div>
-								<div class="col-sm-12">
-									<div class="place-order">
-										<div class="order-list">
-											<h3>배송비 <span>0원</span></h3>
-											<h3>정품 판정비 <span>0원</span></h3>
-										</div>
-										<div class="final-total">
-											<h5>총 결제금액 <span id="totalPrice">0원</span></h5>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-period"><span>3</span>입찰기한<font id="txtBidPeriod" style="float:right;margin-right:30px;">30d</font></a>
-						</div>
-						<div id="bid-period" class="panel-collapse collapse">
-							<div class="panel-body">
-								<h4 align="center" style="margin:10px;" id="bidEndDate">2020-0 입찰 종료</h4>
-								<div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;margin-bottom:30px;">
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-1d">
-										<input type="radio" name="bidPeriod" id="bp-1d" value="1d"> 1일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-3d">
-										<input type="radio" name="bidPeriod" id="bp-3d" value="3d"> 3일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-7d">
-										<input type="radio" name="bidPeriod" id="bp-7d" value="7d"> 7일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-15d">
-										<input type="radio" name="bidPeriod" id="bp-15d" value="15d"> 15일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-30d">
-										<input type="radio" name="bidPeriod" id="bp-30d" checked="checked" value="30d"> 30일
-									</label>
-									<label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-60d">
-										<input type="radio" name="bidPeriod" id="bp-60d" value="60d"> 60일
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-address"><span>4</span>배송지 <i id="iconShippingAddress" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtShippingAddress" style="float:right;margin-right:30px;"></font></a>
-						</div>
-						<div id="shipping-address" class="panel-collapse collapse">
-							<div class="panel-body">
-								<label for="shipping-address">배송지</label><hr style="border-style:dotted;">
-								<div class="radio">
-								  <label>
-								    <input type="radio" name="radioShippingAddress" id="standardAddress" value="standardAddress">
-								    <b>기본 배송지 : </b>
-								  </label>
-								  <a href="#" onclick="editStandardAddress();"><c:if test="${member != null}"><p id="txtStandard" align="right">${member.address} <i class="fa fa-edit"></i></p></c:if></a><input type="hidden" id="standardPostNum" value="${member.postNum}">
-								</div><br>
-								<div class="radio">
-								  <label>
-								    <input type="radio" name="radioShippingAddress" id="newAddress" value="newAddress" disabled="disabled">
-								    <b>새 배송지 : </b>
-								  </label>
-								  <a href="#" onclick="editNewAddress();"><p id="txtNew" align="right"><i class="fa fa-edit"></i></p></a><input type="hidden" id="newPostNum">
-								</div>
-								<hr>
-								<div class="dropdown" style="width:100%;">
-								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="width:100%;">
-								    <font id="shippingMessageDrop" style="float:left;">배송 메세지 직접 입력</font>
-								    <span class="caret" style="float:right;"></span>
-								  </button>
-								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('배송 메세지 직접 입력');$('#txtShippingMessage').val('');$('#txtShippingMessage').attr('disabled', false);">배송 메세지 직접 입력</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('배송 전에 미리 연락 바랍니다');$('#txtShippingMessage').val('배송 전에 미리 연락 바랍니다');$('#txtShippingMessage').attr('disabled', true);">배송 전에 미리 연락 바랍니다</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 택배 보관함에 맡겨주세요');$('#txtShippingMessage').val('부재 시 택배 보관함에 맡겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 택배 보관함에 맡겨주세요</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 경비실에 맡겨주세요');$('#txtShippingMessage').val('부재 시 경비실에 맡겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 경비실에 맡겨주세요</a></li>
-								    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 전화주시거나 문자 남겨주세요');$('#txtShippingMessage').val('부재 시 전화주시거나 문자 남겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 전화주시거나 문자 남겨주세요</a></li>
-								  </ul>
-								</div>
-								<div class="input-group" style="width:100%;">
-  									<input type="text" class="form-control" placeholder="요청사항을 직접 입력해주세요(최대 20자)" maxlength="21" id="txtShippingMessage" autocomplete="on">
-								</div>
-							</div>
-						</div>
-					</div>                        
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#warning-things"><span>5</span>유의사항</a>
-						</div>
-						<div id="warning-things" class="panel-collapse collapse">
-							<div class="panel-body">
-								<ul style="list-style-type:disc;">
-		                            <li>구매입찰 가격을 등록하면 최고 입찰가부터 거래가 체결됩니다.</li>
-		                            <li>판매자와 구매자가 등록한 가격이 동일할 경우, 거래가 자동으로 성사되고 자동 결제됩니다.</li>
-		                            <li>검수 성공 상품만 배송해 드립니다.</li>
-		                            <li>즉시구매 가격을 입력하면 할부 결제할 수 있습니다.</li>
-		                            <li>할부 결제를 원할 시 신용카드 및 카카오페이 등을 선택해 주세요. 결제하실 신용카드와 할부 기간을 선택할 수 있습니다.</li>
-		                            <li>PUZZLE에 등록한 카드로 자동 결제하려면 '자동결제' 버튼을 클릭하세요. '자동결제'를 이용하면 신용카드 정보를 매번 입력하지 않아도, 등록된 신용카드 정보로 편리하게 결제할 수 있습니다.</li>
-		                        </ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="btn-group btn-group-justified" role="group" style="margin-top:30px;">
-				<form action="<%=request.getContextPath() %>/goods/buy-confirm" onsubmit="return btnCheckOk();" method="post">
-					<button type="button" class="btn btn-inverse" style="width:50%;" onclick="history.back()">이전</button>
-	  				<button type="submit" class="btn btn-primary" style="width:50%;">확인</button>
-	  				<input type="hidden" id="size" name="size">
-	  				<input type="hidden" id="buyPrice" name="buyPrice">
-	  				<input type="hidden" id="endDate" name="endDate">
-	  				<input type="hidden" id="buyAddress" name="buyAddress">
-	  				<input type="hidden" id="postNum" name="postNum">
-	  				<input type="hidden" id="deliveryMessage" name="deliveryMessage">
-	  				<input type="hidden" id="modelNum" name="modelNum" value="${detail.modelNum}">
-	  			</form>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<img alt="" src="${detail.thumbnail}">
-				<p style="margin:10px;padding-bottom:10px;font-weight:bold;">${detail.itemName}</p>
-				<div class="checkout-right">
-					<h2>CHECKOUT PROGRESS</h2>
-					<ul>
-						<li><a data-toggle="collapse" data-parent="#checkout-progress" href="#size-selection">사이즈 선택</a></li>
-						<li><a data-toggle="collapse" data-parent="#checkout-progress" href="#bid-price">결제금액</a></li>
-						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-period">입찰기한</a></li>
-						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-address">배송지</a></li>
-						<li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#warning-things">유의사항</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-9">
+            <div class="panel-group" id="checkout-progress">
+               <div class="panel panel-default">
+                  <div class="panel-heading" >
+                     <a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#size-selection"><span>1</span>사이즈 선택 <i id="iconSizeSelection" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtSizeSelection" style="float:right;margin-right:30px;"></font></a>
+                  </div>
+                  <div id="size-selection" class="panel-collapse collapse in">
+                     <div class="panel-body">
+                        <table class="table table-hover header-fixed col3" id="tableSizeSelection">
+                           <thead>
+                              <tr onclick="return false;">
+                                 <th>옵션 선택</th>
+                                 <th>최고 입찰가</th>
+                                 <th>최저 판매가</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <c:set var="size" value="220"/>
+                           <c:forEach  begin="1" end="19">
+                              <tr>
+                                 <td><b>${size}</b></td>
+                                 <td>
+                                 <c:forEach var="minSales" items="${salesBySize}">
+                                 <c:if test="${salesBySize.size eq size}">
+                                    ${salesBySize.buyBid}
+                                 </c:if>
+                                 </c:forEach>
+                                 </td>
+                                 <td>
+                                 <c:forEach var="minSales" items="${priceBySize}">
+                                 <c:if test="${minSales.size eq size}">
+                                    ${minSales.saleBid}
+                                 </c:if>
+                                 </c:forEach>
+                                 </td>
+                              </tr>
+                           <c:set var="size" value="${size+5}"/>
+                           </c:forEach>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <div class="panel panel-default">
+                  <div class="panel-heading" >
+                     <a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-price"><span>2</span>결제금액 <i id="iconBidPrice" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtBidPrice" style="float:right;margin-right:30px;"></font></a>
+                  </div>
+                  <div id="bid-price" class="panel-collapse collapse">
+                     <div class="panel-body">
+                        <div class="col-sm-12" style="background-color:#F6F6F6;">
+                           <div class="col-sm-5" style="padding-top:10px;padding-bottom:30px;"><b>최고입찰가</b><font id="txtBestBid" style="float:right;" data-price="0">원</font></div>
+                           <div class="col-sm-2" style="text-align:center;padding-top:10px;font-size:large;">|</div>
+                           <div class="col-sm-5" style="padding-top:10px;padding-bottom:30px;"><b>최저판매가</b><font id="txtSaleBid" style="float:right;" data-price="${detail.saleBid}">${detail.saleBid}원</font></div>
+                           <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;margin-bottom:30px;">
+                              <label class="btn btn-primary" id="btnBid" style="width:50%;font-size:large;" onclick="$('#btnImmediate').removeClass('btn btn-primary').addClass('btn btn-default');$(this).removeClass('btn btn-default').addClass('btn btn-primary');">
+                                 <input type="radio" name="jb-radio" id="jb-radio-1"> 구매입찰
+                              </label>
+                              <c:choose>
+                              <c:when test="${detail.saleBid eq 0 || empty detail.saleBid}">
+                                 <label class="btn btn-default disabled" id="btnImmediate" style="width:50%;font-size:large;" onclick="alert('즉시구매가가 없습니다');">
+                                    <input disabled="disabled" type="radio" name="jb-radio" id="jb-radio-2"> 즉시구매
+                                 </label>
+                              </c:when>
+                              <c:otherwise>
+                                 <label class="btn btn-default" id="btnImmediate" style="width:50%;font-size:large;" onclick="$('#btnBid').removeClass('btn btn-primary').addClass('btn btn-default');$(this).removeClass('btn btn-default').addClass('btn btn-primary');">
+                                    <input type="radio" name="jb-radio" id="jb-radio-2"> 즉시구매
+                                 </label>
+                              </c:otherwise>
+                              </c:choose>
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-won"></i></span>
+                              <input id="inputBidPrice" type="number" placeholder="입찰가격입력" class="form-control" step="1000" style="text-align:right;" autocomplete="on">
+                              <span class="input-group-addon">원</span>
+                           </div>
+                           <div class="price-desc" id="price-desc-msg" style="float:right;margin-bottom:10px;">천원 단위로 입찰가능합니다</div>
+                        </div>
+                        <div class="col-sm-12">
+                           <div class="place-order">
+                              <div class="order-list">
+                                 <h3>배송비 <span>0원</span></h3>
+                                 <h3>정품 판정비 <span>0원</span></h3>
+                              </div>
+                              <div class="final-total">
+                                 <h5>총 결제금액 <span id="totalPrice">0원</span></h5>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="panel panel-default">
+                  <div class="panel-heading" >
+                     <a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-period"><span>3</span>입찰기한<font id="txtBidPeriod" style="float:right;margin-right:30px;">30d</font></a>
+                  </div>
+                  <div id="bid-period" class="panel-collapse collapse">
+                     <div class="panel-body">
+                        <h4 align="center" style="margin:10px;" id="bidEndDate">2020-0 입찰 종료</h4>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons" style="width:100%;margin-bottom:30px;">
+                           <label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-1d">
+                              <input type="radio" name="bidPeriod" id="bp-1d" value="1d"> 1일
+                           </label>
+                           <label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-3d">
+                              <input type="radio" name="bidPeriod" id="bp-3d" value="3d"> 3일
+                           </label>
+                           <label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-7d">
+                              <input type="radio" name="bidPeriod" id="bp-7d" value="7d"> 7일
+                           </label>
+                           <label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-15d">
+                              <input type="radio" name="bidPeriod" id="bp-15d" value="15d"> 15일
+                           </label>
+                           <label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-30d">
+                              <input type="radio" name="bidPeriod" id="bp-30d" checked="checked" value="30d"> 30일
+                           </label>
+                           <label class="btn btn-default" style="width:16.666666666667%;" id="lbBp-60d">
+                              <input type="radio" name="bidPeriod" id="bp-60d" value="60d"> 60일
+                           </label>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="panel panel-default">
+                  <div class="panel-heading" >
+                     <a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-address"><span>4</span>배송지 <i id="iconShippingAddress" style="color:red;" class="fa fa-exclamation-triangle fa-lg"></i><font id="txtShippingAddress" style="float:right;margin-right:30px;"></font></a>
+                  </div>
+                  <div id="shipping-address" class="panel-collapse collapse">
+                     <div class="panel-body">
+                        <label for="shipping-address">배송지</label><hr style="border-style:dotted;">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="radioShippingAddress" id="standardAddress" value="standardAddress">
+                            <b>기본 배송지 : </b>
+                          </label>
+                          <a href="#" onclick="editStandardAddress();"><c:if test="${member != null}"><p id="txtStandard" align="right">${member.address} <i class="fa fa-edit"></i></p></c:if></a><input type="hidden" id="standardPostNum" value="${member.postNum}">
+                        </div><br>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="radioShippingAddress" id="newAddress" value="newAddress" disabled="disabled">
+                            <b>새 배송지 : </b>
+                          </label>
+                          <a href="#" onclick="editNewAddress();"><p id="txtNew" align="right"><i class="fa fa-edit"></i></p></a><input type="hidden" id="newPostNum">
+                        </div>
+                        <hr>
+                        <div class="dropdown" style="width:100%;">
+                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="width:100%;">
+                            <font id="shippingMessageDrop" style="float:left;">배송 메세지 직접 입력</font>
+                            <span class="caret" style="float:right;"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('배송 메세지 직접 입력');$('#txtShippingMessage').val('');$('#txtShippingMessage').attr('disabled', false);">배송 메세지 직접 입력</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('배송 전에 미리 연락 바랍니다');$('#txtShippingMessage').val('배송 전에 미리 연락 바랍니다');$('#txtShippingMessage').attr('disabled', true);">배송 전에 미리 연락 바랍니다</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 택배 보관함에 맡겨주세요');$('#txtShippingMessage').val('부재 시 택배 보관함에 맡겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 택배 보관함에 맡겨주세요</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 경비실에 맡겨주세요');$('#txtShippingMessage').val('부재 시 경비실에 맡겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 경비실에 맡겨주세요</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#shippingMessageDrop').text('부재 시 전화주시거나 문자 남겨주세요');$('#txtShippingMessage').val('부재 시 전화주시거나 문자 남겨주세요');$('#txtShippingMessage').attr('disabled', true);">부재 시 전화주시거나 문자 남겨주세요</a></li>
+                          </ul>
+                        </div>
+                        <div class="input-group" style="width:100%;">
+                             <input type="text" class="form-control" placeholder="요청사항을 직접 입력해주세요(최대 20자)" maxlength="21" id="txtShippingMessage" autocomplete="on">
+                        </div>
+                     </div>
+                  </div>
+               </div>                        
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#warning-things"><span>5</span>유의사항</a>
+                  </div>
+                  <div id="warning-things" class="panel-collapse collapse">
+                     <div class="panel-body">
+                        <ul style="list-style-type:disc;">
+                                  <li>구매입찰 가격을 등록하면 최고 입찰가부터 거래가 체결됩니다.</li>
+                                  <li>판매자와 구매자가 등록한 가격이 동일할 경우, 거래가 자동으로 성사되고 자동 결제됩니다.</li>
+                                  <li>검수 성공 상품만 배송해 드립니다.</li>
+                                  <li>즉시구매 가격을 입력하면 할부 결제할 수 있습니다.</li>
+                                  <li>할부 결제를 원할 시 신용카드 및 카카오페이 등을 선택해 주세요. 결제하실 신용카드와 할부 기간을 선택할 수 있습니다.</li>
+                                  <li>PUZZLE에 등록한 카드로 자동 결제하려면 '자동결제' 버튼을 클릭하세요. '자동결제'를 이용하면 신용카드 정보를 매번 입력하지 않아도, 등록된 신용카드 정보로 편리하게 결제할 수 있습니다.</li>
+                              </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="btn-group btn-group-justified" role="group" style="margin-top:30px;">
+            <form action="<%=request.getContextPath() %>/goods/buy-confirm" onsubmit="return btnCheckOk();" method="post">
+               <button type="button" class="btn btn-inverse" style="width:50%;" onclick="history.back()">이전</button>
+                 <button type="submit" class="btn btn-primary" style="width:50%;">확인</button>
+                 <input type="hidden" id="size" name="size">
+                 <input type="hidden" id="buyPrice" name="buyPrice">
+                 <input type="hidden" id="endDate" name="endDate">
+                 <input type="hidden" id="buyAddress" name="buyAddress">
+                 <input type="hidden" id="postNum" name="postNum">
+                 <input type="hidden" id="deliveryMessage" name="deliveryMessage">
+                 <input type="hidden" id="modelNum" name="modelNum" value="${detail.modelNum}">
+              </form>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <img alt="" src="${detail.thumbnail}">
+            <p style="margin:10px;padding-bottom:10px;font-weight:bold;">${detail.itemName}</p>
+            <div class="checkout-right">
+               <h2>CHECKOUT PROGRESS</h2>
+               <ul>
+                  <li><a data-toggle="collapse" data-parent="#checkout-progress" href="#size-selection">사이즈 선택</a></li>
+                  <li><a data-toggle="collapse" data-parent="#checkout-progress" href="#bid-price">결제금액</a></li>
+                  <li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bid-period">입찰기한</a></li>
+                  <li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-address">배송지</a></li>
+                  <li><a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#warning-things">유의사항</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
 </section><!--End Checkout Area-->
 <div class="brand-area section fix"><!--Start Brand Area-->
-	<div class="container">
-		<div class="row">
-			<div class="section-title">
-				<h2>Our Brands</h2>
-				<div class="underline"></div>
-			</div>
-			<div class="brand-slider owl-carousel">
-				<div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-3.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-4.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-5.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-3.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-4.png" alt="" /></div>
-				<div class="brand-item"><img src="img/brand/brand-5.png" alt="" /></div>
-			</div>
-		</div>
-	</div>
+   <div class="container">
+      <div class="row">
+         <div class="section-title">
+            <h2>Our Brands</h2>
+            <div class="underline"></div>
+         </div>
+         <div class="brand-slider owl-carousel">
+            <div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-3.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-4.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-5.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-3.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-4.png" alt="" /></div>
+            <div class="brand-item"><img src="img/brand/brand-5.png" alt="" /></div>
+         </div>
+      </div>
+   </div>
 </div><!--End Brand Area-->
 <%@ include file="../include/footer.jsp" %>   
 
@@ -360,20 +360,20 @@ $('#inputBidPrice').on('change', function() {
     $('#txtBidPrice').text(n+'원');
     $('#buyPrice').val(n);
     if(n>0){
-    	$('#iconBidPrice').removeClass("fa fa-exclamation-triangle fa-lg");
-    	$('#iconBidPrice').addClass("fa fa-check fa-lg");
-    	$('#iconBidPrice').css("color","green");
-    	if(n == $('#txtSaleBid').attr("data-price") && $('#txtSaleBid').attr("data-price") > 0){
-    		$('#price-desc-msg').text('즉시구매가입니다');
-    	}else if(n > $('#txtSaleBid').attr("data-price") && $('#txtSaleBid').attr("data-price") > 0){
-    		$('#price-desc-msg').text('즉시구매가보다 높은 금액입니다');
-    	}else if(n > $('#txtBestBid').attr("data-price")){
-    		$('#price-desc-msg').text('최고입찰가입니다');
-    	}
+       $('#iconBidPrice').removeClass("fa fa-exclamation-triangle fa-lg");
+       $('#iconBidPrice').addClass("fa fa-check fa-lg");
+       $('#iconBidPrice').css("color","green");
+       if(n == $('#txtSaleBid').attr("data-price") && $('#txtSaleBid').attr("data-price") > 0){
+          $('#price-desc-msg').text('즉시구매가입니다');
+       }else if(n > $('#txtSaleBid').attr("data-price") && $('#txtSaleBid').attr("data-price") > 0){
+          $('#price-desc-msg').text('즉시구매가보다 높은 금액입니다');
+       }else if(n > $('#txtBestBid').attr("data-price")){
+          $('#price-desc-msg').text('최고입찰가입니다');
+       }
     }else{
-    	$('#iconBidPrice').removeClass("fa fa-check fa-lg");
-    	$('#iconBidPrice').addClass("fa fa-exclamation-triangle fa-lg");
-    	$('#iconBidPrice').css("color","red");
+       $('#iconBidPrice').removeClass("fa fa-check fa-lg");
+       $('#iconBidPrice').addClass("fa fa-exclamation-triangle fa-lg");
+       $('#iconBidPrice').css("color","red");
     }
  });
  
@@ -383,135 +383,135 @@ day.add(Calendar.DATE , 30);%>
 $('#bidEndDate').text(<%=day.get(day.YEAR)%>+'-'+<%=(day.get(day.MONTH)+1)%>+'-'+<%=day.get(day.DATE)%>+ ' 입찰 종료');
 $('#lbBp-30d').trigger('click');
 $('#lbBp-30d').bind('click', function () {
-	<% day = Calendar.getInstance();
-	day.add(Calendar.DATE , 30);%>
-	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+   <% day = Calendar.getInstance();
+   day.add(Calendar.DATE , 30);%>
+   $('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
 });
 $('#lbBp-1d').bind('click', function () {
-	<% day = Calendar.getInstance();
-	day.add(Calendar.DATE , 1);%>
-	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+   <% day = Calendar.getInstance();
+   day.add(Calendar.DATE , 1);%>
+   $('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
 });
 $('#lbBp-3d').bind('click', function () {
-	<% day = Calendar.getInstance();
-	day.add(Calendar.DATE , 3);%>
-	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+   <% day = Calendar.getInstance();
+   day.add(Calendar.DATE , 3);%>
+   $('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
 });
 $('#lbBp-7d').bind('click', function () {
-	<% day = Calendar.getInstance();
-	day.add(Calendar.DATE , 7);%>
-	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+   <% day = Calendar.getInstance();
+   day.add(Calendar.DATE , 7);%>
+   $('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
 });
 $('#lbBp-15d').bind('click', function () {
-	<% day = Calendar.getInstance();
-	day.add(Calendar.DATE , 15);%>
-	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+   <% day = Calendar.getInstance();
+   day.add(Calendar.DATE , 15);%>
+   $('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
 });
 $('#lbBp-30d').bind('click', function () {
-	<% day = Calendar.getInstance();
-	day.add(Calendar.DATE , 30);%>
-	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+   <% day = Calendar.getInstance();
+   day.add(Calendar.DATE , 30);%>
+   $('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
 });
 $('#lbBp-60d').bind('click', function () {
-	<% day = Calendar.getInstance();
-	day.add(Calendar.DATE , 60);%>
-	$('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
+   <% day = Calendar.getInstance();
+   day.add(Calendar.DATE , 60);%>
+   $('#bidEndDate').text('<%=day.get(day.YEAR)%>-<%=(day.get(day.MONTH)+1)%>-<%=day.get(day.DATE)%> 입찰 종료');
 });
 
 //사이즈 선택 이벤트
 $("#tableSizeSelection tr").click(function(){
-	if($(this).find("th").length > 0){
-		return false;
-	}
-	$("#tableSizeSelection tr").css("background-color","white");
-	$(this).css("background-color","silver"); // 클릭한 행 배경색 바꾸기
-	$("#iconSizeSelection").removeClass("fa fa-exclamation-triangle fa-lg");
-	$("#iconSizeSelection").addClass("fa fa-check fa-lg"); // 아이콘 바꾸기
-	$("#iconSizeSelection").css("color","green");
-	
-	var tdArr = new Array();
-	var td = $(this).children();
-	td.each(function(i){
+   if($(this).find("th").length > 0){
+      return false;
+   }
+   $("#tableSizeSelection tr").css("background-color","white");
+   $(this).css("background-color","silver"); // 클릭한 행 배경색 바꾸기
+   $("#iconSizeSelection").removeClass("fa fa-exclamation-triangle fa-lg");
+   $("#iconSizeSelection").addClass("fa fa-check fa-lg"); // 아이콘 바꾸기
+   $("#iconSizeSelection").css("color","green");
+   
+   var tdArr = new Array();
+   var td = $(this).children();
+   td.each(function(i){
         tdArr.push(td.eq(i).text());
     }); //선택한 행의 값들을 배열에 저장
-	$("#txtSizeSelection").text(td.eq(0).text()); //사이즈 띄우기
-	$("#txtBestBid").text(td.eq(1).text()+"원");//해당 사이즈에 대한 최고입찰가
-	$("#txtSaleBid").text(td.eq(2).text()+"원");//해당 사이즈에 대한 최저판매가
-	$("#size").val(td.eq(0).text());
+   $("#txtSizeSelection").text(td.eq(0).text()); //사이즈 띄우기
+   $("#txtBestBid").text(td.eq(1).text()+"원");//해당 사이즈에 대한 최고입찰가
+   $("#txtSaleBid").text(td.eq(2).text()+"원");//해당 사이즈에 대한 최저판매가
+   $("#size").val(td.eq(0).text());
 });
 
 //배송지 라디오버튼 클릭 이벤트
 $("input[name='radioShippingAddress']").change(function() {
-	$("#iconShippingAddress").removeClass("fa fa-exclamation-triangle fa-lg");
-	$("#iconShippingAddress").addClass("fa fa-check fa-lg");
-	$("#iconShippingAddress").css("color","green");
-	if($("input[name='radioShippingAddress']:checked").val() == "standardAddress"){
-		$("#txtShippingAddress").text($("#txtStandard").text());
-		$("#buyAddress").val($("#txtStandard").text());
-		$("#postNum").val($('#standardPostNum').val());
-	}else{
-		$("#txtShippingAddress").text($("#txtNew").text());
-		$("#buyAddress").val($("#txtNew").text());
-		$("#postNum").val($('#newPostNum').val());
-	}
+   $("#iconShippingAddress").removeClass("fa fa-exclamation-triangle fa-lg");
+   $("#iconShippingAddress").addClass("fa fa-check fa-lg");
+   $("#iconShippingAddress").css("color","green");
+   if($("input[name='radioShippingAddress']:checked").val() == "standardAddress"){
+      $("#txtShippingAddress").text($("#txtStandard").text());
+      $("#buyAddress").val($("#txtStandard").text());
+      $("#postNum").val($('#standardPostNum').val());
+   }else{
+      $("#txtShippingAddress").text($("#txtNew").text());
+      $("#buyAddress").val($("#txtNew").text());
+      $("#postNum").val($('#newPostNum').val());
+   }
 });
 var divisionAddress = 0; //기본 배송지인지 새 배송지인지 구분
 //기본 배송지 수정 클릭
 function editStandardAddress() {
-	if (confirm("기본 배송지가 변경되어 저장됩니다. 변경하시겠습니까??") == true){
-		divisionAddress = 0;
-		var pop = window.open("<%=request.getContextPath() %>/popup/address_popup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-	}else{
-		return false;
-	}
+   if (confirm("기본 배송지가 변경되어 저장됩니다. 변경하시겠습니까??") == true){
+      divisionAddress = 0;
+      var pop = window.open("<%=request.getContextPath() %>/popup/address_popup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+   }else{
+      return false;
+   }
 }
 //새 배송지 수정 클릭
 function editNewAddress() {
-	divisionAddress = 1;
-	var pop = window.open("<%=request.getContextPath() %>/popup/address_popup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+   divisionAddress = 1;
+   var pop = window.open("<%=request.getContextPath() %>/popup/address_popup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes");
 }
 //배송지 수정 후 값 받아오기
 function jusoCallBack(roadFullAddr, zipNo) {
-	alert(roadFullAddr);
-	if(divisionAddress == 0){
-		$.getJSON("<%=request.getContextPath()%>/api/modifyAddress",
-	    		{address: roadFullAddr, postNum: zipNo},
-	    		function() {
-	    			alert("기본 배송지가 수정되었습니다.");
-					$('#txtStandard').html(roadFullAddr+' <i class="fa fa-edit"></i>');
-					$('#standardPostNum').val(zipNo);
-	   	});
-	}else{
-		$('#newAddress').attr('disabled', false);
-		$('#txtNew').html(roadFullAddr+' <i class="fa fa-edit"></i>');
-		$('#newPostNum').val(zipNo);
-	}
+   alert(roadFullAddr);
+   if(divisionAddress == 0){
+      $.getJSON("<%=request.getContextPath()%>/api/modifyAddress",
+            { address: roadFullAddr, postNum: zipNo },
+            function () {
+               alert("기본 배송지가 수정되었습니다.");
+      });
+      $('#txtStandard').html(roadFullAddr+' <i class="fa fa-edit"></i>');
+      $('#standardPostNum').val(zipNo);
+   }else{
+      $('#newAddress').attr('disabled', false);
+      $('#txtNew').html(roadFullAddr+' <i class="fa fa-edit"></i>');
+      $('#newPostNum').val(zipNo);
+   }
 }
 //입찰기한 라디오버튼 클릭 이벤트
 $("input[name='bidPeriod']").change(function() {
-	$("#txtBidPeriod").text($(this).val());
-	$("#endDate").text($(this).val());
+   $("#txtBidPeriod").text($(this).val());
+   $("#endDate").val($(this).val());
 });
 
 function btnCheckOk() {
-	if($("#txtSizeSelection").text() == null || $("#txtSizeSelection").text() == ""){
-		alert("사이즈를 선택해주세요");
-		return false;
-	}
-	if($("#txtBidPrice").text() == null || $("#txtBidPrice").text() == ""){
-		alert("입찰가격을 입력해주세요");
-		return false;
-	}
-	if($("#txtBidPeriod").text() == null || $("#txtBidPeriod").text() == ""){
-		alert("입찰기한을 선택해주세요");
-		return false;
-	}
-	if($("#txtShippingAddress").text() == null || $("#txtShippingAddress").text() == ""){
-		alert("배송지를 선택해주세요");
-		return false;
-	}
-	$("#deliveryMessage").val($("#txtShippingMessage").val());
-	return true;
+   if($("#txtSizeSelection").text() == null || $("#txtSizeSelection").text() == ""){
+      alert("사이즈를 선택해주세요");
+      return false;
+   }
+   if($("#txtBidPrice").text() == null || $("#txtBidPrice").text() == ""){
+      alert("입찰가격을 입력해주세요");
+      return false;
+   }
+   if($("#txtBidPeriod").text() == null || $("#txtBidPeriod").text() == ""){
+      alert("입찰기한을 선택해주세요");
+      return false;
+   }
+   if($("#txtShippingAddress").text() == null || $("#txtShippingAddress").text() == ""){
+      alert("배송지를 선택해주세요");
+      return false;
+   }
+   $("#deliveryMessage").val($("#txtShippingMessage").val());
+   return true;
 }
 </script>
 </html>

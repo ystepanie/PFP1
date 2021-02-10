@@ -16,6 +16,12 @@ public interface BoardDAO {
 	//게시물 목록 + 페이징
 	public List listPage(int displayPost, int postNum) throws Exception;
 	
+	//게시물 목록 + 페이징 + 인기순
+	public List listPopPage(int displayPost, int postNum) throws Exception;
+	
+	//게시물 목록 + 페이징 + 최신순
+	public List listNewPage(int displayPost, int postNum) throws Exception;
+	
 	//게시물 목록 + 무한 스크롤 
 	public List infiniteScrollDown(Integer boardCode) throws Exception;
 	
