@@ -34,7 +34,7 @@ It's not very organized, but you can take a look if you're interested.
 ↓click!
 [![Watch the video](https://user-images.githubusercontent.com/65270992/107241029-ecb20000-6a6d-11eb-9205-da58a74f8b20.png)](https://user-images.githubusercontent.com/65270992/107241115-05221a80-6a6e-11eb-9d70-2e83ad45d78f.mp4)
 ↓click!
-[![Watch the video](https://img.youtube.com/watch?v=DH342KY8l1g/0.jpg)](https://www.youtube.com/watch?v=DH342KY8l1g)
+[![Watch the video](https://img.youtube.com/vi/DH342KY8l1g/0.jpg)](https://www.youtube.com/watch?v=DH342KY8l1g)
 
 
 ---
