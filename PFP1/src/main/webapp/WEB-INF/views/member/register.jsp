@@ -71,11 +71,11 @@
  						<label>BirthDay<span>*</span></label>
  						<input type="text" id="birthday" name="birthday" />
  						<label>Email Receive Agree<span>*</span></label>
- 						<input type="radio" id="emailReceive" name="emailReceive" value="0"/> Y
- 						<input type="radio" id="emailReceive" name="emailReceive" value="1"/> N
+ 						<div><input type="radio" id="emailReceive" name="emailReceive" value="0" style="vertical-align: 3px"/>Y</div>
+ 						<div><input type="radio" id="emailReceive" name="emailReceive" value="1" style="vertical-align: 3px"/>N</div>
  						<label>Message Receive Agree<span>*</span></label>
- 						<input type="radio" id="messageReceive" name="messageReceive" value="0"/> Y
- 						<input type="radio" id="messageReceive" name="messageReceive" value="1"/> N
+ 						<div><input type="radio" id="messageReceive" name="messageReceive" value="0"/>Y</div>
+ 						<div><input type="radio" id="messageReceive" name="messageReceive" value="1"/>N</div>
  						<input type="submit" id="submit" value="Sign up" />
  					</form>
 				</div>
@@ -86,10 +86,10 @@
 <div class="brand-area section fix"><!--Start Brand Area-->
 	<div class="container">
 		<div class="row">
-			<div class="section-title">
+			<!-- <div class="section-title">
 				<h2>Our Brands</h2>
 				<div class="underline"></div>
-			</div>
+			</div> -->
 			<div class="brand-slider owl-carousel">
 				<div class="brand-item"><img src="img/brand/brand-1.png" alt="" /></div>
 				<div class="brand-item"><img src="img/brand/brand-2.png" alt="" /></div>
