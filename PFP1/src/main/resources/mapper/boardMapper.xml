@@ -13,7 +13,7 @@
 		from board
 	</select>
 	
-	<!-- 게시물 목록 + 페이 -->
+	<!-- 게시물 목록 + 페이징(최신순) -->
 	<select id="listPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
 		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
 		<!-- 댓글 숫자 -->

@@ -35,6 +35,29 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/style.css" />
 	<!-- Responsive Stylesheet -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
+	
+	<script>
+	function changeSortSelect() {
+		var strHtml = '';
+		$.getJSON("<%=request.getContextPath()%>/api/shop",
+				{ s: $('#sort-by').val() },
+				function(data) {
+		  $.each(data, function(idx, obj) {
+			strHtml += '<div class="col-sm-4 col-md-3 fix"><div class="product-item fix" style="height:300px;"><div class="product-img-hover"><a href="goods/detail?m=';
+			strHtml += obj.modelNum;
+			strHtml += '" class="pro-image fix"><img src="';
+			strHtml += obj.thumbnail;
+			strHtml += '" alt="product" /></a><div class="product-action-btn"><a class="quick-view" href="#"><i class="fa fa-search"></i></a><a class="favorite" href="#"><i class="fa fa-heart-o"></i></a><a class="add-cart" href="#"><i class="fa fa-shopping-cart"></i></a></div></div><div class="pro-name-price-ratting"><div class="pro-name"><a href="product-details.html">';
+			strHtml += obj.itemName;
+			strHtml += '</a></div><div class="pro-ratting"><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star"></i><i class="on fa fa-star-half-o"></i></div><div class="pro-price fix"><p><span class="new">';
+			strHtml += obj.saleBid;
+			strHtml += '원</span></p></div></div></div></div>';
+		  });
+		  $('#shopList').empty();
+		  $('#shopList').append(strHtml);
+		});
+	}
+	</script>
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
@@ -51,10 +74,17 @@
 				<p><b>총 ${count} 개의 글</b></p>
 			</div>
 			<div style="float:right;">
+<<<<<<< HEAD
+			<select id="sort-by" onchange="changeSortSelect()">
+						<option selected="selected" value="latest">최신순</option>
+						<option value="popularity">인기순</option>
+						<option value="view">조회순</option>
+=======
 			<select id="sort-by" onchange="if(this.value) location.href=(this.value);">
 						<c:choose><c:when test="${order eq -1}"><option value="<%=request.getContextPath()%>/blog/listPage?num=&order=-1" selected="selected"></c:when><c:otherwise><option value="<%=request.getContextPath()%>/blog/listPage?num=&order=-1"></c:otherwise></c:choose> 정렬순</option>
 						<option value="<%=request.getContextPath()%>/blog/listPage?num=1&order=0" selected="selected"> 최신순</option>
 						<option value="<%=request.getContextPath()%>/blog/listPage?num=1&order=1">인기순</option>
+>>>>>>> branch 'main' of https://github.com/ystepanie/PFP1.git
 					</select>
 			</div>
 			<div style="float:right;">
