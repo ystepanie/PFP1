@@ -304,7 +304,8 @@ function checkSelectAll() {
 function addCardPopupClick() {
 	var url = "<%=request.getContextPath() %>/popup/addCard_popup.jsp";
 	var name = "카드 추가";
-	var option = "width = 500, height = 500, top = 100, left = 200, location = no";
+	var option = "width = 800, height = 450, top = 100, left = 200, location = no";
+	var pop = window.open(url, name, option);
 }
 </script>
 </html>

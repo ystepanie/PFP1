@@ -56,12 +56,13 @@ public class MemberController {
 	public String postLogin(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
 		logger.info("post login");
 	
-		session.getAttribute("member");
+		session.setMaxInactiveInterval(30*60);
 		MemberVO login = m_service.login(vo);
 		boolean pwdMatch = pwdEncoder.matches(vo.getUserPw(), login.getUserPw());
 		
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
+			session.setAttribute("id", vo.getUserId());
 			return "redirect:/";
 		} else {
 			session.setAttribute("member", null);

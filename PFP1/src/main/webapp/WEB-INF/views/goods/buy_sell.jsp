@@ -99,26 +99,26 @@
                               </tr>
                            </thead>
                            <tbody>
-                           <c:set var="size" value="220"/>
+                           <c:set var="sizeorder" value="220"/>
                            <c:forEach  begin="1" end="19">
                               <tr>
-                                 <td><b>${size}</b></td>
+                                 <td><b>${sizeorder}</b></td>
                                  <td>
                                  <c:forEach var="minSales" items="${salesBySize}">
-                                 <c:if test="${salesBySize.size eq size}">
+                                 <c:if test="${salesBySize.size eq sizeorder}">
                                     ${salesBySize.buyBid}
                                  </c:if>
                                  </c:forEach>
                                  </td>
                                  <td>
                                  <c:forEach var="minSales" items="${priceBySize}">
-                                 <c:if test="${minSales.size eq size}">
+                                 <c:if test="${minSales.size eq sizeorder}">
                                     ${minSales.saleBid}
                                  </c:if>
                                  </c:forEach>
                                  </td>
                               </tr>
-                           <c:set var="size" value="${size+5}"/>
+                           <c:set var="sizeorder" value="${sizeorder+5}"/>
                            </c:forEach>
                            </tbody>
                         </table>
@@ -257,7 +257,7 @@
                                   <li>즉시구매 가격을 입력하면 할부 결제할 수 있습니다.</li>
                                   <li>할부 결제를 원할 시 신용카드 및 카카오페이 등을 선택해 주세요. 결제하실 신용카드와 할부 기간을 선택할 수 있습니다.</li>
                                   <li>PUZZLE에 등록한 카드로 자동 결제하려면 '자동결제' 버튼을 클릭하세요. '자동결제'를 이용하면 신용카드 정보를 매번 입력하지 않아도, 등록된 신용카드 정보로 편리하게 결제할 수 있습니다.</li>
-                              </ul>
+                         </ul>
                      </div>
                   </div>
                </div>

@@ -173,11 +173,11 @@ private MemberVO member;
    }
    
    @PostMapping("/buy-confirm")
-   public String postBuyConfirm(@RequestParam int modelNum, @RequestParam int size, @RequestParam int buyPrice, @RequestParam(required = false, defaultValue = "30d") String endDate, @RequestParam String buyAddress, @RequestParam String postNum, @RequestParam String deliveryMessage, Model model, HttpServletRequest request) throws Exception {
-      HttpSession session = request.getSession();
-      member = (MemberVO)session.getAttribute("member");   
+   public String postBuyConfirm(@RequestParam int modelNum, @RequestParam int size, @RequestParam int buyPrice, @RequestParam(required = false, defaultValue = "30d") String endDate, @RequestParam String buyAddress, @RequestParam String postNum, @RequestParam String deliveryMessage, Model model, HttpSession session) throws Exception {
+      //HttpSession session = request.getSession(false);
+      member = (MemberVO)session.getAttribute("member");
       if(member == null) {
-         List<CardVO> listCardInfo = g_service.listCardInfo(member.getUserId());
+         List<CardVO> listCardInfo = g_service.listCardInfo(session.getAttribute("id").toString());
          model.addAttribute("listCardInfo", listCardInfo);
       }
       GoodsVO detail = g_service.detail(modelNum);
