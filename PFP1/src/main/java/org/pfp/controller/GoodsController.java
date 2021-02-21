@@ -40,7 +40,6 @@ public class GoodsController {
    @Inject
    private DealService d_service;
 
-private MemberVO member;
    
    @GetMapping("/detail")
    public String getDetail(@RequestParam int m, Model model) throws Exception {
@@ -178,9 +177,9 @@ private MemberVO member;
 		   @RequestParam String buyAddress, @RequestParam String postNum, @RequestParam String deliveryMessage, 
 		   Model model, HttpSession session) throws Exception {
       //HttpSession session = request.getSession(false);
-      member = (MemberVO)session.getAttribute("member");
-      if(member == null) {
-         List<CardVO> listCardInfo = g_service.listCardInfo((String)session.getAttribute("id"));
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   if(member != null) {
+         List<CardVO> listCardInfo = g_service.listCardInfo(member.getUserId());
          model.addAttribute("listCardInfo", listCardInfo);
       }
       GoodsVO detail = g_service.detail(modelNum);

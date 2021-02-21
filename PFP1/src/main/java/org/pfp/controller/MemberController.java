@@ -62,7 +62,6 @@ public class MemberController {
 		
 		if(login != null && pwdMatch == true) {
 			session.setAttribute("member", login);
-			session.setAttribute("id", vo.getUserId());
 			return "redirect:/";
 		} else {
 			session.setAttribute("member", null);

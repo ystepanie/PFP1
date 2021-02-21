@@ -46,7 +46,6 @@ public class ApiController {
    private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
    
    Gson gson = new Gson();
-private MemberVO member = null;
    
    @ResponseBody
    @RequestMapping(value = "/listDeal", produces = "application/json", method = RequestMethod.GET)
@@ -166,16 +165,14 @@ private MemberVO member = null;
       return json;
    }
    
-   
    //회원의 주소와 우편번호 수정
    @ResponseBody
    @RequestMapping(value = "/modifyAddress", produces = "application/json", method = RequestMethod.GET)
-   public void getModifyAddress(@RequestParam String address, @RequestParam String postNum, HttpServletRequest request) throws Exception {
-      HttpSession session = request.getSession(false);
-      member = (MemberVO)session.getAttribute("member");
-      if(member == null) {
-    	 member.setUserId(session.getAttribute("id").toString());
-         logger.info("id : " + session.getAttribute("id").toString());
+   public void getModifyAddress(@RequestParam String address, @RequestParam String postNum, HttpSession session) throws Exception {
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+      if(member != null) {
+    	 member.setUserId(member.getUserId());
+         logger.info("id : " + member.getUserId());
          logger.info("address : " + address);
          member.setAddress(address);
          member.setPostNum(postNum);
