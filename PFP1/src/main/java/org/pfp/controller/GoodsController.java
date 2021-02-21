@@ -173,7 +173,10 @@ private MemberVO member;
    }
    
    @PostMapping("/buy-confirm")
-   public String postBuyConfirm(@RequestParam int modelNum, @RequestParam int size, @RequestParam int buyPrice, @RequestParam(required = false, defaultValue = "30d") String endDate, @RequestParam String buyAddress, @RequestParam String postNum, @RequestParam String deliveryMessage, Model model, HttpSession session) throws Exception {
+   public String postBuyConfirm(@RequestParam int modelNum, @RequestParam int size, 
+		   @RequestParam int buyPrice, @RequestParam(required = false, defaultValue = "30d") String endDate, 
+		   @RequestParam String buyAddress, @RequestParam String postNum, @RequestParam String deliveryMessage, 
+		   Model model, HttpSession session) throws Exception {
       //HttpSession session = request.getSession(false);
       member = (MemberVO)session.getAttribute("member");
       if(member == null) {

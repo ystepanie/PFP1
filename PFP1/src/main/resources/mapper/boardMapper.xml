@@ -146,7 +146,7 @@
 		where boardCode = #{boardCode} and userId = #{userId}
 	</update>
 	
-	<select id="likeView" parameterType="int" resultType="org.pfp.dto.LikeVO">
+	<select id="likeView" parameterType="int" resultType="int">
 		select count(*) from likeBoard where likeCheck=1 and boardCode=#{boardCode}
 	</select>
 </mapper>
