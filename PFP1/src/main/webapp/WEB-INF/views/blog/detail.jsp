@@ -73,7 +73,7 @@
 	var boardCode = ${view.boardCode};
 	$.getJSON("/blog/likeView"+"?no="+boardCode, function(data) {
 		var str = "";
-		data = $(this).attr("data-good")
+		
 		$(data).each(function() {
 		console.log(data);
 			
@@ -159,10 +159,10 @@
 					<!-- 좋아요 표시  -->
 					<div id="likeView">
 					<c:if test="${member != null }">
-					<button type="button" id="like" class="like" onclick="likeAdd()"><i class="far fa-heart"></i>${view.good }</button>
+					<button type="button" id="like" class="like" onclick="like_func()"><i class="far fa-heart"></i>${view.good }</button>
 					</c:if>
 					<c:if test="${member == null }">
-					<button type="button" id="like" class="like" onclick="likeAdd()"><i class="far fa-heart" disabled="disabled"></i>${view.good }</button>
+					<button type="button" id="like" class="like" onclick="like_func()"><i class="far fa-heart" disabled="disabled"></i>${view.good }</button>
 					</c:if>
 					<script>
 					likeView();
