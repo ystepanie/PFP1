@@ -178,7 +178,7 @@
 										<label for="comment" class="field-label">Your Comment<span>*</span></label>
 										<c:if test="${member == null }">
 										
-										<p><a href="<%=request.getContextPath() %>/member/login">댓글을 남기려면 로그인 해 주세요.</a></p>
+										<p><a href="<%=request.getContextPath() %>/member/login">댓글을 남기려면 로그인 해 주세요..</a></p>
 										
 										</c:if>
 										<c:if test="${member != null }">
