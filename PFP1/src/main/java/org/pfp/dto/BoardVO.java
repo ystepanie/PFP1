@@ -10,7 +10,14 @@ public class BoardVO {
 	private String title;
 	private String regiDate;
 	private int recnt;
+	private int likeSum;
 	
+	public int getLikeSum() {
+		return likeSum;
+	}
+	public void setLikeSum(int likeSum) {
+		this.likeSum = likeSum;
+	}
 	public int getRecnt() {
 		return recnt;
 	}

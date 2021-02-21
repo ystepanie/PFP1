@@ -73,6 +73,7 @@
 	var boardCode = ${view.boardCode};
 	$.getJSON("/blog/likeView"+"?no="+boardCode, function(data) {
 		var str = "";
+		data = $(this).attr("data-good")
 		$(data).each(function() {
 		console.log(data);
 			
@@ -143,8 +144,8 @@
 						<h2>${view.title}</h2>
 						<div class="meta">
 							<a href="#"><i class="fa fa-pencil-square-o"></i>${view.userId}</a>
-							<a href="#"><i class="fa fa-calendar"></i>${view.regiDate }</a>
-							<a href="#"><i class="fa fa-comments"></i>아직안함</a>
+							<i class="fa fa-calendar"></i>${view.regiDate }</a>
+							<i class="fa fa-comments"></i>${view.recnt }</a>
 						</div>
 						<p>${view.content}</p>
 					</div>

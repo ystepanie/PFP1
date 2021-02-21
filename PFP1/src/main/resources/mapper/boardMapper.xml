@@ -17,7 +17,9 @@
 	<select id="listPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
 		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
 		<!-- 댓글 숫자 -->
-		(select count(*) from comment where boardCode=b.boardCode) as recnt
+		(select count(*) from comment where boardCode=b.boardCode) as recnt,
+		<!-- 좋아요 조회 -->
+		(select count(*) from likeBoard where likeCheck=1 and boardCode=b.boardCode) as likeSum
 		from board b
 		order by boardCode desc
 		limit #{displayPost}, #{postNum}
@@ -27,7 +29,9 @@
 	<select id="listPopPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
 		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
 		<!-- 댓글 숫자 -->
-		(select count(*) from comment where boardCode=b.boardCode) as recnt
+		(select count(*) from comment where boardCode=b.boardCode) as recnt,
+		<!-- 좋아요 조회 -->
+		(select count(*) from likeBoard where likeCheck=1 and boardCode=b.boardCode) as likeSum
 		from board b
 		order by b.good desc
 		limit #{displayPost}, #{postNum}
@@ -37,7 +41,9 @@
 	<select id="listNewPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
 		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
 		<!-- 댓글 숫자 -->
-		(select count(*) from comment where boardCode=b.boardCode) as recnt
+		(select count(*) from comment where boardCode=b.boardCode) as recnt,
+		<!-- 좋아요 조회 -->
+		(select count(*) from likeBoard where likeCheck=1 and boardCode=b.boardCode) as likeSum
 		from board b
 		order by b.regiDate desc
 		limit #{displayPost}, #{postNum}
@@ -52,8 +58,12 @@
 	
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int" resultType="org.pfp.dto.BoardVO">
-		select boardCode, userId, content, picture, tag, good, title, regiDate
-		from board
+		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
+		<!-- 댓글 숫자 -->
+		(select count(*) from comment where boardCode=b.boardCode) as recnt,
+		<!-- 좋아요 조회 -->
+		(select count(*) from likeBoard where likeCheck=1 and boardCode=b.boardCode) as likeSum
+		from board b
 		where boardCode = #{boardCode}
 	</select>
 	
@@ -136,10 +146,7 @@
 		where boardCode = #{boardCode} and userId = #{userId}
 	</update>
 	
-	<!-- 게시물 좋아요 조회 -->
-	<select id="likeView" resultType="int">
-		select good
-		from board
-		where boardCode = #{boardCode}
+	<select id="likeView" parameterType="int" resultType="org.pfp.dto.LikeVO">
+		select count(*) from likeBoard where likeCheck=1 and boardCode=#{boardCode}
 	</select>
 </mapper>
