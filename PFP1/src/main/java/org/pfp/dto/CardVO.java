@@ -10,7 +10,14 @@ public class CardVO {
    String checkMail;
    String cardOp;
    String name;
-   public String getName() {
+   int cvs;
+   public int getCvs() {
+	return cvs;
+}
+public void setCvs(int cvs) {
+	this.cvs = cvs;
+}
+public String getName() {
 	   return name;
 	}
 	public void setName(String name) {

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.pfp.dto.CardVO;
 import org.pfp.dto.DealVO;
 import org.pfp.dto.GoodsVO;
 import org.pfp.dto.MemberVO;
@@ -180,6 +181,13 @@ private MemberVO member = null;
          member.setPostNum(postNum);
          m_service.memberModify(member);
       }
+   }
+   
+   //카드 추가
+   @ResponseBody
+   @RequestMapping(value = "/addCard", produces = "application/json", method = RequestMethod.GET)
+   public void getAddCard(@RequestParam CardVO card) throws Exception {
+	    g_service.addCard(card);
    }
    
 }

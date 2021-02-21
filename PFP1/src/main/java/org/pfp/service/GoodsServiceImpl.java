@@ -71,4 +71,9 @@ public class GoodsServiceImpl implements GoodsService {
       return dao.listCardInfo(userId);
    }
 
+	@Override
+	public void addCard(CardVO card) throws Exception {
+		dao.addCard(card);
+	}
+
 }

@@ -177,7 +177,7 @@ private MemberVO member;
       //HttpSession session = request.getSession(false);
       member = (MemberVO)session.getAttribute("member");
       if(member == null) {
-         List<CardVO> listCardInfo = g_service.listCardInfo(session.getAttribute("id").toString());
+         List<CardVO> listCardInfo = g_service.listCardInfo((String)session.getAttribute("id"));
          model.addAttribute("listCardInfo", listCardInfo);
       }
       GoodsVO detail = g_service.detail(modelNum);
@@ -190,4 +190,5 @@ private MemberVO member;
       model.addAttribute("deliveryMessage", deliveryMessage);
       return "goods/confirm";
    }
+   
 }

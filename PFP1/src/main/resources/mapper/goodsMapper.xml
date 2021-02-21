@@ -140,4 +140,10 @@
       from card_info
       where userId = #{userId}
    </select>
+   
+   <!-- 카드 추가하기 -->
+   <insert id="addCard">
+   		insert into card_info(cardNum, userId, cardPass, period, division, birth, checkMail, cardOp, name, cvs)
+		values(4, #{userId}, #{cardPass}, #{period}, #{division}, #{birth}, #{checkMail}, #{cardOp}, #{name}, #{cvs})
+   </insert>
 </mapper>

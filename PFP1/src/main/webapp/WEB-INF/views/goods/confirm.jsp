@@ -307,5 +307,13 @@ function addCardPopupClick() {
 	var option = "width = 800, height = 450, top = 100, left = 200, location = no";
 	var pop = window.open(url, name, option);
 }
+
+function addCardCallBack(cardPass, period, division, birth, checkMail, name, cvs, cardOp) {
+	$.getJSON("<%=request.getContextPath()%>/api/addCard",
+            { userId: <%=(String)session.getAttribute("id") %>, cardPass: cardPass, period: period, division: division, birth: birth, checkMail: checkMail, name: name, cvs: cvs, cardOp: cardOp },
+            function () {
+               alert("카드가 추가되었습니다.");
+      });
+}
 </script>
 </html>
