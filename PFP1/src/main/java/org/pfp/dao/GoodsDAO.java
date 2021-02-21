@@ -40,4 +40,7 @@ public interface GoodsDAO {
    
    //해당 회원에 대한 카드 정보들
    public List<CardVO> listCardInfo(String userId) throws Exception;
+   
+   //카드 추가
+   public void addCard(CardVO card) throws Exception;
 }

@@ -73,5 +73,9 @@ public class GoodsDAOImpl implements GoodsDAO {
       return sql.selectList(namespace + ".listCardInfo", userId);
    }
 
-   
+	@Override
+	public void addCard(CardVO card) throws Exception {
+		sql.insert(namespace + ".addCard", card);
+	}
+
 }
