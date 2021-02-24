@@ -39,6 +39,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -49,7 +50,14 @@
 </div><!--End Title-->
 <section class="blog-page page fix"><!-- Start Blog Area-->
 	<div class="container">
-		<div class="row">
+		<div class="row" style="margin:15px;">
+			<div style="float:left;">
+				<p><b>총 ${count} 개의 글</b></p>
+			</div>
+		</div>
+	</div>
+	<div class="container">		
+		<div class="row">		
 		<c:forEach items="${list}" var="list"> 
 			 <div class="col-sm-4 col-md-3">
 				<div class="single-blog">
@@ -62,9 +70,10 @@
 						</a>
 						<h2><a class="title" href="/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
 						<div class="meta">
-							<i class="fa fa-pencil-square-o"></i>${list.userId}
+							<i class="fas fa-user"></i>${list.userId}
 							<i class="fa fa-calendar"></i>${list.regiDate}
 							<i class="fa fa-comments"></i>${list.recnt}
+							<i class="fas fa-heart"></i>${list.likeSum}</a>
 						</div>
 					</div>
 				</div>

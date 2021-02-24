@@ -126,8 +126,10 @@ public class BlogController {
    //개인 블로그 페이지
    @GetMapping("/myblog")
    public void getMyblog(@RequestParam("userId") String userId, Model model, HttpSession session) throws Exception {
+	   int count = b_service.count();
 	   MemberVO vo = m_service.memberInfo(userId);
 	   model.addAttribute("vo", vo);
+	   model.addAttribute("count", count);
 	   List<BoardVO> list = null;
 	   list = b_service.personalList(userId);
 	   

@@ -2498,7 +2498,7 @@
 			<div class="blog-slider owl-carousel">
 				<div class="single-blog">
 					<div class="content fix">
-						<a class="image fix" href="blog-details.html"><img src="<%=request.getContextPath() %>/resources/img/blog/blog-1.jpg" alt="" />
+						<a class="image fix" href="<%=request.getContextPath() %>/blog/listPage?num=1"><img src="<%=request.getContextPath() %>/resources/img/blog/blog-1.jpg" alt="" />
 							<div class="date">
 								<h4>25</h4>
 								<h5>Aug</h5>

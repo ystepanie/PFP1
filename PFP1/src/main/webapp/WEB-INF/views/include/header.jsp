@@ -117,7 +117,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="clo-md-12">
-				<div class="main-menu hidden-sm hidden-xs">
+				<%-- <div class="main-menu hidden-sm hidden-xs">
 					<nav>
 						<ul>
 							<li><a href="<%=request.getContextPath() %>/" class="active">Home</a>
@@ -127,12 +127,12 @@
 									<li><a href="index-3.html">Home 3</a></li>
 								</ul>
 							</li>
-							<li><a href="<%=request.getContextPath() %>/blog/listPage?num=1">blog</a>
+							<li><a href="<%=request.getContextPath() %>/blog/listPage?num=1"></a>
 								<div class="mega-menu mega-menu-page">
 									<div class="column-1 column">
 										<ul>
-											<li><a href="about-us.html">About US</a></li>
-											<li><a href="<%=request.getContextPath() %>/blog">Blog</a></li>
+											<li><a href="about-us.html"></a></li>
+											<li><a href="<%=request.getContextPath() %>/blog/listPage?num=1">Blog</a></li>
 											<li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
 											<li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
 											<li><a href="blog-details.html">Blog details</a></li>
@@ -263,7 +263,7 @@
 							</li>
 						</ul>
 					</nav>
-				</div>
+				</div> --%>
 				<div class="mobile-menu hidden-md hidden-lg">
 					<nav>
 						<ul>
@@ -368,7 +368,7 @@
 									<li><a href="portfolio-2.html">Portfolio 4 column</a></li>
 								</ul>
 							</li>
-							<li><a href="blog.html">Blog</a>
+							<li><a href="<%=request.getContextPath() %>/blog/listPage?num=1">Blog</a>
 								<ul>
 									<li><a href="blog.html">Blog 1</a></li>
 									<li><a href="blog-left-sidebar.html">Blog 2</a></li>

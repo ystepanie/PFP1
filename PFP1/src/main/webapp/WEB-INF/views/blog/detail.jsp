@@ -97,7 +97,7 @@
 		var good = $("#good").val();
 	$.ajax({
 		url : "/blog/likeAdd",
-		type : "get",
+		type : "post",
 		cache : false,
 		dataType : "json",
 		data :'boardCode=' + boardCode,
@@ -143,7 +143,7 @@
 							</div>
 						<h2>${view.title}</h2>
 						<div class="meta">
-							<a href="#"><i class="fa fa-pencil-square-o"></i>${view.userId}</a>
+							<a href="#"><i class="fas fa-user"></i>${view.userId}</a>
 							<i class="fa fa-calendar"></i>${view.regiDate }</a>
 							<i class="fa fa-comments"></i>${view.recnt }</a>
 						</div>

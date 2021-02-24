@@ -129,23 +129,29 @@
 		order by boardCode desc, regiDate desc
 	]]>
 	</select>
-	<!-- 게시물 좋아요 눌렀는지 여부 -->
-	<update id="likeAdd" parameterType="HashMap">
-		update likeBoard
-		set
-		likeCheck = likeCheck+1
-		where boardCode = #{boardCode} and userId = #{userId}
-	</update>
+	
+	<!-- 게시글 추천 여부 -->
+	<select id="likeCheck" parameterType="map" resultType="int">
+		select likeCheck from likeBoard 
+		where boardCode=#{boardCode} and
+		userId = #{userId} and
+		likeCheck = 1
+	</select>
+	<!-- 게시물 좋아요 추가 -->
+	<insert id="likeAdd" parameterType="map">
+		insert into likeBoard(boardCode, userId, likeCheck)
+		value(#{boardCode},#{userId}, 1)
+	</insert>
 	
 	
 	<!-- 게시물 좋아요 감소 -->
-	<update id="likeCancel" parameterType="HashMap">
+	<update id="likeCancel" parameterType="map">
 		update likeBoard
 		set
 		likeCheck = 0
 		where boardCode = #{boardCode} and userId = #{userId}
 	</update>
-	
+	<!--  게시글 추천 수 -->
 	<select id="likeView" parameterType="int" resultType="int">
 		select count(*) from likeBoard where likeCheck=1 and boardCode=#{boardCode}
 	</select>
