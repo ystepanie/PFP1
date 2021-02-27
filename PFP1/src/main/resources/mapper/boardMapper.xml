@@ -130,28 +130,28 @@
 	]]>
 	</select>
 	
-	<!-- 게시글 추천 여부 -->
-	<select id="likeCheck" parameterType="map" resultType="int">
-		select likeCheck from likeBoard 
-		where boardCode=#{boardCode} and
-		userId = #{userId} and
-		likeCheck = 1
+	<!-- 좋아요 중복 체크 -->
+	<select id="like_Check" resultType="org.pfp.dto.LikeVO">
+		select (select likeCheck from likeBoard where likeCheck=1) as likeCheck
+		from likeBoard
+		where boardCode= #{boardCode} and userId = #{userId}
 	</select>
-	<!-- 게시물 좋아요 추가 -->
-	<insert id="likeAdd" parameterType="map">
-		insert into likeBoard(boardCode, userId, likeCheck)
-		value(#{boardCode},#{userId}, 1)
-	</insert>
 	
+	<!-- 게시글 추천 -->
+	<update id="likeAdd" parameterType="HashMap">
+		update likeBoard 
+		set likeCheck = likeCheck+1
+		where boardCode = #{boardCode} and userId = #{userId}
+	</update>
 	
 	<!-- 게시물 좋아요 감소 -->
-	<update id="likeCancel" parameterType="map">
+	<update id="likeCancel" parameterType="Hashmap">
 		update likeBoard
 		set
 		likeCheck = 0
 		where boardCode = #{boardCode} and userId = #{userId}
 	</update>
-	<!--  게시글 추천 수 -->
+	<!--  게시글 좋아요 수 -->
 	<select id="likeView" parameterType="int" resultType="int">
 		select count(*) from likeBoard where likeCheck=1 and boardCode=#{boardCode}
 	</select>

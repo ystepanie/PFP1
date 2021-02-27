@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.pfp.dao.BoardDAO;
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.LikeVO;
 import org.pfp.dto.ReplyVO;
 import org.springframework.stereotype.Service;
 
@@ -102,6 +103,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int likeCancel(int likeCheck) throws Exception {
 		return dao.likeCancel(likeCheck);
+	}
+	
+	//게시물 좋아요 중복 체크
+	public LikeVO like_Check(int boardCode) throws Exception {
+		return dao.like_Check(boardCode);
 	}
 
 	@Override

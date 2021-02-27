@@ -1,8 +1,10 @@
 package org.pfp.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.LikeVO;
 import org.pfp.dto.ReplyVO;
 
 public interface BoardDAO {
@@ -53,8 +55,11 @@ public interface BoardDAO {
 	public int likeView(int boardCode) throws Exception;
 	
 	//게시물 좋아요 추가
-	public int likeAdd(int likeCheck) throws Exception;
+	public int likeAdd(int boardCode) throws Exception;
 	
 	//게시물 좋아요 감소 
 	public int likeCancel(int likeCheck) throws Exception;
+	
+	//게시물 중복 체크
+	public LikeVO like_Check(int likeCheck) throws Exception;
 }

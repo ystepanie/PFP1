@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -115,8 +114,10 @@ public class BlogController {
    @GetMapping("/detail")
    public void getDetail(@RequestParam("no") int boardCode, Model model) throws Exception {
       BoardVO vo = b_service.view(boardCode);
+      LikeVO vo2 = b_service.like_Check(boardCode);
       
       model.addAttribute("view", vo);
+      model.addAttribute("like", vo2);
 //      //댓글 리스트 출력 
 //      List<ReplyVO> reply = b_service.replyList(boardCode);
 //      model.addAttribute("reply", reply);
@@ -167,30 +168,39 @@ public class BlogController {
 	   return good;
    }
    
-   //좋아요 추가
+   //좋아요 추가,삭제
    @ResponseBody
-   @PostMapping("/likeAdd")
+   @GetMapping("/likeAdd")
    public void getLikeAdd(HttpSession session, int boardCode) throws Exception {
 	   logger.info("post likeAdd");
-	   
+	   String userId = (String)session.getAttribute("userId");
 	  JsonObject obj = new JsonObject();
-	  MemberVO member = (MemberVO)session.getAttribute("member");
+	
 	  ArrayList<String> msgs = new ArrayList<String>();
 	  HashMap<String,Object> hashMap = new HashMap<String,Object>();
 	  hashMap.put("boardCode", boardCode);
-	  hashMap.put("userId", member.getUserId());
-//	  LikeVO likeVO = LikeVOProc.read(hashMap);
+	  hashMap.put("userId", userId);
+	  LikeVO likeVO = b_service.like_Check(boardCode);
+	  
+	  if(likeVO.getLikeCheck() == 1) {
+		  msgs.add("좋아요취소");
+		  b_service.likeCancel(likeVO.getLikeCheck());
+	  } else {
+		  msgs.add("좋아요");
+		  b_service.likeAdd(likeVO.getLikeCheck());
+	  }
+//	  obj.put("boardCode",likeVO.getBoardCode());
    }
    
-   //좋아요 감소
-   @ResponseBody
-   @PostMapping("/likeCancel")
-   public void getLikeCancel(LikeVO vo, HttpSession session) throws Exception {
-	   logger.info("post likeCancel");
-	   MemberVO member = (MemberVO)session.getAttribute("member");
-	   vo.setUserId(member.getUserId());
-	   b_service.likeCancel(vo.getLikeCheck());
-   }
+//   //좋아요 감소
+//   @ResponseBody
+//   @PostMapping("/likeCancel")
+//   public void getLikeCancel(LikeVO vo, HttpSession session) throws Exception {
+//	   logger.info("post likeCancel");
+//	   MemberVO member = (MemberVO)session.getAttribute("member");
+//	   vo.setUserId(member.getUserId());
+//	   b_service.likeCancel(vo.getLikeCheck());
+//   }
    
    //ckeditor에서 업로드
    @PostMapping("/ckUpload")

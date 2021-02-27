@@ -3,6 +3,7 @@ package org.pfp.service;
 import java.util.List;
 
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.LikeVO;
 import org.pfp.dto.ReplyVO;
 
 public interface BoardService {
@@ -52,6 +53,9 @@ public interface BoardService {
 	
 	//게시물 좋아요 감소 
 	public int likeCancel(int likeCheck) throws Exception;
+	
+	//게시물 좋아요 중복 체크
+	public LikeVO like_Check(int boardCode) throws Exception;
 	
 	//게시물 목록 + 페이징 + 인기순
 	public List listPopPage(int displayPost, int postNum) throws Exception;

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.pfp.dto.BoardVO;
+import org.pfp.dto.LikeVO;
 import org.pfp.dto.ReplyVO;
 import org.springframework.stereotype.Repository;
 
@@ -108,6 +109,12 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int likeCancel(int likeCheck) throws Exception {
 		return sql.update(namespace+".likeCancel",likeCheck);
+	}
+	
+	//게시물 좋아요 중복 체크
+	@Override
+	public LikeVO like_Check(int boardCode) throws Exception {
+		return sql.selectOne(namespace+".like_Check", boardCode);
 	}
 
 	@Override

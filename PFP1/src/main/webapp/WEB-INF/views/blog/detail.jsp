@@ -78,7 +78,14 @@
 		console.log(data);
 			
 		str += "<c:if test='${member != null}'>" 
+			+ "<c:choose>"
+			+ "<c:when test='${like.likeCheck == 1}'>"
+			+ "<button type='button' id='like' class='like' onclick='like_func()'><i class='fas fa-heart'></i>"+data+"</button>"
+			+ "</c:when>"
+			+ "<c:otherwise>"
 			+ "<button type='button' id='like' class='like' onclick='like_func()'><i class='far fa-heart'></i>"+data+"</button>"
+			+ "</c:otherwise>"
+			+"</c:choose>"
 			+ "</c:if>"
 			+ "<c:if test='${member == null}'>"
 			+ "<button type='button' id='like' class='like' onclick='like_func()' disabled='disabled'><i class='far fa-heart'></i>"+data+"</button>"
@@ -95,9 +102,10 @@
 	function like_func() {
 		var boardCode = $("#boardCode").val();
 		var good = $("#good").val();
+		
 	$.ajax({
 		url : "/blog/likeAdd",
-		type : "post",
+		type : "GET",
 		cache : false,
 		dataType : "json",
 		data :'boardCode=' + boardCode,
@@ -108,10 +116,10 @@
 			alert(msg);
 			
 			if(data.likeAdd == 0) {
-				 $(".like").html("<i class='far fa-heart'></i>"+good);
+				 like_img = "<i class='far fa-heart'></i>"+good;
 				
 			} else {
-				$(".like").html("<i class='fas fa-heart'></i>"+good);
+				like_img = "<i class='fas fa-heart'></i>"+good;
 			}
 			$('#good').html(data.good);
 			$('#likeCheck').html(data.likeCheck);
