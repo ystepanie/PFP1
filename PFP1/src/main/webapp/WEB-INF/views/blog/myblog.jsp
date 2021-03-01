@@ -63,10 +63,6 @@
 				<div class="single-blog">
 					<div class="content fix">
 						<a class="image fix" href="blog-details.html" data-boardCode="${list.boardCode}"><img src="${list.picture}" alt="" />
-							<div class="date">
-								<h4>25</h4>
-								<h5>Aug</h5>
-							</div>
 						</a>
 						<h2><a class="title" href="/blog/detail?no=${list.boardCode}">${list.title}</a></h2>
 						<div class="meta">

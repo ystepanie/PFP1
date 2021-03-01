@@ -77,19 +77,6 @@
 		$(data).each(function() {
 		console.log(data);
 			
-		str += "<c:if test='${member != null}'>" 
-			+ "<c:choose>"
-			+ "<c:when test='${like.likeCheck == 1}'>"
-			+ "<button type='button' id='like' class='like' onclick='like_func()'><i class='fas fa-heart'></i>"+data+"</button>"
-			+ "</c:when>"
-			+ "<c:otherwise>"
-			+ "<button type='button' id='like' class='like' onclick='like_func()'><i class='far fa-heart'></i>"+data+"</button>"
-			+ "</c:otherwise>"
-			+"</c:choose>"
-			+ "</c:if>"
-			+ "<c:if test='${member == null}'>"
-			+ "<button type='button' id='like' class='like' onclick='like_func()' disabled='disabled'><i class='far fa-heart'></i>"+data+"</button>"
-			+ "</c:if>"
 		});
 		if(data == 0) {
 		$("#likeView").append(str);
@@ -145,11 +132,7 @@
 				<div class="single-blog blog-details">
 					<div class="content fix">
 						<img src="${view.picture}" alt="" />
-							<div class="date">
-								<h4>25</h4>
-								<h5>Aug</h5>
-							</div>
-						<h2>${view.title}</h2>
+						<h2>${view.title}</h2><br/>
 						<div class="meta">
 							<a href="#"><i class="fas fa-user"></i>${view.userId}</a>
 							<i class="fa fa-calendar"></i>${view.regiDate }</a>
@@ -166,15 +149,15 @@
 					<br/>
 					<!-- 좋아요 표시  -->
 					<div id="likeView">
-					<c:if test="${member != null }">
+					<%-- <c:if test="${member != null }">
 					<button type="button" id="like" class="like" onclick="like_func()"><i class="far fa-heart"></i>${view.good }</button>
 					</c:if>
 					<c:if test="${member == null }">
 					<button type="button" id="like" class="like" onclick="like_func()"><i class="far fa-heart" disabled="disabled"></i>${view.good }</button>
-					</c:if>
-					<script>
+					</c:if> --%>
+		 			<script>
 					likeView();
-					</script>
+					</script> 
 					</div>
 				<div id="comments">
 					<div class="commentform">
