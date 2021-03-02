@@ -11,7 +11,14 @@ public class BoardVO {
 	private String regiDate;
 	private int recnt;
 	private int likeSum;
+	private int boardView;
 	
+	public int getBoardView() {
+		return boardView;
+	}
+	public void setBoardView(int boardView) {
+		this.boardView = boardView;
+	}
 	public int getLikeSum() {
 		return likeSum;
 	}

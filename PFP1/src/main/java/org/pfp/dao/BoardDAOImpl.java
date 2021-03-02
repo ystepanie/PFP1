@@ -99,6 +99,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return sql.selectOne(namespace+".likeView",boardCode);
 	}
 	
+	//게시물 조회수 상승
+	@Override
+	public void boardViewCnt(int boardCode) throws Exception {
+		sql.update(namespace+".boardViewCnt", boardCode);
+	}
+	
 	//게시물 좋아요 추가
 	@Override
 	public int likeAdd(int likeCheck) throws Exception {

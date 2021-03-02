@@ -113,7 +113,10 @@ public class BlogController {
  //블로그 상세보기 페이지 
    @GetMapping("/detail")
    public void getDetail(@RequestParam("no") int boardCode, Model model) throws Exception {
-      BoardVO vo = b_service.view(boardCode);
+      
+      b_service.boardViewCnt(boardCode);
+	   
+	  BoardVO vo = b_service.view(boardCode);
       LikeVO vo2 = b_service.like_Check(boardCode);
       
       model.addAttribute("view", vo);

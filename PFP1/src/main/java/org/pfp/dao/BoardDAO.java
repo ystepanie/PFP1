@@ -33,6 +33,9 @@ public interface BoardDAO {
 	//게시물 조회
 	public BoardVO view(int boardCode) throws Exception;
 	
+	//게시물 조회수 상승
+	public void boardViewCnt(int boardCode) throws Exception;
+	
 	//게시물 댓글 작성
 	public void registReply(ReplyVO vo) throws Exception;
 	

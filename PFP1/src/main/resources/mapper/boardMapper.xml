@@ -15,7 +15,7 @@
 	
 	<!-- 게시물 목록 + 페이징(최신순) -->
 	<select id="listPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
-		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
+		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate, b.boardView,
 		<!-- 댓글 숫자 -->
 		(select count(*) from comment where boardCode=b.boardCode) as recnt,
 		<!-- 좋아요 조회 -->
@@ -27,7 +27,7 @@
 	
 	<!-- 게시물 목록 + 페이 + 인기순 -->
 	<select id="listPopPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
-		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
+		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate, b.boardView,
 		<!-- 댓글 숫자 -->
 		(select count(*) from comment where boardCode=b.boardCode) as recnt,
 		<!-- 좋아요 조회 -->
@@ -39,7 +39,7 @@
 	
 	<!-- 게시물 목록 + 페이징 + 최신순 -->
 	<select id="listNewPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
-		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
+		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate, b.boardView,
 		<!-- 댓글 숫자 -->
 		(select count(*) from comment where boardCode=b.boardCode) as recnt,
 		<!-- 좋아요 조회 -->
@@ -58,7 +58,7 @@
 	
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int" resultType="org.pfp.dto.BoardVO">
-		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate,
+		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate, b.boardView,
 		<!-- 댓글 숫자 -->
 		(select count(*) from comment where boardCode=b.boardCode) as recnt,
 		<!-- 좋아요 조회 -->
@@ -67,6 +67,12 @@
 		where boardCode = #{boardCode}
 	</select>
 	
+	<!-- 개사뮬 조회수 상승 -->
+	<update id="boardViewCnt" parameterType="int">
+		update board 
+		set boardView = boardView + 1
+		where boardCode = #{boardCode}
+	</update>
 	<!-- 블로그 댓글 작성 -->
 	<insert id="registReply">
 		insert into comment(boardCode, userId, commentDate, reContent)

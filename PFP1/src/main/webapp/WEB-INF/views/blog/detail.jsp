@@ -137,6 +137,7 @@
 							<a href="#"><i class="fas fa-user"></i>${view.userId}</a>
 							<i class="fa fa-calendar"></i>${view.regiDate }</a>
 							<i class="fa fa-comments"></i>${view.recnt }</a>
+							<i class="far fa-eye"></i>${view.boardView}
 						</div>
 						<p>${view.content}</p>
 					</div>
