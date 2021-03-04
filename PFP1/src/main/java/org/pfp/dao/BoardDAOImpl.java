@@ -123,6 +123,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return sql.selectOne(namespace+".like_Check", boardCode);
 	}
 
+	//게시물 리스트 + 최신순
 	@Override
 	public List listPopPage(int displayPost, int postNum) throws Exception {
 HashMap<String, Integer> data = new HashMap<String, Integer>();
@@ -131,7 +132,8 @@ HashMap<String, Integer> data = new HashMap<String, Integer>();
 		data.put("postNum", postNum);
 		return sql.selectList(namespace + ".listPopPage", data);
 	}
-
+	
+	//게시물 리스트 + 인기순 
 	@Override
 	public List listNewPage(int displayPost, int postNum) throws Exception {
 HashMap<String, Integer> data = new HashMap<String, Integer>();
@@ -139,5 +141,14 @@ HashMap<String, Integer> data = new HashMap<String, Integer>();
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
 		return sql.selectList(namespace + ".listNewPage", data);
+	}
+	
+	//게시물 리스트 + 조회순 
+	public List listViewPage(int displayPost, int postNum) throws Exception {
+HashMap<String, Integer> data = new HashMap<String, Integer>();
+		
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		return sql.selectList(namespace + ".listViewPage", data);
 	}
 }

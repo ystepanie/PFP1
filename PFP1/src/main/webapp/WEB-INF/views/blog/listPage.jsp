@@ -60,6 +60,7 @@
 						<c:choose><c:when test="${order eq -1}"><option value="<%=request.getContextPath()%>/blog/listPage?num=&order=-1" selected="selected"></c:when><c:otherwise><option value="<%=request.getContextPath()%>/blog/listPage?num=&order=-1"></c:otherwise></c:choose> 정렬순</option>
 						<option value="<%=request.getContextPath()%>/blog/listPage?num=1&order=1"> 최신순</option>
 						<option value="<%=request.getContextPath()%>/blog/listPage?num=1&order=0">인기순</option>
+						<option value="<%=request.getContextPath()%>/blog/listPage?num=1&order=2">조회순</option>
 					</select>
 			</div>
 			<div style="float:right;">

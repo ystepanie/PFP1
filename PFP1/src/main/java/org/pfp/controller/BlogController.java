@@ -86,8 +86,10 @@ public class BlogController {
 		   list = b_service.listPopPage(displayPost, postNum);
 	   }else if(order == 1) {
 		   list = b_service.listNewPage(displayPost, postNum);
-	   }else {
-		   list = b_service.listPage(displayPost, postNum);
+	   } else if(order == 2) {
+		   list = b_service.listViewPage(displayPost, postNum);
+   	 } else {
+		  list = b_service.listPage(displayPost, postNum);
 	   }
 	   model.addAttribute("list", list);
 	   model.addAttribute("pageNum", pageNum);

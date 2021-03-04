@@ -33,7 +33,7 @@
 		<!-- 좋아요 조회 -->
 		(select count(*) from likeBoard where likeCheck=1 and boardCode=b.boardCode) as likeSum
 		from board b
-		order by b.good desc
+		order by likeSum desc
 		limit #{displayPost}, #{postNum}
 	</select>
 	
@@ -46,6 +46,18 @@
 		(select count(*) from likeBoard where likeCheck=1 and boardCode=b.boardCode) as likeSum
 		from board b
 		order by b.regiDate desc
+		limit #{displayPost}, #{postNum}
+	</select>
+	
+	<!-- 게시물 목록 + 페이징 + 조회순 -->
+	<select id="listViewPage" parameterType="hashMap" resultType="org.pfp.dto.BoardVO">
+		select b.boardCode, b.userId, b.content, b.picture, b.tag, b.good, b.title, b.regiDate, b.boardView,
+		<!-- 댓글 숫자 -->
+		(select count(*) from comment where boardCode=b.boardCode) as recnt,
+		<!-- 좋아요 조회 -->
+		(select count(*) from likeBoard where likeCheck=1 and boardCode=b.boardCode) as likeSum
+		from board b
+		order by b.boardView desc
 		limit #{displayPost}, #{postNum}
 	</select>
 	
