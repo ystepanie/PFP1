@@ -144,6 +144,7 @@
 							<i class="fas fa-user"></i></i>${list.userId}</a>
 							<i class="fa fa-calendar"></i>${list.regiDate}</a>
 							<i class="fas fa-heart"></i>${list.likeSum}</a>
+							<i class="fas fa-comment"></i>${list.recnt }
 							<i class="far fa-eye"></i>${list.boardView}
 						</div>
 					</div>

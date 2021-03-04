@@ -107,14 +107,20 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	//게시물 좋아요 추가
 	@Override
-	public int likeAdd(int likeCheck) throws Exception {
-		return sql.update(namespace+".likeAdd",likeCheck);
+	public void likeAdd(LikeVO vo) throws Exception {
+		sql.insert(namespace+".likeAdd",vo);
 	}
 	
 	//게시물 좋아요 감소 
 	@Override
 	public int likeCancel(int likeCheck) throws Exception {
 		return sql.update(namespace+".likeCancel",likeCheck);
+	}
+	
+	//좋아요 업데이트
+	@Override
+	public int likeSum(int boardCode) throws Exception {
+		return sql.update(namespace + ".likeSum", boardCode);
 	}
 	
 	//게시물 좋아요 중복 체크

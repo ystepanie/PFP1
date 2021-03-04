@@ -155,12 +155,11 @@
 		where boardCode= #{boardCode} and userId = #{userId}
 	</select>
 	
-	<!-- 게시글 추천 -->
-	<update id="likeAdd" parameterType="HashMap">
-		update likeBoard 
-		set likeCheck = likeCheck+1
-		where boardCode = #{boardCode} and userId = #{userId}
-	</update>
+	<!-- 게시글 추천 증가-->
+	<insert id="likeAdd">
+		insert into likeBoard(userId, boardCode, likeCheck)
+		values(#{userId}, #{boardCode}, #{likeCheck})
+	</insert>
 	
 	<!-- 게시물 좋아요 감소 -->
 	<update id="likeCancel" parameterType="Hashmap">
@@ -173,4 +172,11 @@
 	<select id="likeView" parameterType="int" resultType="int">
 		select count(*) from likeBoard where likeCheck=1 and boardCode=#{boardCode}
 	</select>
+	
+	<!-- 게시물 좋아요 총갯수 적용 -->
+	<update id="likeSum" parameterType="int">
+		update board
+		set
+		good = good + 1
+	</update>
 </mapper>

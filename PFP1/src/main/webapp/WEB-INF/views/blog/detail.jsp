@@ -1,44 +1,61 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Puzzle | Blog Details</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Fav Icon -->
-	<link id="favicon" rel="icon" type="image/png" href="<%=request.getContextPath() %>/resources/img/puzzle.ico" />
-	<!-- Google Font Raleway -->
-	<link href='https://fonts.googleapis.com/css?family=Raleway:200,300,500,400,600,700,800' rel='stylesheet' type='text/css'>
-	<!-- Google Font Dancing Script -->
-	<link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" />
-	<!-- Font Awesome CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css" />
-	<!-- Owl Carousel CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/owl.carousel.min.css" />
-	<!-- Animate CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/animate.min.css" />
-	<!-- simpleLens CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/jquery.simpleLens.css" />
-	<!-- Price Slider CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/jquery-price-slider.css" />
-	<!-- MeanMenu CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/meanmenu.min.css" />
-	<!-- Magnific Popup CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/magnific-popup.css" />
-	<!-- Nivo Slider CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/nivo-slider.css" />
-	<!-- Stylesheet CSS -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/style.css" />
-	<!-- Responsive Stylesheet -->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/responsive.css" />
-	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-	<script>
+<meta charset="UTF-8">
+<title>Puzzle | Blog Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fav Icon -->
+<link id="favicon" rel="icon" type="image/png"
+	href="<%=request.getContextPath()%>/resources/img/puzzle.ico" />
+<!-- Google Font Raleway -->
+<link
+	href='https://fonts.googleapis.com/css?family=Raleway:200,300,500,400,600,700,800'
+	rel='stylesheet' type='text/css'>
+<!-- Google Font Dancing Script -->
+<link href='https://fonts.googleapis.com/css?family=Dancing+Script'
+	rel='stylesheet' type='text/css'>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" />
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/font-awesome.min.css" />
+<!-- Owl Carousel CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/owl.carousel.min.css" />
+<!-- Animate CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/animate.min.css" />
+<!-- simpleLens CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/jquery.simpleLens.css" />
+<!-- Price Slider CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/jquery-price-slider.css" />
+<!-- MeanMenu CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/meanmenu.min.css" />
+<!-- Magnific Popup CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/magnific-popup.css" />
+<!-- Nivo Slider CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/nivo-slider.css" />
+<!-- Stylesheet CSS -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/style.css" />
+<!-- Responsive Stylesheet -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/responsive.css" />
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script>
 	//댓글 리스트 
 	function replyList() {
 		var boardCode = ${view.boardCode};
@@ -73,117 +90,120 @@
 	var boardCode = ${view.boardCode};
 	$.getJSON("/blog/likeView"+"?no="+boardCode, function(data) {
 		var str = "";
-		
+		alert(data);
 		$(data).each(function() {
 		console.log(data);
-			
+		<%-- <c:if test="${member != null }">
+		<button type="button" id="like" class="like" onclick="like_func()"><i class="far fa-heart"></i>${view.good }</button>
+		</c:if>
+		<c:if test="${member == null }">
+		<button type="button" id="like" class="like" onclick="like_func()"><i class="far fa-heart" disabled="disabled"></i>${view.good }</button>
+		</c:if> --%>
+		str += "<c:if test='${member != null}'>"
+		+ "<button type='button' id='like' class='like'><i class='far fa-heart'></i>${data}</button>"
+		+ "</c:if>"
+		+ "<c:if test='${member == null }'>"
+		+ "<button type='button' id='like' class='like'><i class='far fa-heart' disabled='disabled'></i>${data}</button>"
+		+ "</c:if>"
 		});
-		if(data == 0) {
-		$("#likeView").append(str);
-		} else {
 		$("#likeView").html(str);
-		}
-	});
-	}
-	//좋아요 추가 (likecheck+1)
-	function like_func() {
-		var boardCode = $("#boardCode").val();
-		var good = $("#good").val();
-		
-	$.ajax({
-		url : "/blog/likeAdd",
-		type : "GET",
-		cache : false,
-		dataType : "json",
-		data :'boardCode=' + boardCode,
-		success : function(data) {
-			var msg='';
-			var like_img ='';
-			msg+=data.msg;
-			alert(msg);
-			
-			if(data.likeAdd == 0) {
-				 like_img = "<i class='far fa-heart'></i>"+good;
-				
-			} else {
-				like_img = "<i class='fas fa-heart'></i>"+good;
-			}
-			$('#good').html(data.good);
-			$('#likeCheck').html(data.likeCheck);
-			
-		},
-		error: function(request, status, error) {
-			alert('code:'+request.status+'\n'+request.responseText+'\n'+error);
-		}
 	});
 	}
 	</script>
 </head>
 <body>
-<%@ include file="../include/header.jsp" %>
-<div class="page-title fix"><!--Start Title-->
-	<div class="overlay section">
-		<h2>Blog Details</h2>
+	<%@ include file="../include/header.jsp"%>
+	<div class="page-title fix">
+		<!--Start Title-->
+		<div class="overlay section">
+			<h2>Blog Details</h2>
+		</div>
 	</div>
-</div><!--End Title-->
-<section class="blog-page page fix"><!-- Start Blog Details-->
-	<div class="container">
-		<div class="row">
+	<!--End Title-->
+	<section class="blog-page page fix">
+		<!-- Start Blog Details-->
+		<div class="container">
+			<div class="row">
 				<div class="single-blog blog-details">
 					<div class="content fix">
 						<img src="${view.picture}" alt="" />
-						<h2>${view.title}</h2><br/>
+						<h2>${view.title}</h2>
+						<br />
 						<div class="meta">
-							<a href="#"><i class="fas fa-user"></i>${view.userId}</a>
-							<i class="fa fa-calendar"></i>${view.regiDate }</a>
-							<i class="fa fa-comments"></i>${view.recnt }</a>
-							<i class="far fa-eye"></i>${view.boardView}
+							<a href="#"><i class="fas fa-user"></i>${view.userId}</a> <i
+								class="fa fa-calendar"></i>${view.regiDate }</a> <i
+								class="fa fa-comments"></i>${view.recnt }</a> <i class="far fa-eye"></i>${view.boardView}
 						</div>
 						<p>${view.content}</p>
 					</div>
 				</div>
 				<div class="tagcloud fix">
-						<div class="tab-pane fade active in" role="tabpanel">
-							<a href="#">${view.tag}</a>
-						</div>
+					<div class="tab-pane fade active in" role="tabpanel">
+						<a href="#">${view.tag}</a>
 					</div>
-					<br/>
-					<!-- 좋아요 표시  -->
-					<div id="likeView">
-					<%-- <c:if test="${member != null }">
-					<button type="button" id="like" class="like" onclick="like_func()"><i class="far fa-heart"></i>${view.good }</button>
+				</div>
+				<br />
+				<!-- 좋아요 표시  -->
+				<div id="likeView">
+					<form method="post">
+					<input type="hidden" name="boardCode" id="boardCode"
+								value="${view.boardCode}">
+					<c:if test="${member != null }">
+					<button type="button" id="like" class="like"><i class="far fa-heart"></i>${view.good }</button>
 					</c:if>
 					<c:if test="${member == null }">
-					<button type="button" id="like" class="like" onclick="like_func()"><i class="far fa-heart" disabled="disabled"></i>${view.good }</button>
-					</c:if> --%>
-		 			<script>
-					likeView();
-					</script> 
-					</div>
+					<button type="button" id="like" class="like"><i class="far fa-heart" disabled="disabled"></i>${view.good }</button>
+					</c:if>
+					<script>
+					$("#like").click(function() {
+						var boardCode = $("#boardCode").val();
+						var likeCheck = 1;
+						//키 값 data
+						var data = {
+						boardCode : boardCode,
+						likeCheck : likeCheck
+						};
+						$.ajax({
+						url : "/blog/likeAdd",
+						type : "post",
+						data : data,
+						success : function() {
+						likeView();
+						}
+						});
+					});
+					</script>
+					</form>
+				</div>
 				<div id="comments">
 					<div class="commentform">
-						<form class="comment-form" id="commentform" method="post" autocomplete="off">
-						<input type="hidden" name="boardCode" id="boardCode" value="${view.boardCode}">
+						<form class="comment-form" id="commentform" method="post"
+							autocomplete="off">
+							<input type="hidden" name="boardCode" id="boardCode"
+								value="${view.boardCode}">
 							<div class="row">
 								<div class="col-md-10">
 									<div class="form-input">
 										<label for="comment" class="field-label">Your Comment<span>*</span></label>
 										<c:if test="${member == null }">
-										
-										<p><a href="<%=request.getContextPath() %>/member/login">댓글을 남기려면 로그인 해 주세요..</a></p>
-										
+
+											<p>
+												<a href="<%=request.getContextPath()%>/member/login">댓글을
+													남기려면 로그인 해 주세요..</a>
+											</p>
+
 										</c:if>
 										<c:if test="${member != null }">
-										<div class="input_area">
-										<textarea name="reContent" id="reContent" rows="4"></textarea>
-										</div>
+											<div class="input_area">
+												<textarea name="reContent" id="reContent" rows="4"></textarea>
+											</div>
 										</c:if>
 									</div>
 								</div>
 								<div class="col-md-2">
-									<p class="form-submit" style="margin-top:20px;">
+									<p class="form-submit" style="margin-top: 20px;">
 										<button type="button" id="submit" name="submit">댓글 작성</button>
-										
+
 										<script>
 										//댓글 작성 이벤트 
 											$("#submit").click(function() {
@@ -210,13 +230,14 @@
 								</div>
 							</div>
 						</form>
-					</div><!-- end commentform -->
-					<br/>
+					</div>
+					<!-- end commentform -->
+					<br />
 					<div class="comments-list">
 						<h4 class="heading">댓글</h4>
 						<ol class="commentlists">
 							<li class="sin-comment">
-							<%-- <c:forEach items="${reply}" var="reply">
+								<%-- <c:forEach items="${reply}" var="reply">
 								<div class="the-comment">
 									<div class="avatar">
 										<img alt="" src="img/blog/comment-1.jpg">	
@@ -248,11 +269,10 @@
 									</li>#comment-##
 								</ul>.children -->
 								</c:forEach> --%>
-							</li><!-- #comment-## -->
+							</li>
+							<!-- #comment-## -->
 							<script>
 							replyList();
-							</script>
-							<script>
 							//댓글 삭제 이벤트 
 							$(document).on("click", ".delete", function() {
 								var data = {commentNum : $(this).attr("data-commentNum")};
@@ -322,42 +342,57 @@
 						</ol>
 					</div>
 				</div>
+			</div>
 		</div>
-	</div>
-</section><!-- Start Blog Details-->
-<%@ include file="../include/footer.jsp" %>   
+	</section>
+	<!-- Start Blog Details-->
+	<%@ include file="../include/footer.jsp"%>
 
-<!-- jQuery 2.1.4 -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.1.4.min.js"></script>
-<!-- Bootstrap JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<!-- Owl Carousel JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-<!--countTo JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.countTo.js"></script>
-<!-- mixitup JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.mixitup.min.js"></script>
-<!-- magnific popup JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.magnific-popup.min.js"></script>
-<!-- Appear JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.appear.js"></script>
-<!-- MeanMenu JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.meanmenu.min.js"></script>
-<!-- Nivo Slider JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.nivo.slider.pack.js"></script>
-<!-- Scrollup JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.scrollup.min.js"></script>
-<!-- simpleLens JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.simpleLens.min.js"></script>
-<!-- Price Slider JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-price-slider.js"></script>
-<!-- WOW JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/wow.min.js"></script>
-<script>
+	<!-- jQuery 2.1.4 -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery-2.1.4.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	<!-- Owl Carousel JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/owl.carousel.min.js"></script>
+	<!--countTo JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.countTo.js"></script>
+	<!-- mixitup JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.mixitup.min.js"></script>
+	<!-- magnific popup JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.magnific-popup.min.js"></script>
+	<!-- Appear JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.appear.js"></script>
+	<!-- MeanMenu JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.meanmenu.min.js"></script>
+	<!-- Nivo Slider JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.nivo.slider.pack.js"></script>
+	<!-- Scrollup JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.scrollup.min.js"></script>
+	<!-- simpleLens JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.simpleLens.min.js"></script>
+	<!-- Price Slider JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery-price-slider.js"></script>
+	<!-- WOW JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/wow.min.js"></script>
+	<script>
    new WOW().init();
-</script>   
-<!-- Main JS -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/main.js"></script>
+</script>
+	<!-- Main JS -->
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/main.js"></script>
 
 </body>
 

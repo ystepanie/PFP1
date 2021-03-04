@@ -52,13 +52,16 @@ public interface BoardService {
 	public int likeView(int boardCode) throws Exception;
 	
 	//게시물 좋아요 추가
-	public int likeAdd(int likeCheck) throws Exception;
+	public void likeAdd(LikeVO vo) throws Exception;
 	
 	//게시물 좋아요 감소 
 	public int likeCancel(int likeCheck) throws Exception;
 	
 	//게시물 좋아요 중복 체크
 	public LikeVO like_Check(int boardCode) throws Exception;
+	
+	//좋아요 업데이트 
+	public int likeSum(int boardCode) throws Exception;
 	
 	//게시물 목록 + 페이징 + 인기순
 	public List listPopPage(int displayPost, int postNum) throws Exception;

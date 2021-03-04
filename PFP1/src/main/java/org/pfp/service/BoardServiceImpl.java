@@ -101,8 +101,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	//게시물 좋아요 추가
 	@Override
-	public int likeAdd(int likeCheck) throws Exception {
-		return dao.likeAdd(likeCheck);
+	public void likeAdd(LikeVO vo) throws Exception {
+		dao.likeAdd(vo);
 	}
 	
 	//게시물 좋아요 감소 
@@ -114,6 +114,12 @@ public class BoardServiceImpl implements BoardService {
 	//게시물 좋아요 중복 체크
 	public LikeVO like_Check(int boardCode) throws Exception {
 		return dao.like_Check(boardCode);
+	}
+	
+	//좋아요 업데이트
+	@Override
+	public int likeSum(int boardCode) throws Exception {
+		return dao.likeSum(boardCode); 
 	}
 
 	@Override

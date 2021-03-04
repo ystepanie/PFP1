@@ -153,16 +153,7 @@ public class BlogController {
 	   return b_service.infiniteScrollDown(boardCodeStart);
    }
    
-   //댓글 목록 ajax
-   @ResponseBody
-   @GetMapping("/replyList")
-   public List<ReplyVO> getReplyList(@RequestParam("no") int boardCode) throws Exception {
-	   logger.info("get replyList");
-	   
-	   List<ReplyVO> reply = b_service.replyList(boardCode);
-	   
-	   return reply;
-   }
+  
    
    //좋아요 수 조회
    @ResponseBody
@@ -173,39 +164,16 @@ public class BlogController {
 	   return good;
    }
    
-   //좋아요 추가,삭제
+   //좋아요 추가 ajax
    @ResponseBody
-   @GetMapping("/likeAdd")
-   public void getLikeAdd(HttpSession session, int boardCode) throws Exception {
+   @PostMapping("/likeAdd")
+   public void postLikeAdd(HttpSession session, LikeVO like) throws Exception {
 	   logger.info("post likeAdd");
-	   String userId = (String)session.getAttribute("userId");
-	  JsonObject obj = new JsonObject();
-	
-	  ArrayList<String> msgs = new ArrayList<String>();
-	  HashMap<String,Object> hashMap = new HashMap<String,Object>();
-	  hashMap.put("boardCode", boardCode);
-	  hashMap.put("userId", userId);
-	  LikeVO likeVO = b_service.like_Check(boardCode);
-	  
-	  if(likeVO.getLikeCheck() == 1) {
-		  msgs.add("좋아요취소");
-		  b_service.likeCancel(likeVO.getLikeCheck());
-	  } else {
-		  msgs.add("좋아요");
-		  b_service.likeAdd(likeVO.getLikeCheck());
-	  }
-//	  obj.put("boardCode",likeVO.getBoardCode());
+	   MemberVO member = (MemberVO)session.getAttribute("member");
+	   
+	   like.setUserId(member.getUserId());
+	   b_service.likeAdd(like);	   
    }
-   
-//   //좋아요 감소
-//   @ResponseBody
-//   @PostMapping("/likeCancel")
-//   public void getLikeCancel(LikeVO vo, HttpSession session) throws Exception {
-//	   logger.info("post likeCancel");
-//	   MemberVO member = (MemberVO)session.getAttribute("member");
-//	   vo.setUserId(member.getUserId());
-//	   b_service.likeCancel(vo.getLikeCheck());
-//   }
    
    //ckeditor에서 업로드
    @PostMapping("/ckUpload")
@@ -254,18 +222,16 @@ public class BlogController {
 		 return; 
    }
    
-//   //블로그 댓글 작성
-//   @PostMapping(value="/detail")
-//   public String registReply(ReplyVO reply, HttpSession session) throws Exception {
-//	   logger.info("regist reply");
-//	   
-//	   MemberVO member = (MemberVO)session.getAttribute("member");
-//	   reply.setUserId(member.getUserId());
-//	   
-//	   b_service.registReply(reply);
-//	   
-//	   return "redirect:/blog/detail?no="+reply.getBoardCode();
-//   }
+   //댓글 목록 ajax
+   @ResponseBody
+   @GetMapping("/replyList")
+   public List<ReplyVO> getReplyList(@RequestParam("no") int boardCode) throws Exception {
+	   logger.info("get replyList");
+	   
+	   List<ReplyVO> reply = b_service.replyList(boardCode);
+	   
+	   return reply;
+   }
    
    //댓글 작성 ajax
    @ResponseBody
